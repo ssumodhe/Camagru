@@ -1,11 +1,9 @@
-(function() {
-
   var streaming = false,
-      video        = document.querySelector('#video'),
-      cover        = document.querySelector('#cover'),
-      canvas       = document.querySelector('#canvas'),
-      photo        = document.querySelector('#photo'),
-      startbutton  = document.querySelector('#startbutton'),
+      video        = document.querySelector('#videoElement'),
+     /* cover        = document.querySelector('#cover'),*/
+      canvas       = document.querySelector('#canvasElement'),
+      photo        = document.querySelector('#snapshopElement'),
+      startbutton  = document.querySelector('#buttonElement'),
       width = 320,
       height = 0;
 
@@ -56,5 +54,3 @@
       takepicture();
     ev.preventDefault();
   }, false);
-
-})();

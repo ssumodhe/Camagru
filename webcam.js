@@ -1,8 +1,8 @@
 var video = document.querySelector("#videoElement");
 var button = document.querySelector("#buttonElement");
 var canvas = document.querySelector("#canvasElement");
-var width = 300;
-var height = 0;
+/*var width = 300;
+var height = 0;*/
  
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
  
@@ -21,13 +21,13 @@ function videoError(error) {
 
 
 
-video.addEventListener('canplay', handlePictureSize, false);
+/*video.addEventListener('canplay', handlePictureSize, false);
 
 function handlePictureSize(ev) {
       height = video.videoHeight / (video.videoWidth/width);
       canvas.setAttribute('width', width);
       canvas.setAttribute('height', height);
-}
+}*/
 
 
 
@@ -39,6 +39,7 @@ button.addEventListener('click', takePicture, false);
 }*/
 
 function takePicture() {
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    var data = canvas.toDataURL('image/png');
+   /* height = video.videoHeight / (video.videoWidth/width);*/
+    canvas.getContext('2d').drawImage(video, 0, 0, 0, 0);
+    var data = canvas.toDataURL('image/png'); /* enregistre la data de la photo */
 }

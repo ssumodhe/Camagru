@@ -16,12 +16,15 @@
                 border-width: 1vh;
                 border-color: black;
                 border-style: double; */
-                
-                margin: 0px auto;
                 width: 525px;
-                height: 800px;
-              
+                height: 450px;
+                margin: 0px auto;
                 }
+            .id_rendu{
+                width: 525px;
+                height: 260px;
+                margin: auto auto;
+            }
             #videoElement{
                 width: 500px;
                 height: 375px;
@@ -74,6 +77,9 @@
             
             <button id="buttonElement" alt="takepic_button">Prendre la photo</button>
             
+        </div>
+        
+        <div class="id_rendu">
             <canvas id="canvasElement"></canvas>
             
             <!-- <img id="snapshotElement" alt="snapshot"> -->
@@ -86,7 +92,7 @@
             
         </div>
         
-<!--     <script src="webcam.js"></script> -->
+        <script src="webcam.js"></script>
     </body>
     
     

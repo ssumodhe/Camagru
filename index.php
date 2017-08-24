@@ -33,33 +33,33 @@
             #buttonElement{
                 margin-top: 1vh;
                 margin-left: 70%;
+                position: relative;
                 }
             #canvasElement{
+                width: 300px;
+                height: 225px;
                 border-width: 0.2vh;
                 border-color: gainsboro;
                 border-style: dashed;
-                filter: type(value);
+                display: flex;
+                position: absolute;
+                z-index: 2;
+               /* filter: type(value);*/
                 }
-           /* #snapshotElement{
-                width: 0px;
-                height: 0px;
-            }*/
-            
-            #img1{
+         /*   #snapshotElement{
                 width: 100px;
                 height: 100px;
                 position: absolute;
                 z-index: 2; 
                 filter: alpha;
-            }
-            #img2{
-                margin:2vh;
-                width: 50px;
-                height: 50px;
+            }*/
+            #f_kitty{
+                width: 125px;
+                height: 175px;
+                display: flex;
                 position: absolute;
-                z-index: 4; 
-                filter: alpha;
-                
+                z-index: 4;
+                padding-bottom: 0%;
             }
             
         </style>
@@ -76,17 +76,17 @@
             
             <canvas id="canvasElement"></canvas>
             
-           <!-- <img id="snapshotElement" alt="snapshot"> -->
+            <!-- <img id="snapshotElement" alt="snapshot"> -->
             
-            <img id="img1" src="bichette_vache_detour.jpg"/>
-            <img id="img2" src="camagru_magnifing_glass.png"/> 
+          <!--  <img id="img1" src="bichette_vache_detour.jpg"/> -->
+            <img id="f_kitty" src="kitty_detour_redim.gif"/> 
             
             
-        <!--  <script src="webcam.js"></script> -->
+        
             
         </div>
         
-        
+<!--     <script src="webcam.js"></script> -->
     </body>
     
     

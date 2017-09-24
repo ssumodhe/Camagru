@@ -2,7 +2,7 @@ var video = document.querySelector("#videoElement");
 var button = document.querySelector("#buttonElement");
 var canvas = document.querySelector("#canvasElement");
 var width = 300;
-var height = 225;
+var height = 0;
 
 /*Gestion Navigateur/Webcam*/
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -37,6 +37,8 @@ function videoError(error) {
 function takePicture() {
   //  canvas.width = width;
 //    canvas.height = height;
+    
+    height = video.videoHeight / (video.videoWidth/width);
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     var data = canvas.toDataURL('image/png');
    /* photo.setAttribute('src', data); */

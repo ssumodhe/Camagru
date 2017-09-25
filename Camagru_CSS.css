@@ -29,6 +29,11 @@ a {
     background-color: aliceblue;
 }
 
+.error{
+    color: red;
+    font-family: sans-serif;
+}
+
 .id_video{
             /*  background-color: aliceblue;
                 border-width: 1vh;
@@ -37,26 +42,26 @@ a {
                 width: 525px;
                 height: 450px;
                 margin: 0px auto;
-                }
-            .id_rendu{
+        }
+.id_rendu{
                 width: 525px;
                 height: 260px;
                 margin: auto auto;
-            }
-            #videoElement{
+        }
+#videoElement{
                 width: 500px;
                 height: 375px;
                 background-color: gainsboro;
                 border-width: 1vh;
                 border-color: black;
                 border-style: double;
-                }
-            #buttonElement{
+        }
+#buttonElement{
                 margin-top: 1vh;
                 margin-left: 70%;
                 position: relative;
-                }
-            #canvasElement{
+        }
+#canvasElement{
                 width: 300px;
                 height: 225px;
                 border-width: 0.2vh;
@@ -66,7 +71,7 @@ a {
                 position: absolute;
                 z-index: 2;
                /* filter: type(value);*/
-                }
+        }
          /*   #snapshotElement{
                 width: 100px;
                 height: 100px;
@@ -74,13 +79,22 @@ a {
                 z-index: 2; 
                 filter: alpha;
             }*/
-            #f_kitty{
+#f_kitty{
                 width: 125px;
                 height: 175px;
                 display: flex;
                 position: absolute;
                 z-index: 4;
                 padding-bottom: 0%;
-            }
+        }
 
-
+.NotYetSub{
+               /* margin: none;
+                padding: none; */
+                display:inline-block;
+        }
+.AlreadySub{
+            /*    margin: none;
+                padding:none; */
+                display: inline-block;
+        }

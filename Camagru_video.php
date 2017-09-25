@@ -17,5 +17,5 @@
             
         </div>
         
-       <script src="webcam_2.js"></script> 
+    <!--   <script src="webcam_2.js"></script> --> 
 </html>

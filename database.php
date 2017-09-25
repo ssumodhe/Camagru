@@ -5,8 +5,9 @@
 // on lance catch qui recupere le message d'erreur envoyer
 // par PDO.
     try{
-        $bdd = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8',
-              'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+//        $bdd = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8',
+//              'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $bdd = new PDO("sqlite:camagru", "safsaf", "mdpsupersecret");
         //Etablie une connexion avec la base de donnees.
         //N'a besoin d'etre faite qu'une seule fois, 
         //en debut de page
@@ -26,27 +27,31 @@
     mail VARCHAR(255) CHARACTER SET utf8,
     password VARCHAR(255) CHARACTER SET utf8,
     created DATETIME NOT NULL
-    )ENGINE=INNODB";
-    $bdd->prepare($requete)->execute();
+    )ENGINE=INNODB;";
+//    $bdd->prepare($requete)->execute();
 
-    $requete = "CREATE TABLE IF NOT EXISTS pictures (
+    $requete .= "CREATE TABLE IF NOT EXISTS pictures (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_picture VARCHAR(100) CHARACTER SET utf8,
     login VARCHAR(100) CHARACTER SET utf8,
     nb_like INT,
     data_picture VARCHAR(255) CHARACTER SET utf8,
     created DATETIME NOT NULL
-    )ENGINE=INNODB";
-    $bdd->prepare($requete)->execute();
+    )ENGINE=INNODB;";
+//    $bdd->prepare($requete)->execute();
 
-    $requete = "CREATE TABLE IF NOT EXISTS comments (
+    $requete .= "CREATE TABLE IF NOT EXISTS comments (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR(100) CHARACTER SET utf8,
     id_picture VARCHAR(100) CHARACTER SET utf8,
     comment TEXT CHARACTER SET utf8,
     created DATETIME NOT NULL
-    )ENGINE=INNODB";
-    $bdd->prepare($requete)->execute();
+    )ENGINE=INNODB;";
+    // CODE DE THOMAS
+    $bdd->beginTransaction();
+    $bdd->exec($requete);
+    $bdd->commit();
+//    $bdd->prepare($requete)->execute();
     //[...] or die(print_r($bdd->errorInfo()));
 
     // Affiche chaque entrée une à une

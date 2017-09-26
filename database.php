@@ -22,31 +22,33 @@
     //$reponse = $bdd->query('SELECT * FROM ?');
 
     $requete = "CREATE TABLE IF NOT EXISTS users (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(100) CHARACTER SET utf8,
-    mail VARCHAR(255) CHARACTER SET utf8,
-    password VARCHAR(255) CHARACTER SET utf8,
-    created DATETIME NOT NULL
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        login VARCHAR(100) CHARACTER SET utf8,
+        mail VARCHAR(255) CHARACTER SET utf8,
+        password VARCHAR(255) CHARACTER SET utf8,
+        created DATETIME NOT NULL
     )ENGINE=INNODB;";
 //    $bdd->prepare($requete)->execute();
 
     $requete .= "CREATE TABLE IF NOT EXISTS pictures (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_picture VARCHAR(100) CHARACTER SET utf8,
-    login VARCHAR(100) CHARACTER SET utf8,
-    nb_like INT,
-    data_picture VARCHAR(255) CHARACTER SET utf8,
-    created DATETIME NOT NULL
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        id_picture VARCHAR(100) CHARACTER SET utf8,
+        login VARCHAR(100) CHARACTER SET utf8,
+        nb_like INT,
+        data_picture VARCHAR(255) CHARACTER SET utf8,
+        created DATETIME NOT NULL
     )ENGINE=INNODB;";
 //    $bdd->prepare($requete)->execute();
 
     $requete .= "CREATE TABLE IF NOT EXISTS comments (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(100) CHARACTER SET utf8,
-    id_picture VARCHAR(100) CHARACTER SET utf8,
-    comment TEXT CHARACTER SET utf8,
-    created DATETIME NOT NULL
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        login VARCHAR(100) CHARACTER SET utf8,
+        id_picture VARCHAR(100) CHARACTER SET utf8,
+        comment TEXT CHARACTER SET utf8,
+        created DATETIME NOT NULL
     )ENGINE=INNODB;";
+
+    $requete .= "INSERT INTO users (login, mail, password) VALUES ('mee', 'mee@html.com', 'superpswd');";
     // CODE DE THOMAS
     $bdd->beginTransaction();
     $bdd->exec($requete);

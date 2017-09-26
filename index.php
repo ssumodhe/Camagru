@@ -62,30 +62,58 @@
     
     
     <body>
-        <?php include("Camagru_menu.php"); ?>
-        <?php include("Camagru_video.php"); ?>
+        <?php include("Camagru_menu.php"); ?> <!-- A virer apres -->
+
+        <!-- -------------- -->
+        <!-- Message Erreur -->
+        <!-- -------------- -->
+        <?php
+            if (isset($_SESSION['form_complete']) && $_SESSION['form_complete'] == "KO")
+            {
+               echo "<p id='error'>Erreur : vous devez remplir correctement tous les champs.\n</p>";
+               unset($_SESSION['form_complete']);
+            }
+        ?>
         
-<!-- PARTIE DE LA PAGE HOME -->
-  <!--      <div class="id_video">
-            <video id="videoElement" autoplay="true"></video>
+        <!-- ------- -->
+        <!-- Sign_up -->
+        <!-- ------- -->
+        <div id="sign_up">
+        <form method="post" action="sign_up.php">
+            <p>Pas encore inscrit ?</p>
+            <label for="id_user">Votre nom : </label><input type="text" name="id_user"/>
+            <br/>
+            <label for="user_mail">Votre e-mail : </label><input type="user_mail" name="user_mail"/>
+            <br/>
+            <label for="password">Votre mot de passe : </label><input type="password" name="password"/>
+            <br/>
+            <input type="submit" name="sign_up" value="Je m'inscris !"/>
+        </form>
+        </div>
             
-            <button id="buttonElement" alt="takepic_button">Prendre la photo</button>
+        
+        <!-- ---------------- -->
+        <!--  Barre Verticale -->
+        <!-- ---------------- -->
+        <div id="verti_stick">
         </div>
         
         
-        <div class="id_rendu">
-            <canvas id="canvasElement"></canvas>
-    -->        
-            <!-- <img id="snapshotElement" alt="snapshot"> -->
+        <!-- ------- -->
+        <!-- Sign_in -->
+        <!-- ------- -->
+        <div id="sign_in">
+        <form method="post" action="sign_in.php">
+            <p> Déjà inscrit ?</p>
+            <label for="pseudo">Votre e-mail : </label><input type="text" name="user_mail"/>
+            <br/>
+            <label for="password">Votre mot de passe : </label><input type="password" name="password"/>
+            <br/>
+            <input type="submit" name="sign_in" value="Go !"/>
             
-          <!--  <img id="img1" src="bichette_vache_detour.jpg"/> -->
-           <!-- <img id="f_kitty" src="kitty_detour_redim.gif"/> --> 
-            
-    <!--    </div>
+        </form>
+        </div>
         
-        <script src="webcam_2.js"></script>
--->
-    
     </body>
     
     

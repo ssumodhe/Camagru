@@ -7,7 +7,7 @@
         
         <!-- Ssi connecté peut acceder a home.php
             sinon, demande de connexion sur index.php -->
-        <a href="index.php" style="">
+        <a href="home.php" style="">
             <h1> Welcome to Camagru !</h1>
         </a>
         

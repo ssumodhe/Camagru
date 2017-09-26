@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html>
     <body>
-        <hr color="gainsboro">
         <div id="copyright">
-                <pre>© Copyright à Kitty!</pre>
+                <hr color="gainsboro">
+                <pre>© Copyright à Kitty! </pre>
+                <img width="40px" height="50px" src="emoji_kitty.gif"/> 
         </div>
     </body>
 </html>

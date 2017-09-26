@@ -29,10 +29,41 @@ a {
     background-color: aliceblue;
 }
 
-.error{
+#copyright{
+    margin-top: 3vh;
+}
+
+#error{
     color: red;
+    font-style: italic;
     font-family: sans-serif;
 }
+
+#sign_up{
+               /* margin: none;
+                padding: none; */
+                display:inline-block;
+}
+
+#sign_in{
+            /*    margin: none;
+                padding-top: none; */
+                display: inline-block;
+}
+
+#verti_stick{
+    width: 2px;
+    height: 100%;
+    padding: 50px 0px 100px 0px;
+    margin-left: 35px;
+    margin-right: 35px;
+    background-color: gainsboro;
+    display: inline-block;
+}
+
+
+
+
 
 .id_video{
             /*  background-color: aliceblue;
@@ -88,13 +119,4 @@ a {
                 padding-bottom: 0%;
         }
 
-.NotYetSub{
-               /* margin: none;
-                padding: none; */
-                display:inline-block;
-        }
-.AlreadySub{
-            /*    margin: none;
-                padding:none; */
-                display: inline-block;
-        }
+

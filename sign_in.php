@@ -11,7 +11,7 @@
         
     else {
         $_SESSION['form_complete'] = "KO";
-        header('Location: my_account.php');
+        header('Location: index.php');
         exit();
     }
 ?>

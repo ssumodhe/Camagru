@@ -1,7 +1,7 @@
 var streaming = false,
       video        = document.querySelector('#videoElement'),
       canvas       = document.querySelector('#canvasElement'),
-//      photo        = document.querySelector('#photo'),
+      photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#buttonElement'),
       width = 320,
       height = 0;
@@ -41,20 +41,48 @@ var streaming = false,
     }
   }, false);
 
+
+
   function takepicture() {
     canvas.width = width;
     canvas.height = height;
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     var data = canvas.toDataURL('image/png');
-    $.ajax({
-            type: "POST",
-            url: './savingimg.php',
-            data:"m=" + data ,
-            success:
-            function(retour){
-                alert("Donnees retournees : " + retour );
-            }
-        });  
+//      data = data.replace("data:image/png;base64,", "");
+    console.log(data);
+      
+      
+//      fetch("./home.php?img="+data);
+
+//      var req = new XMLHttpRequest();
+//      req.open('get', 'home.php?img='+data, true);  
+//      req.send(null);
+      
+//    fetch('./home.php',{
+//        method: "GET",
+//        body: 'img='+data
+//    })
+      
+      fetch('./home.php', {  
+    method: 'post',  
+    headers: {  
+      "Content-type": "image/png; charset=UTF-8"  
+    },  
+    body: 'img='+data  
+  })
+      
+//    window.location.href='home.php?img='+data;
+      
+//      $.ajax({
+//            type: "GET",
+//            url: './home.php',
+//            data:"uid=" + data ,
+//            success:
+//            function(retour){
+//                alert("Donnees retournees : " + retour );
+//            }
+//        });
+      
 //    photo.setAttribute('src', data);
   }
 

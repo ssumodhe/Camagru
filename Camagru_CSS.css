@@ -45,6 +45,7 @@ a {
 
 #sign_in a{
     color: blue;
+    font-size: small;
 }
 
 #verti_stick{
@@ -58,12 +59,12 @@ a {
 }
 
 .id_video{
-              background-color: aliceblue;
-                border-width: 1vh;
-                border-color: black;
-                border-style: double; 
-                width: 525px;
-                height: 450px;
+/*              background-color: aliceblue;*/
+/*                border-width: 1vh;*/
+/*                border-color: black;*/
+/*                border-style: double; */
+/*                width: 525px;*/
+/*                height: 450px;*/
                 margin: 0px auto;
         }
 .id_rendu{
@@ -82,7 +83,7 @@ a {
         }
 #buttonElement{
                 margin-top: 1vh;
-                margin-left: 70%;
+                margin: 5px 40% 20px 40%;
                 position: relative;
         }
 #canvasElement{

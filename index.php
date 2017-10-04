@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("setup.php");
+    include_once("database_TH.php");
 ?>
 <!DOCTYPE HTML>
 <html>

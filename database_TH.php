@@ -66,4 +66,6 @@
     //de travailler sur la requete.
    // $reponse->closeCursor();
 
+return ($bdd);
+
 ?>

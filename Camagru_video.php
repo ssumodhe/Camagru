@@ -10,8 +10,11 @@
         <div class="id_rendu">
             <canvas id="canvasElement"></canvas>
             <img id="photo"/>
+          
             
         </div>
         
       <script src="webcam.js"></script> 
+    
+ 
 </html>

@@ -9,13 +9,9 @@
         
         <div class="id_rendu">
             <canvas id="canvasElement"></canvas>
-            
-            <!-- <img id="snapshotElement" alt="snapshot"> -->
-            
-          <!--  <img id="img1" src="bichette_vache_detour.jpg"/> -->
-           <!-- <img id="f_kitty" src="kitty_detour_redim.gif"/> --> 
+            <img id="photo"/>
             
         </div>
         
-    <!--   <script src="webcam_2.js"></script> --> 
+      <script src="webcam.js"></script> 
 </html>

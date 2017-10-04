@@ -1,57 +1,126 @@
-var video = document.querySelector("#videoElement");
-var button = document.querySelector("#buttonElement");
-var canvas = document.querySelector("#canvasElement");
-var width = 300;
-var height = 0;
+var streaming = false,
+      video        = document.querySelector('#videoElement'),
+      canvas       = document.querySelector('#canvasElement'),
+//      photo        = document.querySelector('#photo'),
+      startbutton  = document.querySelector('#buttonElement'),
+      width = 320,
+      height = 0;
 
-/*Gestion Navigateur/Webcam*/
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
- 
-if (navigator.getUserMedia) {
-    navigator.getUserMedia({video: true}, handleVideo, videoError);
-}
+  navigator.getMedia = ( navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia);
 
-function handleVideo(stream) {
-    /* set la source de la variable video à ce que la webcam envoie (le stream)*/
-    video.src = window.URL.createObjectURL(stream);
-}
- 
-function videoError(error) {
-    console.log("It seems to be a problem when displaying the webcam video stream");
-}
+  navigator.getMedia(
+    {
+      video: true,
+      audio: false
+    },
+    function(stream) {
+      if (navigator.mozGetUserMedia) {
+        video.mozSrcObject = stream;
+      } else {
+        var vendorURL = window.URL || window.webkitURL;
+        video.src = vendorURL.createObjectURL(stream);
+      }
+      video.play();
+    },
+    function(err) {
+      console.log("An error occured! " + err);
+    }
+  );
 
-/*Gestion Video*/
-//function handlePictureSize(ev) {
-//   height = video.videoHeight / (video.videoWidth/width);
-//    video.setAttribute('width', width);
-//    video.setAttribute('height', height);
-//    canvas.setAttribute('width', width);
-//    canvas.setAttribute('height', height);
-    /* height = video.videoHeight / (video.videoWidth/width);
+  video.addEventListener('canplay', function(ev){
+    if (!streaming) {
+      height = video.videoHeight / (video.videoWidth/width);
+      video.setAttribute('width', width);
+      video.setAttribute('height', height);
       canvas.setAttribute('width', width);
-      canvas.setAttribute('height', height); */
-//}
-//video.addEventListener('canplay', handlePictureSize, false);
+      canvas.setAttribute('height', height);
+      streaming = true;
+    }
+  }, false);
 
-/*Gestion Bouton Photo*/
-function takePicture() {
-  //  canvas.width = width;
-//    canvas.height = height;
-    
-    height = video.videoHeight / (video.videoWidth/width);
+  function takepicture() {
+    canvas.width = width;
+    canvas.height = height;
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     var data = canvas.toDataURL('image/png');
-   /* photo.setAttribute('src', data); */
-    /*canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, 0, 0);
-    var data = canvas.toDataURL('image/png'); *//* enregistre la data de la photo */
-    
-}
-button.addEventListener('click', takePicture, false);
+    $.ajax({
+            type: "POST",
+            url: './savingimg.php',
+            data:"m=" + data ,
+            success:
+            function(retour){
+                alert("Donnees retournees : " + retour );
+            }
+        });  
+//    photo.setAttribute('src', data);
+  }
 
-/*function handleButton(ev){
-    takePicture();
-    ev.preventDefault();  ??? 
-}*/
+  startbutton.addEventListener('click', function(ev){
+      takepicture();
+    ev.preventDefault();
+  }, false);
 
+
+
+
+//var streaming = false,
+//    video        = document.querySelector('#videoElement'),
+////      cover        = document.querySelector('#cover'),
+//    canvas       = document.querySelector('#canvasElement'),
+//    photo        = document.querySelector('#photo'),
+//    startbutton  = document.querySelector('#buttonElement'),
+//    width = 320,
+//    height = 0;
+//
+//navigator.getMedia = (navigator.getUserMedia ||
+//                         navigator.webkitGetUserMedia ||
+//                         navigator.mozGetUserMedia ||
+//                         navigator.msGetUserMedia);
+//
+//navigator.getMedia(
+//    {
+//        video: true,
+//        audio: false
+//    },
+//    function(stream) {
+//      if (navigator.mozGetUserMedia) {
+//        video.mozSrcObject = stream;
+//      }
+//        else {
+//        var vendorURL = window.URL || window.webkitURL;
+//        video.src = vendorURL.createObjectURL(stream);
+//      }
+//      video.play();
+//    },
+//    function(err) {
+//      console.log("An error occured! " + err);
+//    }
+//  );
+//
+//  video.addEventListener('canplay', function(ev){
+//    if (!streaming) {
+//      height = video.videoHeight / (video.videoWidth/width);
+//      video.setAttribute('width', width);
+//      video.setAttribute('height', height);
+//      canvas.setAttribute('width', width);
+//      canvas.setAttribute('height', height);
+//      streaming = true;
+//    }
+//  }, false);
+//
+//  function takepicture() {
+//    canvas.width = width;
+//    canvas.height = height;
+//    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+//    var data = canvas.toDataURL('image/png');
+//    console.log(data);
+//    photo.setAttribute = ('src', data);
+//  }
+//
+//  startbutton.addEventListener('click', function(ev){
+//      takepicture();
+//    ev.preventDefault();
+//  }, false);

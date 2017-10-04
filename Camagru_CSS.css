@@ -7,10 +7,6 @@ html{
     background-color: aliceblue;
 }
 
-h1{
-    text-align: center;
-}
-
 li {
     margin: auto 2em auto 2em;
     display: inline;
@@ -25,7 +21,7 @@ a {
 #menu{
     width: 100%;
     height: 3vh;
-    margin: 1vh auto 2vh auto;
+    margin: 1vh auto 3vh auto;
     background-color: aliceblue;
 }
 
@@ -47,6 +43,10 @@ a {
                 display: inline-block;
 }
 
+#sign_in a{
+    color: blue;
+}
+
 #verti_stick{
     width: 2px;
     height: 100%;
@@ -57,15 +57,11 @@ a {
     display: inline-block;
 }
 
-
-
-
-
 .id_video{
-            /*  background-color: aliceblue;
+              background-color: aliceblue;
                 border-width: 1vh;
                 border-color: black;
-                border-style: double; */
+                border-style: double; 
                 width: 525px;
                 height: 450px;
                 margin: 0px auto;
@@ -75,6 +71,7 @@ a {
                 height: 260px;
                 margin: auto auto;
         }
+
 #videoElement{
                 width: 500px;
                 height: 375px;
@@ -106,13 +103,5 @@ a {
                 z-index: 2; 
                 filter: alpha;
             }*/
-#f_kitty{
-                width: 125px;
-                height: 175px;
-                display: flex;
-                position: absolute;
-                z-index: 4;
-                padding-bottom: 0%;
-        }
 
 

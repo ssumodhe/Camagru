@@ -11,6 +11,13 @@ session_start();
     <body>
         <?php include("Camagru_menu.php"); ?>
         
+        <div id="infos">
+            <h2>Vos informations</h2>
+            <p>Votre nom: <?php echo($_SESSION['id_user'])?></p>
+            <p>Votre e-mail: <?php echo($_SESSION['user_mail'])?></p>
+            <form action="sign_out.php"><input type="submit" value="Déconnexion"></form>
+        </div>
+        
         
    </body>
     

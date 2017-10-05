@@ -36,11 +36,11 @@ a {
 }
 
 #sign_up{
-                display:inline-block;
+    display:inline-block;
 }
 
 #sign_in{
-                display: inline-block;
+    display: inline-block;
 }
 
 #sign_in a{
@@ -65,14 +65,13 @@ a {
 
 .id_form{
     display: inline-block;
-    
 }
 
 .id_rendu{
                 width: 525px;
                 height: 260px;
-                margin: auto auto;
-        }
+                margin: 0px auto;
+}
 
 #button_save{
     margin-top: 10px;
@@ -97,9 +96,9 @@ a {
                 border-width: 0.2vh;
                 border-color: gainsboro;
                 border-style: dashed;
-                display: flex;
-                position: absolute;
-                z-index: 2;
+/*                display: flex;*/
+/*                position: absolute;*/
+/*                z-index: 2;*/
                /* filter: type(value);*/
         }
          /*   #snapshotElement{

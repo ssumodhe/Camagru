@@ -1,8 +1,8 @@
 var streaming = false,
-      video        = document.querySelector('#videoElement'),
-      canvas       = document.querySelector('#canvasElement'),
-      photo        = document.querySelector('#photo'),
-      startbutton  = document.querySelector('#buttonElement'),
+      video        = document.getElementById('videoElement'),
+      canvas       = document.getElementById('canvasElement'),
+      photo        = document.getElementById('photo'),
+      startbutton  = document.getElementById('buttonElement'),
       width = 320,
       height = 0;
 

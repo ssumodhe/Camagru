@@ -59,19 +59,24 @@ a {
 }
 
 .id_video{
-/*              background-color: aliceblue;*/
-/*                border-width: 1vh;*/
-/*                border-color: black;*/
-/*                border-style: double; */
-/*                width: 525px;*/
-/*                height: 450px;*/
-                margin: 0px auto;
+/*    margin: 0px auto;*/
+    display: inline-block;
         }
+
+.id_form{
+    display: inline-block;
+    
+}
+
 .id_rendu{
                 width: 525px;
                 height: 260px;
                 margin: auto auto;
         }
+
+#button_save{
+    margin-top: 10px;
+}
 
 #videoElement{
                 width: 500px;

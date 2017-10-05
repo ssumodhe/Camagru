@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php session_start(); 
+if(!isset($_SESSION[log]))
+{
+    header("Location: index.php");
+}
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -11,15 +16,13 @@
         <?php include("Camagru_video.php"); ?>
         
         <?php
-if(isset($_POST['img']))
-   {
-       echo ("img received<br/>");
-       $photo = imagecreatefromstring($_POST['img']);
-       echo ("<img src=\"".$photo."\"/>");
-//        unset($_POST['uid']);
-   }
+            if(isset($_POST['hidden_img']))
+            {
+                echo ("<img src=\"".$_POST['hidden_img']."\"/>");
+//               unset($_POST['img']);
+            }
  
-?>
+        ?>
     
     </body>
     

@@ -1,5 +1,5 @@
 <?php
-    $bdd = include("database_TH.php");
+    $bdd = include("database.php");
     
     //Recupere les infos demandees par la requete.
     //$reponse = $bdd->query('SELECT * FROM ?');

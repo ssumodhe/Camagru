@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("database_TH.php");
+    include_once("setup.php");
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -72,7 +72,7 @@
             <br/>
             <label for="password">Votre mot de passe : </label><input type="password" name="password" id="password"/>
             <br/>
-            <a href="#">Mot de passe oublié?</a>
+            <a href="forgotten_pswd.php">Mot de passe oublié?</a>
             <br/>
             <input type="submit" name="sign_in" value="Go !"/>
             

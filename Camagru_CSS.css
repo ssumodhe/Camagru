@@ -48,6 +48,12 @@ a {
     font-size: small;
 }
 
+#prec_page a{
+    color: blue;
+    font-size: small;
+    margin: 0px auto;
+}
+
 #verti_stick{
     width: 2px;
     height: 100%;

@@ -49,7 +49,7 @@ $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
 //==========
  
 
-//$return = mail($mail,$sujet,$message,$header);
+$return = mail($mail,$sujet,$message,$header);
 //if ($return == true)
 //{
 //    echo("Mail envoyé");

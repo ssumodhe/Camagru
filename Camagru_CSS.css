@@ -54,6 +54,11 @@ a {
     margin: 0px auto;
 }
 
+#img_gallery{
+    width: 10px;
+    height: 10px;
+}
+
 #verti_stick{
     width: 2px;
     height: 100%;

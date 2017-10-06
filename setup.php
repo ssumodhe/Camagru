@@ -18,7 +18,7 @@
     id_picture VARCHAR(100) CHARACTER SET utf8,
     login VARCHAR(100) CHARACTER SET utf8,
     nb_like INT,
-    data_picture VARCHAR(255) CHARACTER SET utf8,
+    data_picture LONGTEXT CHARACTER SET utf8,
     created DATETIME NOT NULL
     )ENGINE=INNODB";
     $bdd->prepare($requete)->execute();

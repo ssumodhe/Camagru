@@ -17,8 +17,8 @@
             $mdp = hash("sha512", $_POST['password']);
             $mdp_2 = hash("md5", $mdp);
             
-            $bdd = include("database_TH.php");
-            $requete = "INSERT INTO users (login, mail, password) VALUES ('".$_SESSION['id_user']."', '".$_SESSION[user_mail]."', '".$mdp_2."');";
+//            $bdd = include("database_TH.php");
+//            $requete = "INSERT INTO users (login, mail, password) VALUES ('".$_SESSION['id_user']."', '".$_SESSION[user_mail]."', '".$mdp_2."');";
 //            // CODE DE THOMAS
 //            $bdd->beginTransaction();
 //            $bdd->exec($requete);

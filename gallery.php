@@ -23,8 +23,10 @@ if(!isset($_SESSION[log]))
         while ($donnees = $reponse->fetch())
         {
 //            $photo = str_replace("data:image/png;base64,", "", $donnees[data_picture]);
-            echo("<img src='".$donnees[data_picture]."' />");
-            
+            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img src='".$donnees[data_picture]."' /></a>");
+            echo("<br/>");
+            echo("photo de ".$donnees[user_id].".");
+            echo("<br/>");
             echo("<br/>");
         }
         

@@ -51,7 +51,7 @@ a {
 #prec_page a{
     color: blue;
     font-size: small;
-    margin: 0px auto;
+    text-align: left;
 }
 
 #img_gallery{
@@ -120,4 +120,11 @@ a {
                 filter: alpha;
             }*/
 
+#info_pic{
+    display: inline-block;
+}
 
+#like_button{
+    margin-left: 30%;
+    margin-right: 0;
+}

@@ -15,8 +15,8 @@
 
     $requete = "CREATE TABLE IF NOT EXISTS pictures (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_picture VARCHAR(100) CHARACTER SET utf8,
-    login VARCHAR(100) CHARACTER SET utf8,
+    user_id VARCHAR(100) CHARACTER SET utf8,
+    user_mail VARCHAR(100) CHARACTER SET utf8,
     nb_like INT,
     data_picture LONGTEXT CHARACTER SET utf8,
     created DATETIME NOT NULL
@@ -25,7 +25,8 @@
 
     $requete = "CREATE TABLE IF NOT EXISTS comments (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(100) CHARACTER SET utf8,
+    user_id VARCHAR(100) CHARACTER SET utf8,
+    user_mail VARCHAR(100) CHARACTER SET utf8,
     id_picture VARCHAR(100) CHARACTER SET utf8,
     comment TEXT CHARACTER SET utf8,
     created DATETIME NOT NULL

@@ -18,16 +18,15 @@ if(!isset($_SESSION[log]))
         <?php
             if(isset($_POST['hidden_img']))
             {
-                $_SESSION['id_picture'] = 12;
                 $_SESSION['nb_like'] = 0;
-                $_SESSION['created'] = date('l jS \of F Y h:i:s A');
+                $_SESSION['created'] = date('Y-m-d h:i:s');
                 
                 echo($_POST['hidden_img']);
                 echo ("<img src=\"".$_POST['hidden_img']."\"/>");
                 
                 $bdd = include("database.php");
-                $requete = "INSERT INTO pictures (id_picture, login, nb_like, data_picture, created) VALUES (
-                '".$_SESSION['id_picture']."',
+                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
+                '".$_SESSION['id_user']."',
                 '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
                 '".$_POST['hidden_img']."',
                 '".$_SESSION['created']."');";

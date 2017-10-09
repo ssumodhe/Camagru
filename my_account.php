@@ -18,6 +18,7 @@ if(!isset($_SESSION[log]))
         <div id="infos">
             <h2>Vos informations</h2>
             <p>Votre nom: <?php echo($_SESSION['id_user'])?></p>
+            <input type="submit" value="Modifier mon nom" />
             <p>Votre e-mail: <?php echo($_SESSION['user_mail'])?></p>
             <form action="sign_out.php"><input type="submit" value="Déconnexion"></form>
         </div>

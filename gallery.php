@@ -18,14 +18,14 @@ if(!isset($_SESSION[log]))
         <?php
         
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM pictures;");
+        $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id DESC;");
         
         while ($donnees = $reponse->fetch())
         {
 //            $photo = str_replace("data:image/png;base64,", "", $donnees[data_picture]);
-            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img src='".$donnees[data_picture]."' /></a>");
+            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img src='".$donnees[data_picture]."' />");
             echo("<br/>");
-            echo("photo de ".$donnees[user_id].".");
+            echo("photo de ".$donnees[user_id].".</a>");
             echo("<br/>");
             echo("<br/>");
         }

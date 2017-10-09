@@ -121,10 +121,14 @@ a {
             }*/
 
 #info_pic{
+    font-size: small;
     display: inline-block;
 }
 
 #like_button{
-    margin-left: 30%;
-    margin-right: 0;
+/*
+    margin: 0;
+    padding: 0;
+*/
+
 }

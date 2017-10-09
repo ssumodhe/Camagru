@@ -33,6 +33,14 @@
     )ENGINE=INNODB";
     $bdd->prepare($requete)->execute();
 
+    $requete = "CREATE TABLE IF NOT EXISTS likes (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_mail VARCHAR(100) CHARACTER SET utf8,
+    id_picture VARCHAR(100) CHARACTER SET utf8,
+    created DATETIME NOT NULL
+    )ENGINE=INNODB";
+    $bdd->prepare($requete)->execute();
+
 
 
     //[...] or die(print_r($bdd->errorInfo()));

@@ -21,9 +21,6 @@ if(!isset($_SESSION[log]))
                 $_SESSION['nb_like'] = 0;
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 
-                echo($_POST['hidden_img']);
-                echo ("<img src=\"".$_POST['hidden_img']."\"/>");
-                
                 $bdd = include("database.php");
                 $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
                 '".$_SESSION['id_user']."',
@@ -33,7 +30,6 @@ if(!isset($_SESSION[log]))
                 $bdd->prepare($requete)->execute();
                 
             }
-        print_r($_SESSION);
  
         ?>
     

@@ -14,7 +14,7 @@ if(!isset($_SESSION[log]))
     <body>
         <?php include("Camagru_menu.php"); ?>
         <?php  echo('<div id="prec_page">
-        <a href="gallery.php">Revenir à la page précédente.</a>
+        <a href="gallery.php">Revenir à la galerie.</a>
         </div>');?>
         
         
@@ -41,23 +41,30 @@ if(!isset($_SESSION[log]))
             echo("<br/>");
             echo("<img src='".$donnees[data_picture]."' />");
             echo("<br/>");
-            echo("Crée le ".$donnees[created]."");
-            echo("<div id='info_pic'><form action='gallery_pic.php' method='GET'>
+            echo("<div id='info_pic'>Crée le ".$donnees[created]."");
+            echo("<form action='gallery_pic.php' method='GET'>
             <input type='hidden' name='id' value='".$_SESSION[pic]."' />
             <input type='hidden' name='user' value='".$_SESSION[name]."' />
             <input id='like_button' type='image' name='likeup' value='oneup' width=30px height=32px src='img/like_button_unicorn.png'/>
-            </form></div>");
+            </form>");
             if(isset($_GET[likeup]))
             {
                 $donnees[nb_like]++;
                 $requete= "UPDATE pictures SET nb_like=".$donnees[nb_like]." WHERE id=".$_SESSION[pic].";";
                 $bdd->prepare($requete)->execute();
                 unset($_GET[likeup]);
+                
+            $_SESSION['created'] = date('Y-m-d h:i:s');
+            $requete = "INSERT INTO likes (user_mail, id_picture, created) VALUES ('".$_SESSION['user_mail']."', 
+            '".$_SESSION['pic']."',
+            '".$_SESSION['created']."');";
+            $bdd->prepare($requete)->execute();
+                
             }
 //            echo("<a href='gallery_add_like.php'><img width=30px height=32px src='img/like_button_unicorn.png' />");
             echo("".$donnees[nb_like]."");
             echo("<br/>");
-            echo("<br/>");
+            echo("<br/></div>");
 //            unset($_SESSION[pic]);
 //            unset($_SESSION[name]);
         }
@@ -92,7 +99,7 @@ if(!isset($_SESSION[log]))
             $bdd->prepare($requete)->execute();
             }
             $bdd = include("database.php");
-            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic']."\";");
+            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic']."\"ORDER BY id DESC;");
             while ($donnees = $reponse->fetch())
             {
                 echo("Le ".$donnees[created].", ".$donnees[user_id]." a commenté:   ".$donnees[comment]."");

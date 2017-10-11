@@ -2,7 +2,16 @@
 if(!isset($_SESSION[log]))
 {
     header("Location: index.php");
+    exit();
 }
+if(isset($_POST[del_pic]))
+    header("Location: gallery.php");
+if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] == NULL)
+{
+    header("Location: gallery.php");
+    exit();
+}
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -17,7 +26,15 @@ if(!isset($_SESSION[log]))
         <a href="gallery.php">Revenir à la galerie.</a>
         </div>');?>
         
-        
+        <?php
+        if(isset($_POST[del_pic]))
+            {
+                $bdd = include("database.php");
+                $requete= "DELETE FROM pictures WHERE id=".$_SESSION[pic_id].";";
+                $bdd->prepare($requete)->execute();
+                unset($_POST[del_pic]);
+            }
+        ?>
         <!-- ------------------- -->
         <!-- Partie photo + like -->
         <!-- ------------------- -->
@@ -25,38 +42,63 @@ if(!isset($_SESSION[log]))
         
         if(isset($_GET[id]) && isset($_GET[user]))
         {
-            $_SESSION[pic] = $_GET[id];
+            $_SESSION[pic_id] = $_GET[id];
             $_SESSION[name] = $_GET[user];
             unset($_GET[id]);
             unset($_GET[user]);
         
         
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM pictures WHERE id=\"".$_SESSION['pic']."\";");
+        
+        $get_if_like = $bdd->query("SELECT * FROM likes WHERE id_picture=\"".$_SESSION['pic_id']."\" AND user_mail=\"".$_SESSION[user_mail]."\";");
+        $like = $get_if_like->fetch();
+        if ($like != NULL)
+        {
+            $no_like = 1;
+        }
+        
+        
+        $reponse = $bdd->query("SELECT * FROM pictures WHERE id=\"".$_SESSION['pic_id']."\";");
         $donnees = $reponse->fetch();
         
         if($donnees[user_id] == $_SESSION[name])
         {
-            echo("Photo de ".$donnees[user_id].".");
+            if ($donnees[user_mail] == $_SESSION[user_mail])
+            { 
+                echo("<form action=\"\" method=\"post\">
+                <input type='hidden' name='id' value='".$_SESSION[pic_id]."' />");
+                echo("<input id='del_button' type='image' name='del_pic' value='to_be_del' width=30px height=30px src='img/delete_bin.png'/>");
+                echo("</form>");
+                
+                echo("Photo de vous.");
+            }
+            else
+            {
+                echo("Photo de ".$donnees[user_id].".");
+            }
             echo("<br/>");
             echo("<img src='".$donnees[data_picture]."' />");
             echo("<br/>");
             echo("<div id='info_pic'>Crée le ".$donnees[created]."");
             echo("<form action='gallery_pic.php' method='GET'>
-            <input type='hidden' name='id' value='".$_SESSION[pic]."' />
+            <input type='hidden' name='id' value='".$_SESSION[pic_id]."' />
             <input type='hidden' name='user' value='".$_SESSION[name]."' />
-            <input id='like_button' type='image' name='likeup' value='oneup' width=30px height=32px src='img/like_button_unicorn.png'/>
-            </form>");
-            if(isset($_GET[likeup]))
+            <input id='like_button' type='image' name='likeup' value='oneup' width=30px height=32px src='img/like_button_unicorn.png'");
+            if($no_like == 1)
+            {
+                echo("disabled='disabled'");
+            }
+            echo("/> </form>");
+            if(isset($_GET[likeup]) && $no_like != 1)
             {
                 $donnees[nb_like]++;
-                $requete= "UPDATE pictures SET nb_like=".$donnees[nb_like]." WHERE id=".$_SESSION[pic].";";
+                $requete= "UPDATE pictures SET nb_like=".$donnees[nb_like]." WHERE id=".$_SESSION[pic_id].";";
                 $bdd->prepare($requete)->execute();
                 unset($_GET[likeup]);
                 
             $_SESSION['created'] = date('Y-m-d h:i:s');
             $requete = "INSERT INTO likes (user_mail, id_picture, created) VALUES ('".$_SESSION['user_mail']."', 
-            '".$_SESSION['pic']."',
+            '".$_SESSION['pic_id']."',
             '".$_SESSION['created']."');";
             $bdd->prepare($requete)->execute();
                 
@@ -65,15 +107,11 @@ if(!isset($_SESSION[log]))
             echo("".$donnees[nb_like]."");
             echo("<br/>");
             echo("<br/></div>");
-//            unset($_SESSION[pic]);
+//            unset($_SESSION[pic_id]);
 //            unset($_SESSION[name]);
         }
         }
-        else
-        {
-            header("Location: gallery.php");
-            exit();
-        }
+     
         ?>
         
         <!-- ------------------- -->
@@ -93,13 +131,13 @@ if(!isset($_SESSION[log]))
                 $bdd = include("database.php");
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', '".$_SESSION['user_mail']."', 
-                '".$_SESSION['pic']."',
+                '".$_SESSION['pic_id']."',
                 '".$_POST['message']."',
                 '".$_SESSION['created']."');";
             $bdd->prepare($requete)->execute();
             }
             $bdd = include("database.php");
-            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic']."\"ORDER BY id DESC;");
+            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id']."\"ORDER BY id DESC;");
             while ($donnees = $reponse->fetch())
             {
                 echo("Le ".$donnees[created].", ".$donnees[user_id]." a commenté:   ".$donnees[comment]."");

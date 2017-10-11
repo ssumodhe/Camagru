@@ -47,7 +47,7 @@
             '".$_SESSION['created']."');";
             $bdd->prepare($requete)->execute();
             $_SESSION[log] = "ON";
-            require("mailing.php");
+//            require("mailing.php");
             header('Location: home.php');
             exit();
         }

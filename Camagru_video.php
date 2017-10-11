@@ -7,6 +7,7 @@
     </div>
     
     <div class="id_form">
+        <img src="emoji_kitty.gif" />
         <form method="post">
             <input id="hidden_img" name="hidden_img" type="hidden">
             <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" disabled="disabled">
@@ -20,6 +21,5 @@
         
 
     <script src="webcam.js"></script> 
-    
  
 </html>

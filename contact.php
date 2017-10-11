@@ -21,17 +21,17 @@
             <?php if(isset($_SESSION[log])){echo("value='".$_SESSION[user_mail]."'");} ?>     /><br/>
             <label>Votre message :</label><br/>
             <textarea name="message" rows=4 cols=40></textarea><br/> 
-            <input type="submit" value="Envoyer!" /><br/>
+            <input type="submit" value="Envoyer!" />
+            <br/>
             
-                
         </form>
         
         
            <?php if(!isset($_SESSION[log]))
             {
                 echo('<div id="prec_page">
-     <a href="index.php">Revenir à la page précédente.</a>
-    </div>');
+                <a href="index.php">Revenir à la page précédente.</a>
+                </div>');
             } ?>
     
     </body>

@@ -15,7 +15,10 @@
             $_SESSION['id_user'] = $_POST['id_user'];
             $_SESSION['user_mail'] = $_POST['user_mail'];
             $mdp = hash("sha512", $_POST['password']);
+            unset($_POST['password']);
             $mdp_2 = hash("md5", $mdp);
+            unset($mdp);
+            
             
 //            $bdd = include("database_TH.php");
 //            $requete = "INSERT INTO users (login, mail, password) VALUES ('".$_SESSION['id_user']."', '".$_SESSION[user_mail]."', '".$mdp_2."');";
@@ -47,6 +50,8 @@
             '".$_SESSION['created']."');";
             $bdd->prepare($requete)->execute();
             $_SESSION[log] = "ON";
+            unset($mdp);
+            unset($mdp_2);
 //            require("mailing.php");
             header('Location: home.php');
             exit();

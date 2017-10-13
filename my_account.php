@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION[next_p] = 2;
 if(!isset($_SESSION[log]))
 {
     header("Location: index.php");

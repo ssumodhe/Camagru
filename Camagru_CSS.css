@@ -49,9 +49,12 @@ a {
 }
 
 #prec_page a{
+    cursor: auto;
     color: blue;
     font-size: small;
     text-align: left;
+    text-decoration: underline;
+    
 }
 
 #img_gallery{

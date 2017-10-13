@@ -35,7 +35,9 @@
         
         while ($donnees = $reponse->fetch())
         {
-            echo("<img width=40% length=40% src='".$donnees[data_picture]."' /><br/>");
+            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=40% length=40% src='".$donnees[data_picture]."' />");
+            echo("<br/>");
+//            echo("<img width=40% length=40% src='".$donnees[data_picture]."' /><br/>");
         }
         ?>
         

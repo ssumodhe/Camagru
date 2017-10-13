@@ -23,7 +23,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
     <body>
         <?php include("Camagru_menu.php"); ?>
         <?php  echo('<div id="prec_page">
-        <a href="gallery.php">Revenir à la galerie.</a>
+        <a href="gallery.php?'.$_SESSION[page].'">Revenir à la galerie.</a>
         </div>');?>
         
         <?php

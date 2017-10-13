@@ -42,6 +42,15 @@
             header('Location: index.php');
             exit();
         }
+            
+        $reponse = $bdd->query("SELECT login FROM users WHERE login=\"".$_SESSION['id_user']."\";");
+        $donnees = $reponse->fetch();
+        if ($donnees[login] != NULL)
+        {
+            $_SESSION['form_complete'] = "KO_login_exist";
+            header('Location: index.php');
+            exit();
+        }  
         else
         {
             $_SESSION['created'] = date('Y-m-d h:i:s');

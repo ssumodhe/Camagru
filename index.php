@@ -31,6 +31,11 @@
                echo "<p id='error'>Erreur : cet email est déjà utilisé.\n</p>";
                unset($_SESSION['form_complete']);
             }
+            else if (isset($_SESSION['form_complete']) && $_SESSION['form_complete'] == "KO_login_exist")
+            {
+               echo "<p id='error'>Erreur : ce nom est déjà utilisé.\n</p>";
+               unset($_SESSION['form_complete']);
+            }
             else if (isset($_SESSION['form_complete']) && $_SESSION['form_complete'] == "KO_mail_incorrect")
             {
                echo "<p id='error'>Erreur : l'adresse email ne semble pas valide.\n</p>";
@@ -68,7 +73,7 @@
         <div id="sign_in">
         <form method="post" action="sign_in.php">
             <p> Déjà inscrit ?</p>
-            <label for="pseudo">Votre e-mail : </label><input type="text" name="user_mail" id="pseudo"/>
+            <label for="pseudo">Votre nom : </label><input type="text" name="id_user" id="pseudo"/>
             <br/>
             <label for="password">Votre mot de passe : </label><input type="password" name="password" id="password"/>
             <br/>

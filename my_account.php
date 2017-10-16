@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION[nb_pic_display] = 0;
+$_SESSION[page] = 1;
 $_SESSION[next_p] = 2;
 if(!isset($_SESSION[log]))
 {
@@ -38,7 +40,7 @@ if(!isset($_SESSION[log]))
         
                     while ($donnees = $reponse->fetch())
                     {
-                        echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=10% length=10% src='".$donnees[data_picture]."' />");
+                        echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=40% src='".$donnees[data_picture]."' />");
                     }
                 ?>
             </div>

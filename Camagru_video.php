@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+    <div id="display_home_page">
     <div class="id_video">
         <video id="videoElement" autoplay="true"></video>
             
@@ -26,6 +27,10 @@
             }
  
         ?>
+
+    <div class="id_rendu">
+        <canvas id="canvasElement"></canvas>
+    </div>
     </div>
     
     <div class="prev_pic">
@@ -35,7 +40,7 @@
         
         while ($donnees = $reponse->fetch())
         {
-            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=40% length=40% src='".$donnees[data_picture]."' />");
+            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=50% src='".$donnees[data_picture]."' /></a>");
             echo("<br/>");
 //            echo("<img width=40% length=40% src='".$donnees[data_picture]."' /><br/>");
         }
@@ -44,8 +49,6 @@
     </div>
         
         
-    <div class="id_rendu">
-        <canvas id="canvasElement"></canvas>
     </div>
         
 

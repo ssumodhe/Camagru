@@ -1,4 +1,6 @@
-<?php session_start(); 
+<?php session_start();
+$_SESSION[nb_pic_display] = 0;
+$_SESSION[page] = 1;
 $_SESSION[next_p] = 2;
 if(!isset($_SESSION[log]))
 {

@@ -72,13 +72,28 @@ a {
     display: inline-block;
 }
 
+#display_home_page{
+    display: inline-flex;
+/*    padding-top: 0px;*/
+/*    margin-top: 0px;*/
+}
+
 .id_video{
 /*    margin: 0px auto;*/
     display: inline-block;
+/*    margin-left: 5px;*/
+/*    margin-right: 5px;*/
+    width: 65%;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    
         }
 
 .prev_pic{
     display: inline-block;
+    width: 25%;
 }
 
 .id_rendu{

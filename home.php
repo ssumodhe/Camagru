@@ -16,6 +16,21 @@ if(!isset($_SESSION[log]))
     
     <body>
         <?php include("Camagru_menu.php"); ?>
+        
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="file" name="upload_file"/>
+            <input type="submit" name="OK" value="Upload"/>
+        </form>
+        <?php
+        if(isset($_FILE[upload_file]))
+        {
+            echo("Je passe");
+            $_SESSION[upload_file] = $_FILE[upload_file];
+//            unset($_POST[upload_file]);
+            echo("<img src=\"".$_SESSION[upload_file]."\"/>");
+        }
+        ?>
+        <br/>
         <?php include("Camagru_video.php"); ?>        
     </body>
     

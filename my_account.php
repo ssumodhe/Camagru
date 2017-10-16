@@ -40,7 +40,7 @@ if(!isset($_SESSION[log]))
         
                     while ($donnees = $reponse->fetch())
                     {
-                        echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=40% src='".$donnees[data_picture]."' />");
+                        echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=15% src='".$donnees[data_picture]."' />");
                     }
                 ?>
             </div>

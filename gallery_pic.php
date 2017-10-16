@@ -140,9 +140,10 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id']."\"ORDER BY id DESC;");
             while ($donnees = $reponse->fetch())
             {
-                echo("Le ".$donnees[created].", ".$donnees[user_id]." a commenté:   ".$donnees[comment]."");
-                echo("<br/>");
-                echo("<br/>");
+//                echo("<br/>");
+                echo("<div id=\"comments\">");
+                echo("<pre>Le ".$donnees[created]."<br/> <b>".$donnees[user_id]."</b> a commenté:</pre>   ".$donnees[comment]."");
+                echo("</div>");
                 
             }
         ?>

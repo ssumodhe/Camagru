@@ -54,6 +54,7 @@ a {
     font-size: small;
     text-align: left;
     text-decoration: underline;
+    display: inline-block;
     
 }
 
@@ -93,7 +94,6 @@ a {
 
 .prev_pic{
     display: inline-block;
-    width: 25%;
 }
 
 .id_rendu{
@@ -154,4 +154,18 @@ a {
 #user_pic{
     margin-right: 8px;
     margin-left: 8px;
+}
+
+#comments{
+    margin: auto;
+    margin-bottom: 5px;
+    padding: 4px;
+    padding-top: 0px;
+    width: 40%;
+    background-color: whitesmoke;
+    
+    border-style: solid;
+    border-color: gainsboro;
+    border-width: 2px;
+    border-radius: 12px;
 }

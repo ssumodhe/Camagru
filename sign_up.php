@@ -4,7 +4,7 @@
       && (isset($_POST['user_mail']) && $_POST['user_mail'] != NULL)
       && (isset($_POST['password']) && $_POST['password'] != NULL))
     {
-        if (!preg_match("#^[a-z0-9._-]+[@][a-z]+[.][a-z]{2,4}$#", $_POST['user_mail']))
+        if (!preg_match("#^[a-z0-9._-]+[@][a-z-]+[.][a-z]{2,4}$#", $_POST['user_mail']))
         {
             $_SESSION['form_complete'] = "KO_mail_incorrect";
             header('Location: index.php');

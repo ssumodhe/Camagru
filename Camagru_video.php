@@ -17,6 +17,9 @@ if(isset($_POST[Back_to_camera]))
     <?php } ?>
     
     <div id="display_home_page">
+        <!-- ------------- -->
+        <!-- Partie camera -->
+        <!-- ------------- -->
     <?php if (!isset($_SESSION[upload_file]))
     {?>
     <div class="id_video">
@@ -53,15 +56,28 @@ if(isset($_POST[Back_to_camera]))
         <canvas id="canvasElement"></canvas>
     </div>
     </div>
+        <!-- ------------------- -->
+        <!-- Partie photo upload -->
+        <!-- ------------------- -->
     <?php }
     else
     {?>
         <div>
+            
             <img id="imageElement" src="<?php echo($_SESSION[upload_file]) ?>"/>
         
+     
+ 
+
+            
+            <form method="get">
+                <input id='filtre' type='image' name='filtre' value='filtre'  src='emoji_kitty.gif'/>
+             </form>
+            
+            
             <form method="post">
                 <input id="hidden_img" name="upload_img" value="<?php echo($_SESSION[upload_file]) ?>" type="hidden"/>
-                <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo"/>
+                <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" />
             </form>
             <?php
             if(isset($_POST['upload_img']))
@@ -85,6 +101,9 @@ if(isset($_POST[Back_to_camera]))
         </div>
     <?php }?>
     
+        <!-- ------------------------------ -->
+        <!-- Partie previous photos latéral -->
+        <!-- ------------------------------ -->
     <div class="prev_pic">
         <?php
         $bdd = include("database.php");

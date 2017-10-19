@@ -8,7 +8,7 @@
     unset($_SESSION['nb_like']);
     unset($_SESSION['created']);
 
-
+    unset($_SESSION['upload_file']);
     unset($_SESSION['log']);
         
 

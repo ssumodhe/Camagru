@@ -48,7 +48,7 @@ var streaming = false,
     canvas.height = height;
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     var data = canvas.toDataURL('image/png');
-    console.log(data); 
+//    console.log(data); 
     document.getElementById('hidden_img').value = data;
     save_button = document.getElementById('button_save').removeAttribute("disabled");
   }

@@ -57,7 +57,10 @@
             $requete = "INSERT INTO users (login, mail, password, created) VALUES ('".$_SESSION['id_user']."', '".$_SESSION[user_mail]."', 
             '".$mdp_2."',
             '".$_SESSION['created']."');";
-            $bdd->prepare($requete)->execute();
+            //        MYSQL
+            //    $bdd->prepare($requete)->execute();
+            $reponse = $bdd->prepare($requete);
+            $result = $reponse->execute();
             $_SESSION[log] = "ON";
             unset($mdp);
             unset($mdp_2);

@@ -31,7 +31,10 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             {
                 $bdd = include("database.php");
                 $requete= "DELETE FROM pictures WHERE id=".$_SESSION[pic_id].";";
-                $bdd->prepare($requete)->execute();
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
                 unset($_POST[del_pic]);
             }
         ?>
@@ -93,15 +96,20 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             {
                 $donnees[nb_like]++;
                 $requete= "UPDATE pictures SET nb_like=".$donnees[nb_like]." WHERE id=".$_SESSION[pic_id].";";
-                $bdd->prepare($requete)->execute();
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
                 unset($_GET[likeup]);
                 
             $_SESSION['created'] = date('Y-m-d h:i:s');
             $requete = "INSERT INTO likes (user_mail, id_picture, created) VALUES ('".$_SESSION['user_mail']."', 
             '".$_SESSION['pic_id']."',
             '".$_SESSION['created']."');";
-            $bdd->prepare($requete)->execute();
-                
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
             }
 //            echo("<a href='gallery_add_like.php'><img width=30px height=32px src='img/like_button_unicorn.png' />");
             echo("".$donnees[nb_like]."");
@@ -134,7 +142,16 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 '".$_SESSION['pic_id']."',
                 '".$_POST['message']."',
                 '".$_SESSION['created']."');";
-            $bdd->prepare($requete)->execute();
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                
+//                $bdd->beginTransaction();
+//                $bdd->exec($requete);
+//                $bdd->commit();
+                
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                
             }
             $bdd = include("database.php");
             $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id']."\"ORDER BY id DESC;");

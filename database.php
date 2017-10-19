@@ -8,8 +8,11 @@ $DB_PASSWORD = "root";
 // on lance catch qui recupere le message d'erreur envoyer
 // par PDO.
     try{
-        $bdd = new PDO($DB_DSN,
-              $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+//        $bdd = new PDO($DB_DSN,
+//              $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $bdd = new PDO("sqlite:camagru", "safsaf", "mdpsupersecret");
+        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
         //Etablie une connexion avec la base de donnees.
         //N'a besoin d'etre faite qu'une seule fois, 
         //en debut de page

@@ -1,47 +1,58 @@
 <?php
-    $bdd = include("database.php");
+    $bdd = require_once("database.php");
     
     //Recupere les infos demandees par la requete.
     //$reponse = $bdd->query('SELECT * FROM ?');
 
     $requete = "CREATE TABLE IF NOT EXISTS users (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(100) CHARACTER SET utf8,
-    mail VARCHAR(255) CHARACTER SET utf8,
-    password VARCHAR(255) CHARACTER SET utf8,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    login VARCHAR(100),
+    mail VARCHAR(255),
+    password VARCHAR(255),
     created DATETIME NOT NULL
-    )ENGINE=INNODB";
-    $bdd->prepare($requete)->execute();
+    );";
+//        MYSQL
+//    $bdd->prepare($requete)->execute();
+   $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
 
     $requete = "CREATE TABLE IF NOT EXISTS pictures (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id VARCHAR(100) CHARACTER SET utf8,
-    user_mail VARCHAR(100) CHARACTER SET utf8,
-    nb_like INT,
-    data_picture LONGTEXT CHARACTER SET utf8,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    user_id VARCHAR(100),
+    user_mail VARCHAR(100),
+    nb_like INTEGER,
+    data_picture LONGTEXT,
     created DATETIME NOT NULL
-    )ENGINE=INNODB";
-    $bdd->prepare($requete)->execute();
+    );";
+//        MYSQL
+//    $bdd->prepare($requete)->execute();
+  $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
 
     $requete = "CREATE TABLE IF NOT EXISTS comments (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id VARCHAR(100) CHARACTER SET utf8,
-    user_mail VARCHAR(100) CHARACTER SET utf8,
-    id_picture VARCHAR(100) CHARACTER SET utf8,
-    comment TEXT CHARACTER SET utf8,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    user_id VARCHAR(100),
+    user_mail VARCHAR(100),
+    id_picture VARCHAR(100),
+    comment TEXT,
     created DATETIME NOT NULL
-    )ENGINE=INNODB";
-    $bdd->prepare($requete)->execute();
+    );";
+//        MYSQL
+//    $bdd->prepare($requete)->execute();
 
+    $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
     $requete = "CREATE TABLE IF NOT EXISTS likes (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_mail VARCHAR(100) CHARACTER SET utf8,
-    id_picture VARCHAR(100) CHARACTER SET utf8,
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    user_mail VARCHAR(100),
+    id_picture VARCHAR(100),
     created DATETIME NOT NULL
-    )ENGINE=INNODB";
-    $bdd->prepare($requete)->execute();
+    );";
+//        MYSQL
+//    $bdd->prepare($requete)->execute();
 
-
+    $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
 
     //[...] or die(print_r($bdd->errorInfo()));
 

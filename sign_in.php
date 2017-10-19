@@ -13,10 +13,14 @@
             $bdd = include("database.php");
 //         $requete = "SELECT * FROM users WHERE 'mail'=\"".$_SESSION['user_mail']."\" AND 'password'=\"".$mdp_2."\";";
        
-       $requete = "SELECT * FROM users WHERE `login`=\"".$_SESSION['id_user']."\";";
+       $requete = "SELECT * FROM users WHERE `login`=\"".$_SESSION['id_user']."\" LIMIT 1;";
+       
        $result = $bdd->query($requete);
        $data = $result->fetch();
-       $result->closeCursor();
+//       $result->closeCursor();
+       
+    
+       
        if(isset($data['login']) && $data['login'] != NULL)
        {
             if($data['password'] === $mdp_2)
@@ -36,7 +40,7 @@
        {
             $_SESSION['form_complete'] = "KO_sign_in";
            header('Location: index.php');
-           exit(); 
+           exit();
        }
 //        print_r($data[mail]);
             

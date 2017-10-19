@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
     <form method="post" action="" enctype="multipart/form-data">
@@ -11,15 +11,10 @@
 
         if(isset($_FILES))
         {
-            echo("<img src=\"".$_FILES[file_upload][tmp_name]."\">");
-            echo("".$_FILES[file_upload]."");
-            print_r($_FILES);
+//            print_r($_FILES);
             
           
-            
-            echo("<br/>");
-            echo("<br/>");
-            echo("<br/>");
+//            echo("<br/>");
             
             if(!file_exists("img"))
                 mkdir("img", 0777, true);
@@ -30,23 +25,26 @@
                 echo("<b>Erreur lors du transfert</b>");
             
             $nom = md5(uniqid(rand(), true));
+            $nom .= ".png";
             $path = "img/uploaded_files/".$nom."";
             $resultat = move_uploaded_file($_FILES['file_upload']['tmp_name'], $path);
-            if ($resultat) 
-                echo "Transfert réussi";
+            if ($resultat)
+            {
+//                echo("<b>Transfert réussi</b>");
+                $_SESSION[upload_file] = $path;
+            }
             
             echo("<br/>");
-            echo("<br/>");
-            echo("<br/>");
+//         
+//            
+//            echo("<img src=\"".$path."\">");
             
-            echo("<img src=\"".$path."\">");
-            
-            $image_sizes = getimagesize($path);
-            echo("<br/>");
-            echo("<br/>");
-            echo("<br/>");
-            
-            print_r($image_sizes);
+//            $image_sizes = getimagesize($path);
+//            echo("<br/>");
+//            echo("<br/>");
+//            echo("<br/>");
+//            
+//            print_r($image_sizes);
 
         }
 

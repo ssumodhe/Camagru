@@ -114,6 +114,15 @@ a {
                 border-color: black;
                 border-style: double;
         }
+
+#imageElement{
+                width: 500px;
+                height: 375px;
+                background-color: gainsboro;
+                border-width: 1vh;
+                border-color: black;
+                border-style: double;
+        }
 #buttonElement{
                 margin-top: 1vh;
                 margin: 5px 40% 20px 40%;

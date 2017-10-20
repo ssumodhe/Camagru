@@ -70,8 +70,8 @@ if(isset($_POST[Back_to_camera]))
  
 
             
-            <form method="get">
-                <input id='filtre' type='image' name='filtre' value='filtre'  src='emoji_kitty.gif'/>
+            <form method="get" action="fusion_image.php">
+                <input id='filtre' type='image' name='filtre' value='emoji_kitty.gif'  src='emoji_kitty.gif'/>
              </form>
             
             

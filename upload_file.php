@@ -11,11 +11,6 @@
 
         if(isset($_FILES))
         {
-//            print_r($_FILES);
-            
-          
-//            echo("<br/>");
-            
             if(!file_exists("img"))
                 mkdir("img", 0777, true);
             if(!file_exists("img/uploaded_files"))
@@ -32,19 +27,9 @@
             {
 //                echo("<b>Transfert réussi</b>");
                 $_SESSION[upload_file] = $path;
-            }
-            
+            }       
             echo("<br/>");
-//         
-//            
-//            echo("<img src=\"".$path."\">");
-            
-//            $image_sizes = getimagesize($path);
-//            echo("<br/>");
-//            echo("<br/>");
-//            echo("<br/>");
-//            
-//            print_r($image_sizes);
+
 
         }
 

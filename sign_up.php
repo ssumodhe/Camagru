@@ -2,8 +2,16 @@
 
     if((isset($_POST['id_user']) && $_POST['id_user'] != NULL)
       && (isset($_POST['user_mail']) && $_POST['user_mail'] != NULL)
-      && (isset($_POST['password']) && $_POST['password'] != NULL))
+      && (isset($_POST['password']) && $_POST['password'] != NULL)
+      && (isset($_POST['password_2']) && $_POST['password_2'] != NULL))
     {
+        if ($_POST['password'] != $_POST['password_2'])
+        {
+            $_SESSION['form_complete'] = "KO_pswd_not_same";
+            header('Location: index.php');
+            exit();
+        }
+        
         if (!preg_match("#^[a-z0-9._-]+[@][a-z-]+[.][a-z]{2,4}$#", $_POST['user_mail']))
         {
             $_SESSION['form_complete'] = "KO_mail_incorrect";
@@ -53,6 +61,7 @@
         }  
         else
         {
+            date_default_timezone_set('Europe/Paris');
             $_SESSION['created'] = date('Y-m-d h:i:s');
             $requete = "INSERT INTO users (login, mail, password, created) VALUES ('".$_SESSION['id_user']."', '".$_SESSION[user_mail]."', 
             '".$mdp_2."',

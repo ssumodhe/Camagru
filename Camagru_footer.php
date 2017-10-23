@@ -8,5 +8,8 @@
                 <img width="40px" height="50px" src="emoji_kitty.gif"/> 
             
         </div>
+        <form method="post" action="php_info.php">
+                <input id='filtre' type='submit' name='php_info' value='php_info'/>
+         </form>
     </body>
 </html>

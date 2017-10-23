@@ -36,6 +36,7 @@ if(isset($_POST[Back_to_camera]))
             if(isset($_POST['hidden_img']))
             {
                 $_SESSION['nb_like'] = 0;
+                date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 
                 $bdd = include("database.php");
@@ -69,11 +70,15 @@ if(isset($_POST[Back_to_camera]))
      
  
 
-        <!-- ------------------- -->
-        <!-- Partie photo upload -->
-        <!-- ------------------- -->
+        <!-- ------------- -->
+        <!-- Partie Filtre -->
+        <!-- ------------- -->
             <form method="get" action="fusion_image.php">
                 <input id='filtre' type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
+                <input id='filtre' type='image' name='filtre' value='corne-de-licorne.png'  src='corne-de-licorne.png'/>
+<!--                <input id='filtre' type='image' name='filtre' value='lunette.png'  src='lunette.png'/>-->
+<!--                <input id='filtre' type='image' name='filtre' value='barbe.png'  src='barbe.png'/>-->
+<!--                <input id='filtre' type='image' name='filtre' value='afro-hair.png'  src='afro-hair.png'/>-->
              </form>
         <!-- ------------------- -->
         <!-- ------------------- -->
@@ -83,8 +88,8 @@ if(isset($_POST[Back_to_camera]))
             if(isset($_POST['upload_img']))
             {
                 $_SESSION['nb_like'] = 0;
-                $_SESSION['created'] = date_default_timezone_set('Y-m-d h:i:s');
-//                $_SESSION['created'] = date('Y-m-d h:i:s');
+                date_default_timezone_set('Europe/Paris');
+                $_SESSION['created'] = date('Y-m-d h:i:s');
                 
                 $bdd = include("database.php");
                 $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (

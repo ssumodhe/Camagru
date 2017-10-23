@@ -102,6 +102,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 $result = $reponse->execute();
                 unset($_GET[likeup]);
                 
+            date_default_timezone_set('Europe/Paris');
             $_SESSION['created'] = date('Y-m-d h:i:s');
             $requete = "INSERT INTO likes (user_mail, id_picture, created) VALUES ('".$_SESSION['user_mail']."', 
             '".$_SESSION['pic_id']."',
@@ -137,6 +138,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             if(isset($_POST['message']))
             {
                 $bdd = include("database.php");
+                date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', '".$_SESSION['user_mail']."', 
                 '".$_SESSION['pic_id']."',

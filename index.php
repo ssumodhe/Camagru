@@ -41,6 +41,11 @@
                echo "<p id='error'>Erreur : l'adresse email ne semble pas valide.\n</p>";
                unset($_SESSION['form_complete']);
             }
+            else if (isset($_SESSION['form_complete']) && $_SESSION['form_complete'] == "KO_pswd_not_same")
+            {
+               echo "<p id='error'>Erreur : veuillez saisir les mots de passe à l'identique.\n</p>";
+               unset($_SESSION['form_complete']);
+            }
         ?>
         
         <!-- ------- -->
@@ -54,6 +59,8 @@
             <label for="user_mail">Votre e-mail : </label><input type="text" name="user_mail" id="user_mail"/>
             <br/>
             <label for="password">Votre mot de passe : </label><input type="password" name="password" id="password"/>
+            <br/>
+            <label for="password_2">Confirmez votre mot de passe : </label><input type="password" name="password_2" id="password_2"/>
             <br/>
             <input type="submit" name="sign_up" value="Je m'inscris !"/>
         </form>

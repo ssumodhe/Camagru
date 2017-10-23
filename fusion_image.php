@@ -1,63 +1,46 @@
-<?php session_start();
-//     header ("Content-type: image/png");
-//if(!isset($_SESSION[log]))
-//{
-//    header("Location: index.php");
-//}
-    
-    $gd_array = gd_info();
-    print_r($gd_array);
+<?php 
+session_start();
+
     if(isset($_GET[filtre]))
     {
         $photo = $_SESSION[upload_file];
         
-        echo("<img src=\"".$photo."\" />");
-        echo("<img src=\"".$_GET[filtre]."\" />");
-        
-        $size_filtre = getimagesize($_GET[filtre]);
-        $size_photo = getimagesize($photo);
-      
-        echo("<br/>");
-        echo("PHOTO SIZE = ");
-        print_r($size_photo);
-        echo("<br/>");
-        echo("FILTRE SIZE = ");
-        print_r($size_filtre);
-        echo("<br/>");
-        
-//ob_clean();
-     
-// Traitement de l'image source
-$source = imagecreatefromgif($_GET[filtre]);
-$largeur_source = imagesx($source);
-$hauteur_source = imagesy($source);
+        // Traitement de l'image source
+        $source = imagecreatefrompng($_GET[filtre]);
+        $largeur_source = imagesx($source);
+        $hauteur_source = imagesy($source);
  
-// Traitement de l'image destination
-$destination = imagecreatefrompng($photo);
-$largeur_destination = imagesx($destination);
-$hauteur_destination = imagesy($destination);
+        // Traitement de l'image destination
+        $destination = imagecreatefrompng($photo);
+        $largeur_destination = imagesx($destination);
+        $hauteur_destination = imagesy($destination);
   
-// Calcul des coordonnées pour placer l'image source dans l'image de destination
-$destination_x = ($largeur_destination - $largeur_source)/2;
-$destination_y =  ($hauteur_destination - $hauteur_source)/2;
+        // Calcul des coordonnées pour placer l'image source dans l'image de destination
+        $destination_x = ($largeur_destination - $largeur_source)/2;
+        $destination_y =  ($hauteur_destination - $hauteur_source)/2;
   
-// On place l'image source dans l'image de destination
-$return = imagecopymerge($destination, $source, $destination_x, $destination_y, 0, 0, $largeur_source, $hauteur_source, 100);
-//imagecopymerge($photo, $_GET[filtre], 10, 10, 0, 0, 50,);
+        // On place l'image source dans l'image de destination
+        $return = imagecopymerge($destination, $source, $destination_x, $destination_y, 0, 0, $largeur_source, $hauteur_source, 100);
  
-// On affiche l'image de destination
-//        echo("<img src=\"".imagepng($destination)."\" />");
 
-        ob_start();
-imagepng($destination);
-$image_data = ob_get_contents();
-ob_end_clean();
+        //Enregistrement de l'image fusionnée
+        if(!file_exists("img"))
+                mkdir("img", 0777, true);
+        if(!file_exists("img/filtres"))
+                mkdir("img/filtres", 0777, true);
+        $nom = "filtre_";
+        $nom .= md5(uniqid(rand(), true));
+        $nom .= ".png";
+        $path = 'img/filtres/';
+        $path .= $nom;
+        imagepng($destination, $path);
         
-//        echo("<br/>");
-//        imagepng($destination);
-// 
-//imagedestroy($source);
-//imagedestroy($destination);
+        imagedestroy($source);
+        imagedestroy($destination);
+        $_SESSION[filtre] = $path;
+        unset($_GET[filtre]);
+//        unset($_SESSION[upload_file]); ??????
+        
     }
-//phpinfo();
+    header("Location: home.php");
 ?>

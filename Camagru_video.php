@@ -69,21 +69,22 @@ if(isset($_POST[Back_to_camera]))
      
  
 
-            
+        <!-- ------------------- -->
+        <!-- Partie photo upload -->
+        <!-- ------------------- -->
             <form method="get" action="fusion_image.php">
-                <input id='filtre' type='image' name='filtre' value='emoji_kitty.gif'  src='emoji_kitty.gif'/>
+                <input id='filtre' type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
              </form>
+        <!-- ------------------- -->
+        <!-- ------------------- -->
             
-            
-            <form method="post">
-                <input id="hidden_img" name="upload_img" value="<?php echo($_SESSION[upload_file]) ?>" type="hidden"/>
-                <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" />
-            </form>
             <?php
+          
             if(isset($_POST['upload_img']))
             {
                 $_SESSION['nb_like'] = 0;
-                $_SESSION['created'] = date('Y-m-d h:i:s');
+                $_SESSION['created'] = date_default_timezone_set('Y-m-d h:i:s');
+//                $_SESSION['created'] = date('Y-m-d h:i:s');
                 
                 $bdd = include("database.php");
                 $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
@@ -95,9 +96,23 @@ if(isset($_POST[Back_to_camera]))
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                unset($_SESSION[filtre]);
+                unset($_POST['upload_img']);
             }
- 
         ?>
+     
+            <form method="post">
+                <input id="hidden_img" name="upload_img" value="<?php echo($_SESSION[filtre]) ?>" type="hidden"/>
+                <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_SESSION[filtre])){
+                   echo("disabled=disabled"); 
+                } ?>/>
+            </form>
+            
+            <?php if(isset($_SESSION[filtre])){
+                    echo("<img src=\"".$_SESSION[filtre]."\"/><br/>");
+                }
+            ?>
+ 
         </div>
     <?php }?>
     

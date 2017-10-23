@@ -16,6 +16,20 @@
    $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
 
+    date_default_timezone_set('Europe/Paris');
+    $date = date('Y-m-d h:i:s');
+    $mdp = hash("sha512", "mee");
+    $mdp_2 = hash("md5", $mdp);
+    unset($mdp);
+    $requete = "INSERT INTO users (login, mail, password, created) VALUES ('mee_ze_admin', 'safaiya@sumodhee.com',   '".$mdp_2."', '".$date."');";
+////        MYSQL
+////    $bdd->prepare($requete)->execute();
+    $reponse = $bdd->prepare($requete);
+    $result = $reponse->execute();
+    unset($mdp_2);
+    unset($date);
+
+
     $requete = "CREATE TABLE IF NOT EXISTS pictures (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     user_id VARCHAR(100),

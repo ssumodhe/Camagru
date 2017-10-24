@@ -20,8 +20,8 @@
         }
         else
         {
-            $_SESSION['id_user'] = $_POST['id_user'];
-            $_SESSION['user_mail'] = $_POST['user_mail'];
+            $_SESSION['id_user'] = strtolower($_POST['id_user']);
+            $_SESSION['user_mail'] = strtolower($_POST['user_mail']);
             $mdp = hash("sha512", $_POST['password']);
             unset($_POST['password']);
             $mdp_2 = hash("md5", $mdp);

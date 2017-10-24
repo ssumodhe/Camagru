@@ -3,7 +3,7 @@
    if((isset($_POST['id_user']) && $_POST['id_user'] != NULL)
       && (isset($_POST['password']) && $_POST['password'] != NULL))
     {
-            $_SESSION['id_user'] = $_POST['id_user'];
+            $_SESSION['id_user'] = strtolower($_POST['id_user']);
             $mdp = hash("sha512", $_POST['password']);
             $mdp_2 = hash("md5", $mdp);
             //$_SESSION['mdp'] = $mdp_2;

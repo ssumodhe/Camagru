@@ -33,10 +33,11 @@ if(!isset($_SESSION[log]))
 //        }
         ?>
         <br/>
-        <?php include("Camagru_video.php"); ?>        
+        <?php include("Camagru_video.php"); ?> 
+          <?php print_r($_SESSION); ?>
     </body>
     
-    
+  
     
     <footer>
         <?php include("Camagru_footer.php"); ?>

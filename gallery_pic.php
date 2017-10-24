@@ -66,7 +66,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         
         if($donnees[user_id] == $_SESSION[name])
         {
-            if ($donnees[user_mail] == $_SESSION[user_mail])
+            if ($donnees[user_mail] == $_SESSION[user_mail] && $donnees[user_id] == $_SESSION[login])
             { 
                 echo("<form action=\"\" method=\"post\">
                 <input type='hidden' name='id' value='".$_SESSION[pic_id]."' />");
@@ -137,7 +137,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <?php
             if(isset($_POST['message']))
             {
-                $bdd = include("database.php");
+                $bdd = require("database.php");
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', '".$_SESSION['user_mail']."', 

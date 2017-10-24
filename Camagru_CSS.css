@@ -178,3 +178,10 @@ a {
     border-width: 2px;
     border-radius: 12px;
 }
+
+
+table {
+    margin-right: auto;
+    margin-left: auto;
+    font-family: monospace;
+}

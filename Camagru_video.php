@@ -127,7 +127,7 @@ if(isset($_POST[Back_to_camera]))
     <div class="prev_pic">
         <?php
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM pictures WHERE user_mail=\"".$_SESSION[user_mail]."\"ORDER BY id DESC;");
+        $reponse = $bdd->query("SELECT * FROM pictures WHERE user_id=\"".$_SESSION[id_user]."\"ORDER BY id DESC;");
         
         while ($donnees = $reponse->fetch())
         {

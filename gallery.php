@@ -65,7 +65,7 @@ if(!isset($_SESSION[log]))
 //            $photo = str_replace("data:image/png;base64,", "", $donnees[data_picture]);
             echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img src='".$donnees[data_picture]."' />");
             echo("<br/>");
-            if ($donnees[user_mail] == $_SESSION[user_mail])
+            if ($donnees[user_mail] == $_SESSION[user_mail] && $donnees[user_id] == $_SESSION[login])
                 echo("Photo de vous.</a>");
             else
                 echo("Photo de ".$donnees[user_id].".</a>");

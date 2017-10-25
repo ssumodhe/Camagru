@@ -185,3 +185,10 @@ table {
     margin-left: auto;
     font-family: monospace;
 }
+
+#filtre {
+    width: 600px;
+    height: 190px;
+    overflow: scroll;
+    display: inline-block;
+}

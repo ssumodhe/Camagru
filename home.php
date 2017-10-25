@@ -34,7 +34,7 @@ if(!isset($_SESSION[log]))
         ?>
         <br/>
         <?php include("Camagru_video.php"); ?> 
-          <?php print_r($_SESSION); ?>
+<!--          <?php print_r($_SESSION); ?>-->
     </body>
     
   

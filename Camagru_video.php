@@ -67,22 +67,6 @@ if(isset($_POST[Back_to_camera]))
         <div>
             
             <img id="imageElement" src="<?php echo($_SESSION[upload_file]) ?>"/>
-        
-     
- 
-
-        <!-- ------------- -->
-        <!-- Partie Filtre -->
-        <!-- ------------- -->
-            <form method="get" action="fusion_image.php">
-                <input id='filtre' type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
-                <input id='filtre' type='image' name='filtre' value='corne-de-licorne.png'  src='corne-de-licorne.png'/>
-<!--                <input id='filtre' type='image' name='filtre' value='lunette.png'  src='lunette.png'/>-->
-<!--                <input id='filtre' type='image' name='filtre' value='barbe.png'  src='barbe.png'/>-->
-<!--                <input id='filtre' type='image' name='filtre' value='afro-hair.png'  src='afro-hair.png'/>-->
-             </form>
-        <!-- ------------------- -->
-        <!-- ------------------- -->
             
             <?php
           
@@ -120,6 +104,30 @@ if(isset($_POST[Back_to_camera]))
                 }
             ?>
  
+        <!-- ------------- -->
+        <!-- Partie Filtre -->
+        <!-- ------------- -->
+            <div id="form_filtre">
+            <form  id="filtre" method="get" action="fusion_image.php">
+                <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
+                <input type='image' name='filtre' value='corne-de-licorne.png'  src='corne-de-licorne.png'/>
+                <input type='image' name='filtre' value='lunette.png' width=200px src='lunette.png'/>
+                <input type='image' name='filtre' value='barbe.png'  width=100px src='barbe.png'/>
+                <input type='image' name='filtre' value='afro-hair.png' width=200px src='afro-hair.png'/>
+             
+<!--
+                <select id="filtre" name="filtre" multiple>
+                    <option width="100px" value="emoji_kitty.png" style="background:url('emoji_kitty.png') no-repeat; width:100px; height:100px;"></option>
+                    <option width="100px" value="corne-de-licorne.png" style="background:url('corne-de-licorne.png') no-repeat; width:100px; height:100px;"></option>
+                    <option width="100px" value="lunette.png" style="background:url('lunette.png') no-repeat; width:100px; height:100px;"></option>
+                    <option width="100px" value="barbe.png" style="background:url('barbe.png') no-repeat; width:100px; height:100px;"></option>
+                    <option width="100px" value="afro-hair.png" style="background:url('afro-hair.png') no-repeat; width:100px; height:100px;"></option>
+                </select>
+-->
+            </form>
+            </div>
+        <!-- ------------------- -->
+        <!-- ------------------- -->
         </div>
     <?php }?>
     
@@ -143,6 +151,8 @@ if(isset($_POST[Back_to_camera]))
         
         
     </div>
+    
+
         
 
     <script src="webcam.js"></script> 

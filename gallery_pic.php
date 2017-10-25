@@ -80,7 +80,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         
         if($donnees[user_id] == $_SESSION[name])
         {
-            if ($donnees[user_mail] == $_SESSION[user_mail] && $donnees[user_id] == $_SESSION[login])
+            if ($donnees[user_mail] == $_SESSION[user_mail])
             { 
                 echo("<form action=\"\" method=\"post\">
                 <input type='hidden' name='id' value='".$_SESSION[pic_id]."' />");

@@ -35,6 +35,19 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
+                $requete= "DELETE FROM comments WHERE id_picture=".$_SESSION[pic_id].";";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
+                $requete= "DELETE FROM likes WHERE id_picture=".$_SESSION[pic_id].";";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
                 unset($_POST[del_pic]);
             }
         ?>
@@ -59,10 +72,11 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         {
             $no_like = 1;
         }
+        $get_if_like->closeCursor();
         
         
-        $reponse = $bdd->query("SELECT * FROM pictures WHERE id=\"".$_SESSION['pic_id']."\";");
-        $donnees = $reponse->fetch();
+        $requete = $bdd->query("SELECT * FROM pictures WHERE id=\"".$_SESSION['pic_id']."\";");
+        $donnees = $requete->fetch();
         
         if($donnees[user_id] == $_SESSION[name])
         {
@@ -100,6 +114,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
                 unset($_GET[likeup]);
                 
             date_default_timezone_set('Europe/Paris');
@@ -111,6 +126,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
             }
 //            echo("<a href='gallery_add_like.php'><img width=30px height=32px src='img/like_button_unicorn.png' />");
             echo("".$donnees[nb_like]."");
@@ -119,6 +135,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
 //            unset($_SESSION[pic_id]);
 //            unset($_SESSION[name]);
         }
+            
         }
      
         ?>
@@ -137,13 +154,17 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <?php
             if(isset($_POST['message']))
             {
-                $bdd = require("database.php");
+                $bdd = include("database.php");
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
-                $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', '".$_SESSION['user_mail']."', 
+                $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', 
+                '".$_SESSION['user_mail']."', 
                 '".$_SESSION['pic_id']."',
                 '".$_POST['message']."',
                 '".$_SESSION['created']."');";
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
                 
@@ -151,8 +172,8 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
 //                $bdd->exec($requete);
 //                $bdd->commit();
                 
-                $reponse = $bdd->prepare($requete);
-                $result = $reponse->execute();
+//                $reponse = $bdd->prepare($requete);
+//                $result = $reponse->execute();
                 
             }
             $bdd = include("database.php");
@@ -165,6 +186,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 echo("</div>");
                 
             }
+            $reponse->closeCursor();
         ?>
         
     </body>

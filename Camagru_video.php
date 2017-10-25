@@ -49,6 +49,7 @@ if(isset($_POST[Back_to_camera]))
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
             }
  
         ?>
@@ -101,6 +102,7 @@ if(isset($_POST[Back_to_camera]))
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
                 unset($_SESSION[filtre]);
                 unset($_POST['upload_img']);
             }
@@ -134,6 +136,7 @@ if(isset($_POST[Back_to_camera]))
             echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=50% src='".$donnees[data_picture]."' /></a>");
             echo("<br/>");
         }
+        $reponse->closeCursor();
         ?>
         
     </div>

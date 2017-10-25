@@ -17,8 +17,6 @@
        
        $result = $bdd->query($requete);
        $data = $result->fetch();
-//       $result->closeCursor();
-       
     
        
        if(isset($data['login']) && $data['login'] != NULL)
@@ -44,6 +42,7 @@
        }
 //        print_r($data[mail]);
             
+        $result->closeCursor();
     }
         
     else {

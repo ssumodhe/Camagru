@@ -43,16 +43,16 @@
         
         $reponse = $bdd->query("SELECT mail FROM users WHERE mail=\"".$_SESSION['user_mail']."\";");
         $donnees = $reponse->fetch();
-        
         if ($donnees[mail] != NULL)
         {
             $_SESSION['form_complete'] = "KO_mail_exist";
             header('Location: index.php');
             exit();
         }
+        $reponse->closeCursor();
             
-        $reponse = $bdd->query("SELECT login FROM users WHERE login=\"".$_SESSION['id_user']."\";");
-        $donnees = $reponse->fetch();
+        $rep = $bdd->query("SELECT login FROM users WHERE login=\"".$_SESSION['id_user']."\";");
+        $donnees = $rep->fetch();
         if ($donnees[login] != NULL)
         {
             $_SESSION['form_complete'] = "KO_login_exist";
@@ -70,6 +70,7 @@
             //    $bdd->prepare($requete)->execute();
             $reponse = $bdd->prepare($requete);
             $result = $reponse->execute();
+            $reponse->closeCursor();
             $_SESSION[log] = "ON";
             unset($mdp);
             unset($mdp_2);
@@ -77,6 +78,7 @@
             header('Location: home.php');
             exit();
         }
+        $rep->closeCursor();
         }
     }
         

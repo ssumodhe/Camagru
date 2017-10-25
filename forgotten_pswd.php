@@ -36,6 +36,7 @@ session_start();
         {    
             echo ("<p>Connais pas cet e-mail!\n</p>");
         }
+        $reponse->closeCursor();
     }
     
 ?>

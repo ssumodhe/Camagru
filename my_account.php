@@ -51,6 +51,7 @@ if(!isset($_SESSION[log]))
                         echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img id='user_pic' width=15% src='".$donnees[data_picture]."' />");
                         $i++;
                     }
+                    $reponse->closeCursor();
                     if($i == 0)
                     {
                         echo("Vous n'avez pas encore de photos, <a href='home.php'>venez par <a href='home.php'>ici</a> pour un prendre!");

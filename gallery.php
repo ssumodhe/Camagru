@@ -73,6 +73,7 @@ if(!isset($_SESSION[log]))
             echo("<br/>");
             $n++;
         }
+        $reponse->closeCursor();
         if($n != 5)
             $_SESSION[stop_page] = "ON";
         

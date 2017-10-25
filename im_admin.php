@@ -34,6 +34,7 @@ else if ($_SESSION[id_user] != "ze_admin")
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
                 unset($_POST[usr_suppr_id]);
             }
         ?>
@@ -71,6 +72,7 @@ else if ($_SESSION[id_user] != "ze_admin")
                 echo("</form></td>");
             echo("</tr>");
          }
+        $reponse->closeCursor();
         ?>
         </table>
         
@@ -86,6 +88,19 @@ else if ($_SESSION[id_user] != "ze_admin")
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
+                $requete= "DELETE FROM comments WHERE id_picture=".$_POST[pic_suppr_id].";";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
+                $requete= "DELETE FROM likes WHERE id_picture=".$_POST[pic_suppr_id].";";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
                 unset($_POST[pic_suppr_id]);
             }
         ?>
@@ -127,6 +142,7 @@ else if ($_SESSION[id_user] != "ze_admin")
                 echo("</form></td>");
             echo("</tr>");
          }
+        $reponse->closeCursor();
         ?>
         </table>
         
@@ -142,6 +158,7 @@ else if ($_SESSION[id_user] != "ze_admin")
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
                 unset($_POST[com_suppr_id]);
             }
         ?>
@@ -183,6 +200,7 @@ else if ($_SESSION[id_user] != "ze_admin")
                 echo("</form></td>");
             echo("</tr>");
          }
+        $reponse->closeCursor();
         ?>
         </table>
         
@@ -198,14 +216,15 @@ else if ($_SESSION[id_user] != "ze_admin")
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                $reponse->closeCursor();
                 unset($_POST[lik_suppr_id]);
             }
         ?>
         
-        <!-- ---------------- -->
-        <!-- Tableau COMMENTS -->
-        <!-- ---------------- -->
-        <pre>Table Comments</pre>
+        <!-- ------------- -->
+        <!-- Tableau LIKES -->
+        <!-- ------------- -->
+        <pre>Table Likes</pre>
         <table>
             <tr>
                 <th>id</th>
@@ -235,6 +254,7 @@ else if ($_SESSION[id_user] != "ze_admin")
                 echo("</form></td>");
             echo("</tr>");
          }
+        $reponse->closeCursor();
         ?>
         </table>
     </body>

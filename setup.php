@@ -15,6 +15,7 @@
 //    $bdd->prepare($requete)->execute();
    $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                    $reponse->closeCursor();
 
 
         
@@ -35,6 +36,7 @@
         unset($mdp_2);
         unset($date);  
     }
+    $reponse->closeCursor();
     
 
     $requete = "CREATE TABLE IF NOT EXISTS pictures (
@@ -49,6 +51,7 @@
 //    $bdd->prepare($requete)->execute();
   $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                    $reponse->closeCursor();
 
     $requete = "CREATE TABLE IF NOT EXISTS comments (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -63,7 +66,9 @@
 
     $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
-    $requete = "CREATE TABLE IF NOT EXISTS likes (
+                    $reponse->closeCursor();
+    
+$requete = "CREATE TABLE IF NOT EXISTS likes (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     user_mail VARCHAR(100),
     id_picture VARCHAR(100),
@@ -74,6 +79,7 @@
 
     $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
+                    $reponse->closeCursor();
 
     //[...] or die(print_r($bdd->errorInfo()));
 

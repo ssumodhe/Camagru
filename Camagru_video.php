@@ -57,6 +57,8 @@ if(isset($_POST[Back_to_camera]))
     <div class="id_rendu">
         <canvas id="canvasElement"></canvas>
     </div>
+        
+        
     </div>
         <!-- ------------------- -->
         <!-- Partie photo upload -->
@@ -106,7 +108,7 @@ if(isset($_POST[Back_to_camera]))
  
         <!-- ------------- -->
         <!-- Partie Filtre -->
-        <!-- ------------- -->
+            
             <div id="form_filtre">
             <form  id="filtre" method="get" action="fusion_image.php">
                 <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>

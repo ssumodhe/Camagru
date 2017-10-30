@@ -152,7 +152,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         </form>
         
         <?php
-            if(isset($_POST['message']))
+            if(isset($_POST['message']) && $_POST['message'] != NULL)
             {
                 $bdd = include("database.php");
                 date_default_timezone_set('Europe/Paris');
@@ -171,9 +171,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
 //                $bdd->beginTransaction();
 //                $bdd->exec($requete);
 //                $bdd->commit();
-                
-//                $reponse = $bdd->prepare($requete);
-//                $result = $reponse->execute();
+
                 
             }
             $bdd = include("database.php");

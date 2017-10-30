@@ -111,6 +111,7 @@ if(isset($_POST[Back_to_camera]))
             
             <div id="form_filtre">
             <form  id="filtre" method="get" action="fusion_image.php">
+                
                 <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
                 <input type='image' name='filtre' value='corne-de-licorne.png'  src='corne-de-licorne.png'/>
                 <input type='image' name='filtre' value='lunette.png' width=200px src='lunette.png'/>

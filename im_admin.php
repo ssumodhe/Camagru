@@ -42,7 +42,13 @@ else if ($_SESSION[id_user] != "ze_admin")
         <!-- ------------- -->
         <!-- Tableau USERS -->
         <!-- ------------- -->
-        <pre>Table Users</pre>
+        <?php
+            $bdd = include("database.php");
+            $req = $bdd->query('SELECT COUNT (id) as Nbid FROM users');
+            $donnees = $req->fetch();
+            $req->closeCursor();
+        echo ("<pre>Table Users (".$donnees['Nbid'].")</pre>");
+        ?>
         <table>
             <tr>
                 <th>id</th>
@@ -108,7 +114,13 @@ else if ($_SESSION[id_user] != "ze_admin")
         <!-- ---------------- -->
         <!-- Tableau PICTURES -->
         <!-- ---------------- -->
-        <pre>Table Pictures</pre>
+        <?php
+            $bdd = include("database.php");
+            $req = $bdd->query('SELECT COUNT (id) as Nbid FROM pictures');
+            $donnees = $req->fetch();
+            $req->closeCursor();
+        echo ("<pre>Table Pictures (".$donnees['Nbid'].")</pre>");
+        ?>
         <table>
             <tr>
                 <th>id</th>
@@ -166,7 +178,13 @@ else if ($_SESSION[id_user] != "ze_admin")
         <!-- ---------------- -->
         <!-- Tableau COMMENTS -->
         <!-- ---------------- -->
-        <pre>Table Comments</pre>
+        <?php
+            $bdd = include("database.php");
+            $req = $bdd->query('SELECT COUNT (id) as Nbid FROM comments');
+            $donnees = $req->fetch();
+            $req->closeCursor();
+        echo ("<pre>Table Comments (".$donnees['Nbid'].")</pre>");
+        ?>
         <table>
             <tr>
                 <th>id</th>
@@ -224,7 +242,13 @@ else if ($_SESSION[id_user] != "ze_admin")
         <!-- ------------- -->
         <!-- Tableau LIKES -->
         <!-- ------------- -->
-        <pre>Table Likes</pre>
+        <?php
+            $bdd = include("database.php");
+            $req = $bdd->query('SELECT COUNT (id) as Nbid FROM likes');
+            $donnees = $req->fetch();
+            $req->closeCursor();
+        echo ("<pre>Table Likes (".$donnees['Nbid'].")</pre>");
+        ?>
         <table>
             <tr>
                 <th>id</th>

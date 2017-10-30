@@ -54,7 +54,7 @@ if(!isset($_SESSION[log]))
                     $reponse->closeCursor();
                     if($i == 0)
                     {
-                        echo("Vous n'avez pas encore de photos, <a href='home.php'>venez par <a href='home.php'>ici</a> pour un prendre!");
+                        echo("Vous n'avez pas encore de photos, <a href='home.php'>venez par <a href='home.php'>ici</a> pour en prendre!");
                     }
                 ?>
             </div>

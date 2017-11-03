@@ -21,35 +21,37 @@
     <body> <h1>TEST DRAG AND DROP</h1>
             
         <div >
-            <img id="dropper" src="clem_joue.png">
+            <img class="dropper"  src="clem_joue.png">
         </div>
-    
-        <div id="draggable">
-            <img style="position: relative" src="emoji_kitty.png">
+        <div>
+            <img class="draggable" style="position: relative" src="emoji_kitty.png">
         </div>
         
         <script>
-            var dropper = document.querySelector('#dropper');
-            var draggable = document.querySelector('#draggable');
-//            console.log(draggable.getAttribute('src'));
+            var dropper = document.querySelector('.dropper');
+            var draggable = document.querySelector('.draggable');
+            console.log(draggable.getAttribute('src'));
             
             
             
-            document.querySelector('#dropper').addEventListener('dragover', function(e) {
+            document.querySelector('.dropper').addEventListener('dragover', function(e) {
                     e.preventDefault(); // Annule l'interdiction de drop
                 });
             
-            document.querySelector('#dropper').addEventListener('drop', function(e) {
+            document.querySelector('.dropper').addEventListener('drop', function(e) {
                     e.preventDefault(); // Cette méthode est toujours nécessaire pour éviter une éventuelle redirection inattendue
                     
-                    alert('Vous avez bien déposé votre élément !');
+//                    alert('Vous avez bien déposé votre élément !');
                 
                     // Il est nécessaire d'ajouter cela car sinon le style appliqué par l'événement « dragenter » restera en place même après un drop :
                     dropper.style.borderStyle = 'none';
                     dropper.style.opacity = '1';
-                    var q = draggable.getAttribute('src');
-                    alert(q);
-                
+                    dropper.style.position = 'absolute';
+//                    var q = draggable.getAttribute('src');
+//                    alert(q);
+             draggable.style.top = (e.movementY + 20) + 'px';
+                    draggable.style.left = (e.movementX + 20) + 'px';
+                    
                 
                 });
             
@@ -71,8 +73,10 @@
 
 // Cet événement détecte n'importe quel drag & drop qui se termine, autant le mettre sur « document » :
             document.addEventListener('dragend', function() {
-                alert("Un Drag & Drop vient de se terminer mais l'événement dragend ne sait pas si c'est un succès ou non.");
+//                alert("Un Drag & Drop vient de se terminer mais l'événement dragend ne sait pas si c'est un succès ou non.");
                 });
+            
+            
             
         </script>
         

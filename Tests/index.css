@@ -2,11 +2,16 @@
     margin: 50px 10px 10px 50px;
     width: 400px;
     height: 250px;
-    background-color: #555;
+/*    background-color: #555;*/
     border: 1px solid #111;
     
     border-radius: 10px;
     transition: all 200ms linear;
+    
+    background-image:url("clem_joue.png");
+    background-repeat : no-repeat;
+    background-position : center;
+    
 }
 
 .drop_hover {
@@ -15,8 +20,8 @@
 
 .draggable {
     display: inline-block;
-    margin: 20px 10px 10px 20px;
-    padding-top: 20px;
+/*    margin: 20px 10px 10px 20px;*/
+/*    padding-top: 20px;*/
     width: 80px;
     height: 60px;
     color: #3D110F;

@@ -10,7 +10,7 @@ else if ($_SESSION[id_user] != "ze_admin")
 {
     header("Location: home.php");
 }
-
+$nb_display = 10;
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -21,6 +21,20 @@ else if ($_SESSION[id_user] != "ze_admin")
     
     <body>
         <?php include("Camagru_menu.php"); ?>
+        
+        <!-- -------- -->
+        <!-- REQUETES -->
+        <!-- -------- -->
+        <form method="post" action="">
+            <label>Appliquer une requete :</label><br/>
+            <textarea name="message" rows=4 cols=60></textarea><br/> 
+            <input type="submit" value="Appliquer!" /><br/><br/>
+        </form>
+        <?php
+            echo($_POST[message]);
+            unset($_POST[message]);
+        ?>
+        
         
         <!-- ----------- -->
         <!-- SUPPR USERS -->
@@ -59,7 +73,7 @@ else if ($_SESSION[id_user] != "ze_admin")
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM users ORDER BY id;");
+        $reponse = $bdd->query("SELECT * FROM users ORDER BY id LIMIT ".$nb_display.";");
         
         while ($donnees = $reponse->fetch())
         {
@@ -133,7 +147,7 @@ else if ($_SESSION[id_user] != "ze_admin")
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id;");
+        $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id LIMIT ".$nb_display.";");
         
         while ($donnees = $reponse->fetch())
         {
@@ -197,7 +211,7 @@ else if ($_SESSION[id_user] != "ze_admin")
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM comments ORDER BY id;");
+        $reponse = $bdd->query("SELECT * FROM comments ORDER BY id LIMIT ".$nb_display.";");
         
         while ($donnees = $reponse->fetch())
         {
@@ -259,7 +273,7 @@ else if ($_SESSION[id_user] != "ze_admin")
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM likes ORDER BY id;");
+        $reponse = $bdd->query("SELECT * FROM likes ORDER BY id LIMIT ".$nb_display.";");
         
         while ($donnees = $reponse->fetch())
         {

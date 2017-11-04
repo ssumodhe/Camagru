@@ -54,8 +54,13 @@ a {
     font-size: small;
     text-align: left;
     text-decoration: underline;
-    display: inline-block;
-    
+    display: inline-block;    
+}
+
+#a_align_right a{
+    color: blue;
+    font-size: small;
+    text-align: right;
 }
 
 #img_gallery{

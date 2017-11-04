@@ -62,9 +62,12 @@ $nb_display = 10;
             $donnees = $req->fetch();
             $req->closeCursor();
         echo ("<pre>Table Users (".$donnees['Nbid'].")</pre>");
+        $nb_users = $donnees['Nbid'];
+        unset($donnees);
         ?>
         <table>
             <tr>
+                <th></th>
                 <th>id</th>
                 <th>login</th>
                 <th>e-mail</th>
@@ -73,11 +76,12 @@ $nb_display = 10;
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM users ORDER BY id LIMIT ".$nb_display.";");
-        
+        $reponse = $bdd->query("SELECT * FROM users ORDER BY id DESC LIMIT ".$nb_display.";");
+        $i = $nb_users;
         while ($donnees = $reponse->fetch())
         {
             echo("<tr>");
+            echo("<td>".$i.")</td>");
             echo("<td>".$donnees[id]."</td>");
             echo("<td>".$donnees[login]."</td>");
             echo("<td>".$donnees[mail]."</td>");
@@ -91,10 +95,15 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='usr_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
+            $i--;
          }
         $reponse->closeCursor();
         ?>
         </table>
+        
+        <?php if($nb_users > $nb_display)
+            echo("<div id='a_align_right'><a href='im_admin_users.php'>See more >></a></div>");    
+        ?>
         
         <!-- --------- -->
         <!-- SUPPR PIC -->
@@ -134,9 +143,12 @@ $nb_display = 10;
             $donnees = $req->fetch();
             $req->closeCursor();
         echo ("<pre>Table Pictures (".$donnees['Nbid'].")</pre>");
+        $nb_pictures = $donnees['Nbid'];
+        unset($donnees);
         ?>
         <table>
             <tr>
+                <th></th>
                 <th>id</th>
                 <th>login</th>
                 <th>e-mail</th>
@@ -147,11 +159,12 @@ $nb_display = 10;
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id LIMIT ".$nb_display.";");
-        
+        $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id DESC LIMIT ".$nb_display.";");
+        $i = $nb_pictures;
         while ($donnees = $reponse->fetch())
         {
             echo("<tr>");
+            echo("<td>".$i.")</td>");
             echo("<td><a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'>".$donnees[id]."</a></td>");
             echo("<td>".$donnees[user_id]."</td>");
             echo("<td>".$donnees[user_mail]."</td>");
@@ -167,10 +180,15 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='pic_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
+            $i--;
          }
         $reponse->closeCursor();
         ?>
         </table>
+        
+        <?php if($nb_pictures > $nb_display)
+            echo("<div id='a_align_right'><a href='im_admin_pictures.php'>See more >></a></div>");    
+        ?>
         
         <!-- --------- -->
         <!-- SUPPR COM -->
@@ -198,9 +216,12 @@ $nb_display = 10;
             $donnees = $req->fetch();
             $req->closeCursor();
         echo ("<pre>Table Comments (".$donnees['Nbid'].")</pre>");
+        $nb_comments = $donnees['Nbid'];
+        unset($donnees);
         ?>
         <table>
             <tr>
+                <th></th>
                 <th>id</th>
                 <th>login</th>
                 <th>e-mail</th>
@@ -211,11 +232,13 @@ $nb_display = 10;
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM comments ORDER BY id LIMIT ".$nb_display.";");
+        $reponse = $bdd->query("SELECT * FROM comments ORDER BY id DESC LIMIT ".$nb_display.";");
         
+        $i = $nb_comments;
         while ($donnees = $reponse->fetch())
         {
             echo("<tr>");
+            echo("<td>".$i.")</td>");
             echo("<td>".$donnees[id]."</td>");
             echo("<td>".$donnees[user_id]."</td>");
             echo("<td>".$donnees[user_mail]."</td>");
@@ -231,10 +254,14 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='com_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
+            $i--;
          }
         $reponse->closeCursor();
         ?>
         </table>
+        <?php if($nb_comments > $nb_display)
+            echo("<div id='a_align_right'><a href='im_admin_comments.php'>See more >></a></div>");    
+        ?>
         
         <!-- --------- -->
         <!-- SUPPR LIK -->
@@ -262,9 +289,12 @@ $nb_display = 10;
             $donnees = $req->fetch();
             $req->closeCursor();
         echo ("<pre>Table Likes (".$donnees['Nbid'].")</pre>");
+        $nb_likes = $donnees['Nbid'];
+        unset($donnees);
         ?>
         <table>
             <tr>
+                <th></th>
                 <th>id</th>
                 <th>e-mail</th>
                 <th>id_photo</th>
@@ -273,11 +303,12 @@ $nb_display = 10;
 
         <?php 
         $bdd = include("database.php");
-        $reponse = $bdd->query("SELECT * FROM likes ORDER BY id LIMIT ".$nb_display.";");
-        
+        $reponse = $bdd->query("SELECT * FROM likes ORDER BY id DESC LIMIT ".$nb_display.";");
+        $i = $nb_likes;
         while ($donnees = $reponse->fetch())
         {
             echo("<tr>");
+            echo("<td>".$i.")</td>");
             echo("<td>".$donnees[id]."</td>");
             echo("<td>".$donnees[user_mail]."</td>");
             echo("<td>".$donnees[id_picture]."</td>");
@@ -291,10 +322,14 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='lik_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
+            $i--;
          }
         $reponse->closeCursor();
         ?>
         </table>
+        <?php if($nb_likes > $nb_display)
+            echo("<div id='a_align_right'><a href='im_admin_likes.php'>See more >></a></div>");    
+        ?>
     </body>
     
     <footer>

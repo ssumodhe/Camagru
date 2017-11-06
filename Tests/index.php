@@ -1,161 +1,116 @@
-<!DOCTYPE HTML>
 <html>
+
     <head>
-        <title>TEST OPENCLASSROOM DRAG N' DROP</title>
-        <link rel="stylesheet" type="text/css" href="index.css"/>
-        
+        <style>
+<!--
+.dragme{position:relative;}
+-->
+</style>
+
+
+
     </head>
     
     <body>
-        
-        <div class="dropper">
-
-<!--    <div class="draggable">#1</div>-->
-<!--    <div class="draggable">#2</div>-->
+        <img class="drophere" src="clem_joue.png" width=354px>
+        <img id="dragme" class="dragme" src="emoji_kitty.png">
     
-</div>
-
-<!--<div class="dropper">-->
     
-    <div class="draggable"><img src="emoji_kitty.png"></div>
-<!--    <div class="draggable">#4</div>-->
     
-<!--</div>-->
-        
-        
-        <script>
-            
-//            window.onmousemove = function (e) {
-//                var x = e.clientX,
-//                    y = e.clientY;
-//                
-//                console.log(x + 20);
-//                console.log(y + 20);
-////    tooltipSpan.style.top = (y + 20) + 'px';
-////    tooltipSpan.style.left = (x + 20) + 'px';
-//};
-            
-            (function() {
+    
+<script language="JavaScript1.2">
 
-                console.log("#1");
+
+var ie=document.all;
+var nn6=document.getElementById&&!document.all;
+
+var isdrag=false;
+var x,y;
+var dobj;
+
+function movemouse(e)
+{
+                    console.log("#10");
+  if (isdrag)
+  {
+    dobj.style.left = nn6 ? tx + e.clientX - x : tx + event.clientX - x;
+    dobj.style.top  = nn6 ? ty + e.clientY - y : ty + event.clientY - y;
+    return false;
+  }
+}
+
+function selectmouse(e) 
+{
+                    console.log("#9");
+    
+  var fobj       = nn6 ? e.target : event.srcElement;
+  var topelement = nn6 ? "HTML" : "BODY";
+
+  while (fobj.tagName != topelement && fobj.className != "dragme")
+  {
+    fobj = nn6 ? fobj.parentNode : fobj.parentElement;
+  }
+
+  if (fobj.className=="dragme")
+  {
+                    console.log("#11");
+      
+    isdrag = true;
+    dobj = fobj;
+    tx = parseInt(dobj.style.left+0);
+    ty = parseInt(dobj.style.top+0);
+    x = nn6 ? e.clientX : event.clientX;
+    y = nn6 ? e.clientY : event.clientY;
+    document.onmousemove=movemouse;
+    return false;
+  }
+}
+
+document.onmousedown=selectmouse; //S'applique pendant que la souris
+document.onmouseup=new Function("isdrag=false");
+    
+    document.querySelector('.drophere').addEventListener('dragover', function(e){
+        e.preventDefault();                                                                         console.log("#1");});
+//    Annule l'interdiction de drop et donc Autorise le drop dans la zone de la classe definie.
+    
+     document.querySelector('.drophere').addEventListener('drop', function(e) {
+                    e.preventDefault(); // Cette méthode est toujours nécessaire pour éviter une éventuelle redirection inattendue
+//                    alert('Vous avez bien déposé votre élément !');
                 
-    var dndHandler = {
-
-        draggedElement: null, // Propriété pointant vers l'élément en cours de déplacement
-
-        applyDragEvents: function(element) {
-
-            element.draggable = true;
-
-            var dndHandler = this; // Cette variable est nécessaire pour que l'événement « dragstart » ci-dessous accède facilement au namespace « dndHandler »
-
-            element.addEventListener('dragstart', function(e) {
-                dndHandler.draggedElement = e.target; // On sauvegarde l'élément en cours de déplacement
-                e.dataTransfer.setData('text/plain', ''); // Nécessaire pour Firefox
-            });
-                console.log("#2");
-
-        },
-
-        applyDropEvents: function(dropper) {
-
-                console.log("#3");
-            
-            dropper.addEventListener('dragover', function(e) {
-                e.preventDefault(); // On autorise le drop d'éléments
-                this.className = 'dropper drop_hover'; // Et on applique le style adéquat à notre zone de drop quand un élément la survole
+                    // Il est nécessaire d'ajouter cela car sinon le style appliqué par l'événement « dragenter » restera en place même après un drop :
+                   document.querySelector('.drophere').style.borderStyle = 'none';
+                   document.querySelector('.drophere').style.opacity = '1';
+                   document.querySelector('.drophere').style.position = 'absolute';
+                    console.log("#2");
+         
+                    });
+    
+    document.querySelector('.dragme').addEventListener('dragstart', function(e) {
+                   document.querySelector('.drophere').style.borderStyle = 'solid';
+                  document.querySelector('.drophere').style.opacity = '0.5';
+                    e.dataTransfer.setData('text/plain', "Ce texte sera transmis à l'élément HTML de réception");
+                    console.log("#3");
+                    });
+    
+    document.querySelector('.drophere').addEventListener('dragenter', function() {
+                   document.querySelector('.drophere').style.borderStyle = 'dashed';
+                    console.log("#4");
                 
-                console.log("#4");
-                
-            });
+                    });
 
-            dropper.addEventListener('dragleave', function() {
-                this.className = 'dropper'; // On revient au style de base lorsque l'élément quitte la zone de drop
-                console.log("#5");
-                
-            });
+    document.querySelector('.drophere').addEventListener('dragleave', function() {
+                   document.querySelector('.drophere').style.borderStyle = 'solid';
+                    console.log("#5");    
+                    });
 
-            var dndHandler = this; // Cette variable est nécessaire pour que l'événement « drop » ci-dessous accède facilement au namespace « dndHandler »
+            // Cet événement détecte n'importe quel drag & drop qui se termine, autant le mettre sur « document » :
+    document.addEventListener('dragend', function() {
+                //                  alert("Un Drag & Drop vient de se terminer mais l'événement dragend ne sait pas si c'est un succès ou non.");
+                    console.log("#6");
+                    });
+    
 
-            dropper.addEventListener('drop', function(e) {
-
-                var target = e.target,
-                    draggedElement = dndHandler.draggedElement, // Récupération de l'élément concerné
-                    clonedElement = draggedElement.cloneNode(true); // On créé immédiatement le clone de cet élément
-
-                while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
-                    target = target.parentNode;
-                console.log("#6");
-                    
-                }
-
-                target.className = 'dropper'; // Application du style par défaut
-
-                window.onmousemove = function (e) {
-                var x = e.clientX,
-                    y = e.clientY;
-                
-//                console.log(x);
-//                console.log(y);
-                    //    tooltipSpan.style.top = (y + 20) + 'px';
-                    //    tooltipSpan.style.left = (x + 20) + 'px';
-                   return{mouse_x: x, mouse_y: y};
-                console.log("#7");
-                    
-                };
-                
-                
-                
-                clonedElement = target.appendChild(clonedElement); // Permet de copier l'element sur la zone de Drop
-                 
-                dndHandler.applyDragEvents(clonedElement); // Nouvelle application des événements qui ont été perdus lors du cloneNode()
-
-                draggedElement.parentNode.removeChild(draggedElement); // Suppression de l'élément d'origine. Sert lors d'un nouveau drag and drop pour que l'element ne reste pas à son emplacement initial
-
-                console.log("#8");
-                
-                 var x = e.clientX,
-                    y = e.clientY;
-                console.log(x);
-                console.log(y);
-                
-                clonedElement.style.top = (y - 60) + 'px';
-                    clonedElement.style.left = (x - 60) + 'px';
-                
-                    
-            });
-
-        }
-
-    };
-                
-            
-
-    var elements = document.querySelectorAll('.draggable'),
-        elementsLen = elements.length;
-
-    for (var i = 0; i < elementsLen; i++) {
-        dndHandler.applyDragEvents(elements[i]); // Application des paramètres nécessaires aux éléments déplaçables
-    }
-                console.log("#9");
-                
-
-    var droppers = document.querySelectorAll('.dropper'),
-        droppersLen = droppers.length;
-
-                console.log("#10");
-                
-    for (var i = 0; i < droppersLen; i++) {
-        dndHandler.applyDropEvents(droppers[i]); // Application des événements nécessaires aux zones de drop
-    }
-
-})();
-//            document.onclick{
-//                var x = e.clientX,
-//                    y = e.clientY;
-//                console.log(x);
-//                console.log(y);
-//            }
-        </script>
+</script>
     </body>
+    
 </html>

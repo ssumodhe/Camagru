@@ -31,9 +31,50 @@
             var dropper = document.querySelector('.dropper');
             var draggable = document.querySelector('.draggable');
             var nn6=document.getElementById&&!document.all;
+            var isdrag=false;
+            var x,y,tx,ty;
+            var dobj;
             
-            console.log(draggable.getAttribute('src'));
+            var topelement = nn6 ? "HTML" : "BODY";
             
+            function movemouse(e)
+            {
+                if (isdrag)
+                {
+                    console.log("#7");
+      
+                    dobj.style.left = nn6 ? tx + e.clientX - x : tx + event.clientX - x;
+                    dobj.style.top  = nn6 ? ty + e.clientY - y : ty + event.clientY - y;
+                    return false;
+                }
+            }
+
+            function selectmouse(e) 
+            {
+                console.log("#8");
+                var fobj       = nn6 ? e.target : event.srcElement;
+                while (fobj.tagName != topelement && fobj.className != "dragme")
+                {
+                    fobj = nn6 ? fobj.parentNode : fobj.parentElement;
+                }
+
+                if (fobj.className=="draggable")
+                {
+                    isdrag = true;
+                    dobj = fobj;
+                    tx = parseInt(dobj.style.left+0);
+                    ty = parseInt(dobj.style.top+0);
+                    x = nn6 ? e.clientX : event.clientX;
+                    y = nn6 ? e.clientY : event.clientY;
+                     console.log("txselect = " + tx);
+                    console.log("tyselect = " + ty);
+                    console.log("xselect = " + x);
+                    console.log("yselect = " + y);
+//                    document.onmousemove=movemouse;
+                    return false;
+                }
+            }
+            document.onmousedown=selectmouse;
             
             
             document.querySelector('.dropper').addEventListener('dragover', function(e) {
@@ -41,19 +82,6 @@
                     console.log("#1");
                 
                     });
-            
-             function findPos(el) {
-	           var x = y = 0;
-	           if(el.offsetParent) {
-                   x = el.offsetLeft;
-                   y = el.offsetTop;
-                   while(el = el.offsetParent) {
-                       x += el.offsetLeft;
-                       y += el.offsetTop;
-		              }
-	           }
-	   return {'x':x, 'y':y};
-        }
             
             document.querySelector('.dropper').addEventListener('drop', function(e) {
                     e.preventDefault(); // Cette méthode est toujours nécessaire pour éviter une éventuelle redirection inattendue
@@ -63,33 +91,31 @@
                     dropper.style.opacity = '1';
                     dropper.style.position = 'absolute';
                     console.log("#2");
+//                    document.onmouseup=new Function("isdrag=false");
+                
         
                 
                
                     //Placer l'element draggable a l'endroit où la souris s'arrete.
-                   
-                    });
-            
-           
+                    draggable.style.left = nn6 ? tx + e.clientX - x : tx + event.clientX - x;
+                    draggable.style.top  = nn6 ? ty + e.clientY - y : ty + event.clientY - y;
+            });
             
             draggable.addEventListener('dragstart', function(e) {
                     dropper.style.borderStyle = 'solid';
                     dropper.style.opacity = '0.5';
                     e.dataTransfer.setData('text/plain', "Ce texte sera transmis à l'élément HTML de réception");
                     console.log("#3");
-//                console.log(e);
-//                    var x_cursor = e.clientX;
-//                    var y_cursor = e.clientY;
-//                console.log(x_cursor);
-//                console.log(y_cursor);
-                  var pos = findPos(draggable);
-                    console.log(e.clientX - pos.x);
-                    console.log(e.clientY - pos.y);
-                 draggable.style.top = (e.clientY - pos.y) + 'px';
-                    draggable.style.left = (e.clientX - pos.x) + 'px';
+                
+                
+//                  var pos = findPos(draggable);
+//                    console.log(e.clientX - pos.x);
+//                    console.log(e.clientY - pos.y);
+//                 draggable.style.top = (e.clientY - pos.y) + 'px';
+//                    draggable.style.left = (e.clientX - pos.x) + 'px';
                     
                     });
-            
+           
             dropper.addEventListener('dragenter', function() {
                     dropper.style.borderStyle = 'dashed';
                     console.log("#4");
@@ -101,9 +127,8 @@
                     console.log("#5");    
                     });
 
-// Cet événement détecte n'importe quel drag & drop qui se termine, autant le mettre sur « document » :
+        // Cet événement détecte n'importe quel drag & drop qui se termine, autant le mettre sur « document » :
             document.addEventListener('dragend', function() {
-//                  alert("Un Drag & Drop vient de se terminer mais l'événement dragend ne sait pas si c'est un succès ou non.");
                     console.log("#6");
                     });
             

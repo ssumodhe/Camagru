@@ -24,8 +24,8 @@
             <img class="drophere"  src="clem_joue.png" width=400px>
         </div>
         <div>
+            <img  class="dragme" style="position: relative;" src="emoji_kitty.png">
 <!--            <img  class="dragme" style="position: relative; left: 0; top: 0;" src="Carre-bleu.png">-->
-            <img  class="dragme" style="position: relative; left: 0; top: 0;" src="emoji_kitty.png">
         </div>
         
         <script>
@@ -57,29 +57,15 @@
                     drophere.style.borderStyle = 'none';
                     drophere.style.opacity = '1';
                     drophere.style.position = 'absolute';
-
-                console.log(e);
+                    //Decalge entre la zone drophere et le coin superieur gauche de la fenetre
                     var int_x = parseInt(e.clientX - e.offsetX);
-//                console.log("int_x= " + int_x);
                     var int_y = parseInt(e.clientY - e.offsetY);
-//                console.log("int_y= " + int_y);
-                
-                    
-             console.log("e.clientX " + e.clientX);
-             console.log("e.clientY " + e.clientY);
-             console.log("e.offsetX " + e.offsetX);
-             console.log("e.offsetY " + e.offsetY);
-             console.log("window.x " + window.img_x);
-             console.log("window.y " + window.img_y);
                 
                 
                     //Placer l'element dragme a l'endroit où la souris s'arrete.
                     dragme.style.left = parseInt(e.clientX - int_x - window.img_x) + 'px';
-                    dragme.style.top = parseInt(e.clientY - int_y - window.img_y)+'px';
-                
-        
-                    
-        
+                    dragme.style.top = parseInt(e.clientY - int_y - window.img_y) + 'px';
+             
             });
             
             
@@ -87,17 +73,15 @@
                     drophere.style.borderStyle = 'solid';
                     drophere.style.opacity = '0.5';
                
-                var ev = e || window.event;
-                var pos = findPos(this); 
+                    var ev = e || window.event;
+                    var pos = findPos(this); 
                         //Position du click de la souris par rapport a l'image
                     var diffx = ev.clientX - pos.x;
                     var diffy = ev.clientY - pos.y;
         
          
-                window['img_x'] = diffx;
-                window['img_y'] = diffy;
-                
-                    
+                    window['img_x'] = diffx;
+                    window['img_y'] = diffy;
                     });
            
             drophere.addEventListener('dragenter', function() {
@@ -113,6 +97,7 @@
             document.addEventListener('dragend', function() {
                     });
             
+        
  
         </script>
         

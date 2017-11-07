@@ -67,9 +67,9 @@ if(isset($_POST[Back_to_camera]))
     else
     {?>
         <div>
-            
             <img id="imageElement" src="<?php echo($_SESSION[upload_file]) ?>"/>
-            
+
+
             <?php
           
             if(isset($_POST['upload_img']))
@@ -108,9 +108,10 @@ if(isset($_POST[Back_to_camera]))
  
         <!-- ------------- -->
         <!-- Partie Filtre -->
-            
+         
             <div id="form_filtre">
-            <form  id="filtre" method="get" action="fusion_image.php">
+<!--            <form  id="filtre" method="get" action="fusion_image.php">-->
+                <form  id="filtre" method="get" action="fusion_image.php">
                 
                 <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
                 <input type='image' name='filtre' value='corne-de-licorne.png'  src='corne-de-licorne.png'/>
@@ -159,5 +160,6 @@ if(isset($_POST[Back_to_camera]))
         
 
     <script src="webcam.js"></script> 
+    <script src="dragndrop.js"></script> 
  
 </html>

@@ -22,6 +22,7 @@ $nb_display = 10;
     <body>
         <?php include("Camagru_menu.php"); ?>
         
+
         <!-- -------- -->
         <!-- REQUETES -->
         <!-- -------- -->

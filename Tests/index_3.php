@@ -27,7 +27,7 @@ ball.onmousedown = function(event) {
   let shiftY = event.clientY - ball.getBoundingClientRect().top;
 
   ball.style.position = 'absolute';
-  ball.style.zIndex = 1000;
+//  ball.style.zIndeqx = 1000;
   document.body.append(ball);
 
   moveAt(event.pageX, event.pageY);

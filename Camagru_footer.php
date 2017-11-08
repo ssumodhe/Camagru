@@ -17,5 +17,13 @@
             </form>
         <?php }?>
         
+<!--        A VIRER -->
+        <?php
+        echo("SESSION<br/>");
+        print_r($_SESSION);
+        ?>
+<!--        ------  -->
+        
+        
     </body>
 </html>

@@ -16,6 +16,9 @@
 
     unset($_SESSION['upload_file']);
     unset($_SESSION['log']);
+
+    unset($_SESSION[db_table_to_edit]);
+    unset($_SESSION[edit_id]);
         
 
 header('Location: index.php');

@@ -55,6 +55,7 @@ if(isset($_POST[Back_to_camera]))
         ?>
 
     <div class="id_rendu">
+<!--        <canvas style="visibility:hidden;" id="canvasElement"></canvas>-->
         <canvas id="canvasElement"></canvas>
     </div>
         

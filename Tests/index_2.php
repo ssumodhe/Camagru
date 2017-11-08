@@ -19,15 +19,16 @@
     
     
     <body> <h1>TEST DRAG AND DROP</h1>
-            
-        <div >
-            <img class="drophere"  src="clem_joue.png" width=400px>
+        
+        <div>
+        <div style="position: absolute;">
+            <img class="drophere"   src="clem_joue.png" width=400px>
+<!--            <img  class="dragme" style="position: absolute;" src="emoji_kitty.png">-->
         </div>
         <div>
             <img  class="dragme" style="position: relative;" src="emoji_kitty.png">
-<!--            <img  class="dragme" style="position: relative; left: 0; top: 0;" src="Carre-bleu.png">-->
         </div>
-        
+        </div>
         <script>
             var drophere = document.querySelector('.drophere');
             var dragme = document.querySelector('.dragme');

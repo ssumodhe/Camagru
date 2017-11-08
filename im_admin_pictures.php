@@ -18,6 +18,35 @@ else if ($_SESSION[id_user] != "ze_admin")
     <body>
         <?php include("Camagru_menu.php"); ?>  
         
+        <!-- --------- -->
+        <!-- SUPPR PIC -->
+        <!-- --------- -->
+        <?php
+        if(isset($_POST[pic_suppr_id]))
+            {
+                $bdd = include("database.php");
+                $requete= "DELETE FROM pictures WHERE id=".$_POST[pic_suppr_id].";";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
+                $requete= "DELETE FROM comments WHERE id_picture=".$_POST[pic_suppr_id].";";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
+                $requete= "DELETE FROM likes WHERE id_picture=".$_POST[pic_suppr_id].";";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
+                unset($_POST[pic_suppr_id]);
+            }
+        ?>
+        
         <!-- ---------------- -->
         <!-- Tableau PICTURES -->
         <!-- ---------------- -->
@@ -57,8 +86,9 @@ else if ($_SESSION[id_user] != "ze_admin")
                 echo("<input id='del_button' type='image' name='pic_suppr_id' value='".$donnees[id]."' width=30px height=30px src='img/delete_bin.png'/>");
                 echo("</form></td>");
             echo("<td>
-                <form action='' method='post'>");
-                echo("<input id='del_button' type='image' name='pic_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
+                <form action='im_admin_modif.php' method='post'>");
+                echo("<input type='hidden' name='db_table_to_edit' value='pictures'/>");
+                echo("<input id='del_button' type='image' name='edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
          }

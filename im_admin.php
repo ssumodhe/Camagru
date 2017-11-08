@@ -92,8 +92,9 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='usr_suppr_id' value='".$donnees[id]."' width=30px height=30px src='img/delete_bin.png'/>");
                 echo("</form><td>");
             echo("<td>
-                <form action='' method='post'>");
-                echo("<input id='del_button' type='image' name='usr_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
+                <form action='im_admin_modif.php' method='post'>");
+                echo("<input type='hidden' name='db_table_to_edit' value='users'/>");
+                echo("<input id='del_button' type='image' name='edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
             $i--;
@@ -102,8 +103,8 @@ $nb_display = 10;
         ?>
         </table>
         
-        <?php if($nb_users > $nb_display)
-            echo("<div id='a_align_right'><a href='im_admin_users.php'>See more >></a></div>");    
+        <?php 
+            echo("<div id='a_align_right'><a href='im_admin_users.php'>See All >></a></div>");    
         ?>
         
         <!-- --------- -->
@@ -177,8 +178,9 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='pic_suppr_id' value='".$donnees[id]."' width=30px height=30px src='img/delete_bin.png'/>");
                 echo("</form></td>");
             echo("<td>
-                <form action='' method='post'>");
-                echo("<input id='del_button' type='image' name='pic_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
+                <form action='im_admin_modif.php' method='post'>");
+                echo("<input type='hidden' name='db_table_to_edit' value='pictures'/>");
+                echo("<input id='del_button' type='image' name='edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
             $i--;
@@ -187,8 +189,8 @@ $nb_display = 10;
         ?>
         </table>
         
-        <?php if($nb_pictures > $nb_display)
-            echo("<div id='a_align_right'><a href='im_admin_pictures.php'>See more >></a></div>");    
+        <?php 
+            echo("<div id='a_align_right'><a href='im_admin_pictures.php'>See All >></a></div>");    
         ?>
         
         <!-- --------- -->
@@ -251,8 +253,9 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='com_suppr_id' value='".$donnees[id]."' width=30px height=30px src='img/delete_bin.png'/>");
                 echo("</form><td>");
             echo("<td>
-                <form action='' method='post'>");
-                echo("<input id='del_button' type='image' name='com_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
+                <form action='im_admin_modif.php' method='post'>");
+                echo("<input type='hidden' name='db_table_to_edit' value='comments'/>");
+                echo("<input id='del_button' type='image' name='edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
             $i--;
@@ -260,8 +263,8 @@ $nb_display = 10;
         $reponse->closeCursor();
         ?>
         </table>
-        <?php if($nb_comments > $nb_display)
-            echo("<div id='a_align_right'><a href='im_admin_comments.php'>See more >></a></div>");    
+        <?php
+            echo("<div id='a_align_right'><a href='im_admin_comments.php'>See All >></a></div>");    
         ?>
         
         <!-- --------- -->
@@ -319,8 +322,9 @@ $nb_display = 10;
                 echo("<input id='del_button' type='image' name='lik_suppr_id' value='".$donnees[id]."' width=30px height=30px src='img/delete_bin.png'/>");
                 echo("</form><td>");
             echo("<td>
-                <form action='' method='post'>");
-                echo("<input id='del_button' type='image' name='lik_edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
+                <form action='im_admin_modif.php' method='post'>");
+                echo("<input type='hidden' name='db_table_to_edit' value='likes'/>");
+                echo("<input id='del_button' type='image' name='edit_id' value='".$donnees[id]."' width=22px height=22px src='img/edit_button.png'/>");
                 echo("</form></td>");
             echo("</tr>");
             $i--;
@@ -328,8 +332,8 @@ $nb_display = 10;
         $reponse->closeCursor();
         ?>
         </table>
-        <?php if($nb_likes > $nb_display)
-            echo("<div id='a_align_right'><a href='im_admin_likes.php'>See more >></a></div>");    
+        <?php
+            echo("<div id='a_align_right'><a href='im_admin_likes.php'>See All >></a></div>");    
         ?>
     </body>
     

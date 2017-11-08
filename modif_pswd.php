@@ -63,8 +63,8 @@ if(!isset($_SESSION[log]))
                         $requete= "UPDATE users SET password=\"".$mdp_2."\" WHERE mail=\"".$_SESSION['user_mail']."\";";
                         //        MYSQL
                         //    $bdd->prepare($requete)->execute();
-                      $reponse = $bdd->prepare($requete);
-                $result = $reponse->execute();
+                        $reponse = $bdd->prepare($requete);
+                        $result = $reponse->execute();
                         unset($mdp_2);
                         
                         echo ("<p>Un e-mail de réinitialisation vient de vous etre envoyé. </p>");

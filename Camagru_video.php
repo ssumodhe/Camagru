@@ -67,9 +67,20 @@ if(isset($_POST[Back_to_camera]))
     <?php }
     else
     {?>
-        <div>
-            <img id="imageElement" src="<?php echo($_SESSION[upload_file]) ?>"/>
-
+        <div class="id_photo">
+            <div style="height: 400px; text-align: left;">
+                <div style="position: absolute;">
+                    <img class="drophere" src="<?php echo($_SESSION[upload_file]) ?>"/>
+                </div>
+                <?php if(isset($_GET[filtre])){?>
+                <input type="hidden" id="f_left" name="f_left" value="0"/>
+                <input type="hidden" id="f_top" name="f_top" value="0"/>
+                    <img class="dragme" style="position: relative; left: 0px; top: 0px;" src="<?php echo($_GET[filtre]) ?>"/>
+                
+                <?php 
+                unset($_GET[filtre]);}?>
+            
+            </div>
 
             <?php
           
@@ -94,16 +105,17 @@ if(isset($_POST[Back_to_camera]))
                 unset($_POST['upload_img']);
             }
         ?>
-     
+            <div>
             <form method="post">
                 <input id="hidden_img" name="upload_img" value="<?php echo($_SESSION[filtre]) ?>" type="hidden"/>
                 <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_SESSION[filtre])){
                    echo("disabled=disabled"); 
                 } ?>/>
             </form>
-            
+            </div>
             <?php if(isset($_SESSION[filtre])){
-                    echo("<img src=\"".$_SESSION[filtre]."\"/><br/>");
+                    echo("<img style=\"position: relative;\" src=\"".$_SESSION[filtre]."\"/><br/>");
+                    unset($_SESSION[filtre]);
                 }
             ?>
  
@@ -112,7 +124,7 @@ if(isset($_POST[Back_to_camera]))
          
             <div id="form_filtre">
 <!--            <form  id="filtre" method="get" action="fusion_image.php">-->
-                <form  id="filtre" method="get" action="fusion_image.php">
+                <form  id="filtre" method="get" action="">
                 
                 <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
                 <input type='image' name='filtre' value='corne-de-licorne.png'  src='corne-de-licorne.png'/>

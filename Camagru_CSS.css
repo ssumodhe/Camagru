@@ -96,6 +96,19 @@ a {
     margin-top: 0px;
     
         }
+.id_photo{
+/*    margin: 0px auto;*/
+    display: block;
+/*    margin-left: 5px;*/
+/*    margin-right: 5px;*/
+    width: 65%;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    
+        }
+
 
 .prev_pic{
     display: inline-block;
@@ -120,7 +133,7 @@ a {
                 border-style: double;
         }
 
-#imageElement{
+.drophere{
                 width: 500px;
                 height: 375px;
                 background-color: gainsboro;
@@ -191,11 +204,22 @@ table {
     font-family: monospace;
 }
 
+/*
 #filtre {
     width: 600px;
     height: 190px;
     overflow: scroll;
     display: inline-block;
 }
+*/
 
+#form_filtre{
+    background-color: white;
+    width: 500px;
+    height: 200px;
+    overflow: scroll;
+    border-style: solid;
+    border-width: thin;
+    border-color: gainsboro;
+}
 

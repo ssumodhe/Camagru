@@ -34,7 +34,11 @@ if(!isset($_SESSION[log]))
         ?>
         <br/>
         <?php include("Camagru_video.php"); ?> 
-<!--          <?php print_r($_SESSION); ?>-->
+<!--
+        <script>window.onbeforeunload = function (e) {
+    return confirm("Etes vous sur de vouloir quitter ?");
+}</script>
+-->
     </body>
     
   

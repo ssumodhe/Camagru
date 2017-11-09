@@ -13,6 +13,7 @@
     unset($_SESSION['page']);
     unset($_SESSION['next_p']);
     unset($_SESSION['prev_p']);
+    unset($_SESSION['stop_page']);
 
     unset($_SESSION['upload_file']);
     unset($_SESSION['log']);

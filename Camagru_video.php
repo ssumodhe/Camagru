@@ -4,7 +4,6 @@ if(isset($_POST[Back_to_camera]))
     unset($_SESSION[upload_file]);
     unset($_POST[Back_to_camera]);
 }
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -24,30 +23,28 @@ if(isset($_POST[Back_to_camera]))
     {?>
     <div class="id_video">
         
-        
         <div style="height: 400px; text-align: left;">
                 <div style="position: absolute;">
                     <video class="drophere" id="videoElement" autoplay="true"></video>
                 </div>
-                <?php if(isset($_GET[filtre])){?>
-                <input type="hidden" id="f_left" name="f_left" value="0"/>
-                <input type="hidden" id="f_top" name="f_top" value="0"/>
-                    <img class="dragme" style="position: relative; left: 0px; top: 0px;" src="<?php echo($_GET[filtre]) ?>"/>
                 
+                <?php if(isset($_POST[filtre])){?>
+                <img class="dragme" style="position: relative; left: 0px; top: 0px;" src="<?php echo($_POST[filtre]); ?>"/>
                 <?php 
-                unset($_GET[filtre]);}?>
+                }?>
             
-            </div>
+        </div>
         
-        
-<!--        <video id="videoElement" autoplay="true"></video>-->
         
         <button id="buttonElement" alt="takepic_button">Prendre la photo</button>
         
         <form method="post">
-            <input id="hidden_img" name="hidden_img" type="hidden">
-            <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" disabled="disabled">
+            <input type="hidden" id="hidden_img" name="hidden_img" >
+            <input type="hidden" id="f_left" name="f_left" value="0"/>
+            <input type="hidden" id="f_top" name="f_top" value="0"/>
+            <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_POST[filtre])){echo("disabled='disabled'");}?>>
         </form>
+        
         <?php
             if(isset($_POST['hidden_img']))
             {
@@ -70,12 +67,11 @@ if(isset($_POST[Back_to_camera]))
  
         ?>
         
-                <!-- ------------- -->
+        <!-- ------------- -->
         <!-- Partie Filtre -->
          
             <div id="form_filtre">
-<!--            <form  id="filtre" method="get" action="fusion_image.php">-->
-            <form  id="filtre" method="get" action="">
+            <form  id="filtre" method="post" action="">
                 
                 <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
                 <input type='image' name='filtre' value='png/corne-de-licorne.png'  src='png/corne-de-licorne.png'/>
@@ -110,59 +106,63 @@ if(isset($_POST[Back_to_camera]))
                 <div style="position: absolute;">
                     <img class="drophere" src="<?php echo($_SESSION[upload_file]) ?>"/>
                 </div>
-                <?php if(isset($_GET[filtre])){?>
-                <input type="hidden" id="f_left" name="f_left" value="0"/>
-                <input type="hidden" id="f_top" name="f_top" value="0"/>
-                    <img class="dragme" style="position: relative; left: 0px; top: 0px;" src="<?php echo($_GET[filtre]) ?>"/>
+                <?php if(isset($_POST[filtre])){?>
+                
+                    <input type="hidden" id="f_left" name="f_left" value="0"/>
+                    <input type="hidden" id="f_top" name="f_top" value="0"/>
+                    <img class="dragme" style="position: relative; left: 0px; top: 0px;" src="<?php echo($_POST[filtre]) ?>"/>
                 
                 <?php 
-                unset($_GET[filtre]);}?>
+                }?>
             
             </div>
 
             <?php
           
-            if(isset($_POST['upload_img']))
-            {
-                $_SESSION['nb_like'] = 0;
-                date_default_timezone_set('Europe/Paris');
-                $_SESSION['created'] = date('Y-m-d h:i:s');
-                
-                $bdd = include("database.php");
-                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
-                '".$_SESSION['id_user']."',
-                '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
-                '".$_POST['upload_img']."',
-                '".$_SESSION['created']."');";
-                //        MYSQL
-                //    $bdd->prepare($requete)->execute();
-                $reponse = $bdd->prepare($requete);
-                $result = $reponse->execute();
-                $reponse->closeCursor();
-                unset($_SESSION[filtre]);
-                unset($_POST['upload_img']);
-            }
+//            if(isset($_POST['upload_img']))
+//            {
+//                $_SESSION['nb_like'] = 0;
+//                date_default_timezone_set('Europe/Paris');
+//                $_SESSION['created'] = date('Y-m-d h:i:s');
+//                
+//                $bdd = include("database.php");
+//                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
+//                '".$_SESSION['id_user']."',
+//                '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
+//                '".$_POST['upload_img']."',
+//                '".$_SESSION['created']."');";
+//                //        MYSQL
+//                //    $bdd->prepare($requete)->execute();
+//                $reponse = $bdd->prepare($requete);
+//                $result = $reponse->execute();
+//                $reponse->closeCursor();
+//                unset($_SESSION[filtre]);
+//                unset($_POST['upload_img']);
+//            }
         ?>
             <div>
-            <form method="post">
-                <input id="hidden_img" name="upload_img" value="<?php echo($_SESSION[filtre]) ?>" type="hidden"/>
-                <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_SESSION[filtre])){
-                   echo("disabled=disabled"); 
-                } ?>/>
+            <form method="post" action="fusion_image.php">
+                <input type="hidden" id="upload_img" name="upload_img" value="<?php echo($_SESSION[upload_file]) ?>"/>
+                <input type="hidden" id="filtre" name="filtre" value="<?php echo($_POST[filtre]) ?>"/>
+                <input type="hidden" id="pic_display_left" name="pic_display_left" value="0"/>
+                <input type="hidden" id="pic_display_top" name="pic_display_top" value="0"/>
+                <input type="hidden" id="dest_width" name="dest_width" value="0"/>
+                <input type="hidden" id="dest_height" name="dest_height" value="0"/>
+                <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_POST[filtre])){echo("disabled='disabled'");}?>>
             </form>
             </div>
-            <?php if(isset($_SESSION[filtre])){
+            <!-- A virer--><?php if(isset($_SESSION[filtre])){
                     echo("<img style=\"position: relative;\" src=\"".$_SESSION[filtre]."\"/><br/>");
-                    unset($_SESSION[filtre]);
+//                    unset($_SESSION[filtre]);
                 }
-            ?>
+            ?><!-- A virer-->
  
         <!-- ------------- -->
         <!-- Partie Filtre -->
          
             <div id="form_filtre">
 <!--            <form  id="filtre" method="get" action="fusion_image.php">-->
-            <form  id="filtre" method="get" action="">
+            <form  id="filtre" method="post" action="">
                 
                 <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
                 <input type='image' name='filtre' value='png/corne-de-licorne.png'  src='png/corne-de-licorne.png'/>

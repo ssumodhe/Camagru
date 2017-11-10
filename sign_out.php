@@ -16,6 +16,7 @@
     unset($_SESSION['stop_page']);
 
     unset($_SESSION['upload_file']);
+    unset($_SESSION['filtre']);
     unset($_SESSION['log']);
 
     unset($_SESSION[db_table_to_edit]);

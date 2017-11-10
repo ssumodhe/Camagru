@@ -24,7 +24,23 @@ if(isset($_POST[Back_to_camera]))
     {?>
     <div class="id_video">
         
-        <video id="videoElement" autoplay="true"></video>
+        
+        <div style="height: 400px; text-align: left;">
+                <div style="position: absolute;">
+                    <video class="drophere" id="videoElement" autoplay="true"></video>
+                </div>
+                <?php if(isset($_GET[filtre])){?>
+                <input type="hidden" id="f_left" name="f_left" value="0"/>
+                <input type="hidden" id="f_top" name="f_top" value="0"/>
+                    <img class="dragme" style="position: relative; left: 0px; top: 0px;" src="<?php echo($_GET[filtre]) ?>"/>
+                
+                <?php 
+                unset($_GET[filtre]);}?>
+            
+            </div>
+        
+        
+<!--        <video id="videoElement" autoplay="true"></video>-->
         
         <button id="buttonElement" alt="takepic_button">Prendre la photo</button>
         
@@ -53,6 +69,28 @@ if(isset($_POST[Back_to_camera]))
             }
  
         ?>
+        
+                <!-- ------------- -->
+        <!-- Partie Filtre -->
+         
+            <div id="form_filtre">
+<!--            <form  id="filtre" method="get" action="fusion_image.php">-->
+            <form  id="filtre" method="get" action="">
+                
+                <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
+                <input type='image' name='filtre' value='png/corne-de-licorne.png'  src='png/corne-de-licorne.png'/>
+                <input type='image' name='filtre' value='png/lunette.png' width=200px src='png/lunette.png'/>
+                <input type='image' name='filtre' value='png/barbe.png'  width=100px src='png/barbe.png'/>
+                <input type='image' name='filtre' value='png/afro-hair.png' width=200px src='png/afro-hair.png'/>
+                <input type='image' name='filtre' value='png/hair-blond.png' width=200px src='png/hair-blond.png'/>
+                <input type='image' name='filtre' value='png/hair-red.png' width=200px src='png/hair-red.png'/>
+                <input type='image' name='filtre' value='png/hair-short.png' width=200px src='png/hair-short.png'/>
+                <input type='image' name='filtre' value='png/hair-side.png' width=200px src='png/hair-side.png'/>
+                <input type='image' name='filtre' value='png/emma-watson.png' width=200px src='png/emma-watson.png'/>
+            </form>
+            </div>
+        <!-- ------------------- -->
+        <!-- ------------------- -->
 
     <div class="id_rendu">
 <!--        <canvas style="visibility:hidden;" id="canvasElement"></canvas>-->
@@ -124,23 +162,18 @@ if(isset($_POST[Back_to_camera]))
          
             <div id="form_filtre">
 <!--            <form  id="filtre" method="get" action="fusion_image.php">-->
-                <form  id="filtre" method="get" action="">
+            <form  id="filtre" method="get" action="">
                 
                 <input type='image' name='filtre' value='emoji_kitty.png'  src='emoji_kitty.png'/>
-                <input type='image' name='filtre' value='corne-de-licorne.png'  src='corne-de-licorne.png'/>
-                <input type='image' name='filtre' value='lunette.png' width=200px src='lunette.png'/>
-                <input type='image' name='filtre' value='barbe.png'  width=100px src='barbe.png'/>
-                <input type='image' name='filtre' value='afro-hair.png' width=200px src='afro-hair.png'/>
-             
-<!--
-                <select id="filtre" name="filtre" multiple>
-                    <option width="100px" value="emoji_kitty.png" style="background:url('emoji_kitty.png') no-repeat; width:100px; height:100px;"></option>
-                    <option width="100px" value="corne-de-licorne.png" style="background:url('corne-de-licorne.png') no-repeat; width:100px; height:100px;"></option>
-                    <option width="100px" value="lunette.png" style="background:url('lunette.png') no-repeat; width:100px; height:100px;"></option>
-                    <option width="100px" value="barbe.png" style="background:url('barbe.png') no-repeat; width:100px; height:100px;"></option>
-                    <option width="100px" value="afro-hair.png" style="background:url('afro-hair.png') no-repeat; width:100px; height:100px;"></option>
-                </select>
--->
+                <input type='image' name='filtre' value='png/corne-de-licorne.png'  src='png/corne-de-licorne.png'/>
+                <input type='image' name='filtre' value='png/lunette.png' width=200px src='png/lunette.png'/>
+                <input type='image' name='filtre' value='png/barbe.png'  width=100px src='png/barbe.png'/>
+                <input type='image' name='filtre' value='png/afro-hair.png' width=200px src='png/afro-hair.png'/>
+                <input type='image' name='filtre' value='png/hair-blond.png' width=200px src='png/hair-blond.png'/>
+                <input type='image' name='filtre' value='png/hair-red.png' width=200px src='png/hair-red.png'/>
+                <input type='image' name='filtre' value='png/hair-short.png' width=200px src='png/hair-short.png'/>
+                <input type='image' name='filtre' value='png/hair-side.png' width=200px src='png/hair-side.png'/>
+                <input type='image' name='filtre' value='png/emma-watson.png' width=200px src='png/emma-watson.png'/>
             </form>
             </div>
         <!-- ------------------- -->

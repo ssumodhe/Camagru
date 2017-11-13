@@ -43,10 +43,14 @@ dest_width.setAttribute('value', drophere.offsetWidth);
                     //Placer l'element dragme a l'endroit où la souris s'arrete.
                     dragme.style.left = parseInt(e.clientX - int_x - window.img_x + 10) + 'px';
                     dragme.style.top = parseInt(e.clientY - int_y - window.img_y + 10) + 'px';
-                    f_left.setAttribute('value', parseInt(e.clientX - int_x - window.img_x + 5));
-                    f_top.setAttribute('value', parseInt(e.clientY - int_y - window.img_y + 5));
-                    pic_display_left.setAttribute('value', dragme.offsetLeft);
-                    pic_display_top.setAttribute('value', dragme.offsetTop);
+                    f_left.setAttribute('value', parseInt(e.clientX - int_x - window.img_x + 10));
+                    f_top.setAttribute('value', parseInt(e.clientY - int_y - window.img_y + 10));
+//                    pic_display_left.setAttribute('value',  dragme.offsetLeft);
+//                    pic_display_top.setAttribute('value', dragme.offsetTop);
+                
+                    pic_display_left.setAttribute('value',  parseInt(e.clientX - int_x - window.img_x + 10));
+                    pic_display_top.setAttribute('value', parseInt(e.clientY - int_y - window.img_y + 10));
+                 
                     
             });
             

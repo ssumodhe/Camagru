@@ -29,6 +29,8 @@ if(isset($_POST[Back_to_camera]))
                 </div>
                 
                 <?php if(isset($_POST[filtre])){?>
+                <input type="hidden" id="f_left" name="f_left" value="0"/>
+                <input type="hidden" id="f_top" name="f_top" value="0"/>
                 <img class="dragme" style="position: relative; left: 0px; top: 0px;" src="<?php echo($_POST[filtre]); ?>"/>
                 <?php 
                 }?>
@@ -36,13 +38,16 @@ if(isset($_POST[Back_to_camera]))
         </div>
         
         
-        <button id="buttonElement" alt="takepic_button">Prendre la photo</button>
+        <button id="buttonElement" alt="takepic_button" <?php if(!isset($_POST[filtre])){echo("disabled='disabled'");}?>>Prendre la photo</button>
         
         <form method="post">
             <input type="hidden" id="hidden_img" name="hidden_img" >
-            <input type="hidden" id="f_left" name="f_left" value="0"/>
-            <input type="hidden" id="f_top" name="f_top" value="0"/>
-            <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_POST[filtre])){echo("disabled='disabled'");}?>>
+            <input type="hidden" id="filtre" name="filtre" value="<?php echo($_POST[filtre]) ?>"/>
+                <input type="hidden" id="pic_display_left" name="pic_display_left" value="0"/>
+                <input type="hidden" id="pic_display_top" name="pic_display_top" value="0"/>
+                <input type="hidden" id="dest_width" name="dest_width" value="0"/>
+                <input type="hidden" id="dest_height" name="dest_height" value="0"/>
+            <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" disabled='disabled'>
         </form>
         
         <?php

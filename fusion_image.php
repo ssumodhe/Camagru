@@ -35,8 +35,8 @@ session_start();
         imagecolortransparent($image_p, $black);        
         
         
-        $destination_x = intval($_POST[pic_display_left]/2) * intval($largeur_destination) / intval($_POST[dest_width]);
-        $destination_y = intval($_POST[pic_display_top]/2.5) * intval($hauteur_destination) / intval($_POST[dest_height]);
+        $destination_x = intval($_POST[pic_display_left]) * intval($largeur_destination) / intval($_POST[dest_width]);
+        $destination_y = intval($_POST[pic_display_top]) * intval($hauteur_destination) / intval($_POST[dest_height]);
 
   
         // On place l'image source dans l'image de destination
@@ -62,8 +62,28 @@ session_start();
         imagedestroy($source);
         imagedestroy($destination);
         $_SESSION[filtre] = $path;
-        unset($_POST[filtre]);
-//        unset($_SESSION[upload_file]); ??????
+        
+                $_SESSION['nb_like'] = 0;
+                date_default_timezone_set('Europe/Paris');
+                $_SESSION['created'] = date('Y-m-d h:i:s');
+                
+                $bdd = include("database.php");
+                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
+                '".$_SESSION['id_user']."',
+                '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
+                '".$_SESSION[filtre]."',
+                '".$_SESSION['created']."');";
+                //        MYSQL
+                //    $bdd->prepare($requete)->execute();
+                $reponse = $bdd->prepare($requete);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
+                unset($_SESSION[filtre]);
+                unset($_SESSION[created]);
+                unset($_SESSION[nb_like]);
+                unset($_POST['upload_img']);
+                unset($_POST[filtre]);
+//        unset($_SESSION[upload_file]);
         
     }
     header("Location: home.php");

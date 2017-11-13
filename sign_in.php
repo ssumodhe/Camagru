@@ -24,7 +24,7 @@
             if($data['password'] === $mdp_2)
             {
                 $_SESSION['user_mail'] = $data[mail];
-                $_SESSION[log] = "ON";
+                $_SESSION['log'] = "ON";
                 header('Location: home.php');
                 exit();
             }

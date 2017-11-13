@@ -1,6 +1,7 @@
 <?php
   session_start();
 
+    unset($_SESSION['log']);
     unset($_SESSION['id_user']);
     unset($_SESSION['user_mail']);
 
@@ -17,7 +18,7 @@
 
     unset($_SESSION['upload_file']);
     unset($_SESSION['filtre']);
-    unset($_SESSION['log']);
+    
 
     unset($_SESSION[db_table_to_edit]);
     unset($_SESSION[edit_id]);

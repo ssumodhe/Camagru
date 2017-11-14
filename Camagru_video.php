@@ -63,11 +63,12 @@ if(isset($_POST[Back_to_camera]))
                 <input type="hidden" id="dest_width" name="dest_width" value="0"/>
                 <input type="hidden" id="dest_height" name="dest_height" value="0"/>
 -->
-            <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" disabled='disabled'>
+            <input type="hidden" name="img_to_save" value="<?php echo($_SESSION[filtre]) ?>">
+            <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_SESSION[filtre])){echo("disabled='disabled'");}?>>
         </form>
         
         <?php
-            if(isset($_POST['hidden_img']))
+            if(isset($_POST[img_to_save]))
             {
                 $_SESSION['nb_like'] = 0;
                 date_default_timezone_set('Europe/Paris');
@@ -77,13 +78,14 @@ if(isset($_POST[Back_to_camera]))
                 $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
                 '".$_SESSION['id_user']."',
                 '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
-                '".$_POST['hidden_img']."',
+                '".$_POST[img_to_save]."',
                 '".$_SESSION['created']."');";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
                 $reponse->closeCursor();
+                unset($_SESSION[filtre]);
             }
  
         ?>

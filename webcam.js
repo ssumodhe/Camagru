@@ -56,5 +56,5 @@ var streaming = false,
   startbutton.addEventListener('click', function(ev){
         takepicture();
         document.getElementById("form_fusion").submit();
-        save_button = document.getElementById('button_save').removeAttribute("disabled");ev.preventDefault();
+//        save_button = document.getElementById('button_save').removeAttribute("disabled");ev.preventDefault();
   }, false);

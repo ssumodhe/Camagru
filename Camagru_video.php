@@ -37,16 +37,32 @@ if(isset($_POST[Back_to_camera]))
             
         </div>
         
+        <form id="form_fusion" method="post" action="fusion_image.php">
+<!--        <button id="buttonElement" alt="takepic_button" 
+<?php //if(!isset($_POST[filtre])){echo("disabled='disabled'");}?>
+>Prendre la photo</button>-->
+            <input type="hidden" id="hidden_img" name="hidden_img" >
+            <input type="hidden" id="filtre" name="filtre" value="<?php echo($_POST[filtre]) ?>"/>  
+            <input type="hidden" id="pic_display_left" name="pic_display_left" value="0"/>
+            <input type="hidden" id="pic_display_top" name="pic_display_top" value="0"/>
+            <input type="hidden" id="dest_width" name="dest_width" value="0"/>
+            <input type="hidden" id="dest_height" name="dest_height" value="0"/>  
+            <input type="submit" name="takepic_button" id="buttonElement" alt="takepic_button" <?php if(!isset($_POST[filtre])){echo("disabled='disabled'");}?> value="Prendre la photo"/>
+        </form>
         
-        <button id="buttonElement" alt="takepic_button" <?php if(!isset($_POST[filtre])){echo("disabled='disabled'");}?>>Prendre la photo</button>
+        
         
         <form method="post">
+<!--
             <input type="hidden" id="hidden_img" name="hidden_img" >
             <input type="hidden" id="filtre" name="filtre" value="<?php echo($_POST[filtre]) ?>"/>
+-->
+<!--
                 <input type="hidden" id="pic_display_left" name="pic_display_left" value="0"/>
                 <input type="hidden" id="pic_display_top" name="pic_display_top" value="0"/>
                 <input type="hidden" id="dest_width" name="dest_width" value="0"/>
                 <input type="hidden" id="dest_height" name="dest_height" value="0"/>
+-->
             <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" disabled='disabled'>
         </form>
         
@@ -72,6 +88,16 @@ if(isset($_POST[Back_to_camera]))
  
         ?>
         
+        <div class="id_rendu">
+<!--        <canvas style="visibility:hidden;" id="canvasElement"></canvas>-->
+        <canvas id="canvasElement"></canvas>
+        <!-- A virer--><?php if(isset($_SESSION[filtre])){
+                    echo("<img style=\"position: relative;\" src=\"".$_SESSION[filtre]."\"/><br/>");
+//                    unset($_SESSION[filtre]);
+                }
+            ?><!-- A virer-->
+    </div>
+        
         <!-- ------------- -->
         <!-- Partie Filtre -->
          
@@ -93,10 +119,7 @@ if(isset($_POST[Back_to_camera]))
         <!-- ------------------- -->
         <!-- ------------------- -->
 
-    <div class="id_rendu">
-<!--        <canvas style="visibility:hidden;" id="canvasElement"></canvas>-->
-        <canvas id="canvasElement"></canvas>
-    </div>
+    
         
         
     </div>

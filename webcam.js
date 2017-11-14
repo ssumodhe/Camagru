@@ -50,10 +50,11 @@ var streaming = false,
     var data = canvas.toDataURL('image/png');
 //    console.log(data); 
     document.getElementById('hidden_img').value = data;
-//    save_button = document.getElementById('button_save').removeAttribute("disabled");
+
   }
 
   startbutton.addEventListener('click', function(ev){
-      takepicture();
-    ev.preventDefault();
+        takepicture();
+        document.getElementById("form_fusion").submit();
+        save_button = document.getElementById('button_save').removeAttribute("disabled");ev.preventDefault();
   }, false);

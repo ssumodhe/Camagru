@@ -3,6 +3,11 @@ if(isset($_POST[Back_to_camera]))
 {
     unset($_SESSION[upload_file]);
     unset($_POST[Back_to_camera]);
+    unset($_SESSION[filtre]);
+}
+if(isset($_POST[filtre]))
+{
+    unset($_SESSION[filtre]);
 }
 ?>
 <!DOCTYPE HTML>
@@ -92,9 +97,12 @@ if(isset($_POST[Back_to_camera]))
         
         <div class="id_rendu">
 <!--        <canvas style="visibility:hidden;" id="canvasElement"></canvas>-->
-        <canvas id="canvasElement"></canvas>
-        <!-- A virer--><?php if(isset($_SESSION[filtre])){
-                    echo("<img style=\"position: relative;\" src=\"".$_SESSION[filtre]."\"/><br/>");
+<!--        <canvas id="canvasElement"></canvas>-->
+        <?php
+        if(!isset($_SESSION[filtre]))
+            echo("<canvas id=\"canvasElement\"></canvas>");
+        else if(isset($_SESSION[filtre])){
+                    echo("<img id=\"canvasElement\" style=\"position: relative;\" src=\"".$_SESSION[filtre]."\"/><br/>");
 //                    unset($_SESSION[filtre]);
                 }
             ?><!-- A virer-->
@@ -181,11 +189,6 @@ if(isset($_POST[Back_to_camera]))
                 <input id="button_save" type="submit" name="save_pic" value="Sauvegarder" alt="sauvegarder la photo" <?php if(!isset($_POST[filtre])){echo("disabled='disabled'");}?>>
             </form>
             </div>
-            <!-- A virer--><?php if(isset($_SESSION[filtre])){
-                    echo("<img style=\"position: relative;\" src=\"".$_SESSION[filtre]."\"/><br/>");
-//                    unset($_SESSION[filtre]);
-                }
-            ?><!-- A virer-->
  
         <!-- ------------- -->
         <!-- Partie Filtre -->

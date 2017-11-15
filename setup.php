@@ -44,6 +44,7 @@
     user_id VARCHAR(100),
     user_mail VARCHAR(100),
     nb_like INTEGER,
+    nb_view INTERGER,
     data_picture LONGTEXT,
     created DATETIME NOT NULL
     );";

@@ -18,6 +18,17 @@ a {
     color: black;
 }
 
+td {
+    padding: 0 5px 0 5px;
+    max-width: 300px; 
+    word-wrap: break-word;
+    
+    border-top-style: solid;
+    border-top-color: gainsboro;
+    border-top-width: 1px;
+/*    border-bottom: solid;*/
+}
+
 #menu{
     width: 100%;
     height: 3vh;

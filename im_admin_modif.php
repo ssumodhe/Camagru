@@ -68,7 +68,7 @@ else if ($_SESSION[id_user] != "ze_admin")
             foreach($lescles as $key)
             {
                 if($i % 2 == 0)
-                    echo("<td style='padding: 0 5px 0 5px; max-width: 300px; overflow: hidden'>".$donnees[$key]."</td>");
+                    echo("<td style='padding: 0 5px 0 5px; max-width: 300px; word-wrap: break-word;'>".$donnees[$key]."</td>");
                 $i++;
             }
             echo("</tr>");

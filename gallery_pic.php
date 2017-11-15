@@ -154,17 +154,19 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <?php
             if(isset($_POST['message']) && $_POST['message'] != NULL)
             {
+                $comment_encode = htmlspecialchars($_POST['message']);
                 $bdd = include("database.php");
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', 
                 '".$_SESSION['user_mail']."', 
                 '".$_SESSION['pic_id']."',
-                '".$_POST['message']."',
+                \"".$comment_encode."\",
                 '".$_SESSION['created']."');";
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
                 $reponse->closeCursor();
+                unset($_POST['message']);
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
                 
@@ -178,13 +180,13 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id']."\"ORDER BY id DESC;");
             while ($donnees = $reponse->fetch())
             {
-//                echo("<br/>");
                 echo("<div id=\"comments\">");
                 echo("<pre>Le ".$donnees[created]."<br/> <b>".$donnees[user_id]."</b> a commenté:</pre>   ".$donnees[comment]."");
                 echo("</div>");
                 
             }
             $reponse->closeCursor();
+            unset($donnees);
         ?>
         
     </body>

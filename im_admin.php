@@ -28,12 +28,41 @@ $nb_display = 10;
         <!-- -------- -->
         <form method="post" action="">
             <label>Appliquer une requete :</label><br/>
-            <textarea name="message" rows=4 cols=60></textarea><br/> 
+            <textarea name="requete" rows=4 cols=60></textarea><br/> 
             <input type="submit" value="Appliquer!" /><br/><br/>
         </form>
         <?php
-            echo($_POST[message]);
-            unset($_POST[message]);
+        if(isset($_POST[requete]) && $_POST[requete] != NULL)
+        {
+            echo($_POST[requete]);
+            echo("<br/>");
+            $req = $_POST[requete];
+             $bdd = include("database.php");
+
+        if(preg_match("/^SELECT/", $req))
+        {
+            $req = $bdd->query($req);
+            while($donnees = $req->fetch())
+            {
+                print_r($donnees);
+                echo("<br/>");
+            }
+            $req->closeCursor();
+            unset($req);
+        }
+        else
+        {
+                //        MYSQL
+                //    $bdd->prepare($req)->execute();
+                $reponse = $bdd->prepare($req);
+                $result = $reponse->execute();
+                $reponse->closeCursor();
+                unset($result);
+                unset($req);
+        }
+        
+            unset($_POST[requete]);
+            }
         ?>
         
         
@@ -104,7 +133,7 @@ $nb_display = 10;
         </table>
         
         <?php 
-            echo("<div id='a_align_right'><a href='im_admin_users.php'>See All >></a></div>");    
+            echo("<div id='a_align_right'><a href='im_admin_users.php'>See All >></a></div><br/>");    
         ?>
         
         <!-- --------- -->
@@ -171,7 +200,8 @@ $nb_display = 10;
             echo("<td>".$donnees[user_id]."</td>");
             echo("<td>".$donnees[user_mail]."</td>");
             echo("<td>".$donnees[nb_like]."</td>");
-            echo("<td><div><img src='".$donnees[data_pic]."'/></div></td>");
+            echo("<td><input type='image' src='".$donnees[data_pic]."' value='no_pic'/></td>");
+//            echo("<td style='background-image:url('".$donnees[data_pic]."');></td>");
             echo("<td>".$donnees[created]."</td>");
             echo("<td>
                 <form action='' method='post'>");
@@ -189,8 +219,10 @@ $nb_display = 10;
         ?>
         </table>
         
-        <?php 
-            echo("<div id='a_align_right'><a href='im_admin_pictures.php'>See All >></a></div>");    
+        
+        
+        <?php
+            echo("<div id='a_align_right'><a href='im_admin_pictures.php'>See All >></a></div><br/>");    
         ?>
         
         <!-- --------- -->
@@ -264,7 +296,7 @@ $nb_display = 10;
         ?>
         </table>
         <?php
-            echo("<div id='a_align_right'><a href='im_admin_comments.php'>See All >></a></div>");    
+            echo("<div id='a_align_right'><a href='im_admin_comments.php'>See All >></a></div><br/>");    
         ?>
         
         <!-- --------- -->
@@ -333,7 +365,7 @@ $nb_display = 10;
         ?>
         </table>
         <?php
-            echo("<div id='a_align_right'><a href='im_admin_likes.php'>See All >></a></div>");    
+            echo("<div id='a_align_right'><a href='im_admin_likes.php'>See All >></a></div><br/>");    
         ?>
     </body>
     

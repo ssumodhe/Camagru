@@ -76,13 +76,16 @@ if(isset($_POST[filtre]))
             if(isset($_POST[img_to_save]))
             {
                 $_SESSION['nb_like'] = 0;
+                $_SESSION['nb_view'] = 0;
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 
                 $bdd = include("database.php");
-                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
+                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, nb_view, data_picture, created) VALUES (
                 '".$_SESSION['id_user']."',
-                '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
+                '".$_SESSION['user_mail']."', 
+                '".$_SESSION['nb_like']."',
+                '".$_SESSION['nb_view']."',
                 '".$_POST[img_to_save]."',
                 '".$_SESSION['created']."');";
                 //        MYSQL
@@ -91,6 +94,9 @@ if(isset($_POST[filtre]))
                 $result = $reponse->execute();
                 $reponse->closeCursor();
                 unset($_SESSION[filtre]);
+                unset($_SESSION[nb_like]);
+                unset($_SESSION[nb_view]);
+                unset($_SESSION[created]);
             }
  
         ?>

@@ -22,6 +22,26 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
     
     <body>
         <?php include("Camagru_menu.php"); ?>
+        
+        <?php
+            $bdd = include("database.php");
+            $requete = $bdd->query("SELECT nb_view FROM pictures WHERE id=\"".$_GET['id']."\";");
+            $donnees = $requete->fetch();
+            $nb_view = $donnees[nb_view];
+            $requete->closeCursor();
+            $nb_view = $nb_view + 1;
+            unset($requete);
+            unset($donnees);
+            $requete = ("UPDATE pictures SET nb_view=".$nb_view." WHERE id=\"".$_GET['id']."\";");
+            $reponse = $bdd->prepare($requete);
+            $result = $reponse->execute();
+            $reponse->closeCursor();
+            unset($requete);
+            unset($reponse);
+            unset($result);
+            unset($nb_view);
+        ?>
+        
         <?php  echo('<div id="prec_page">
         <a href="gallery.php?'.$_SESSION[page].'">Revenir à la galerie.</a>
         </div>');?>
@@ -96,7 +116,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             echo("<br/>");
             echo("<img src='".$donnees[data_picture]."' />");
             echo("<br/>");
-            echo("<div id='info_pic'>Crée le ".$donnees[created]."");
+            echo("<div id='info_pic'>Crée le ".$donnees[created]." <br/>Vus : ".$donnees[nb_view]."");
             echo("<form action='gallery_pic.php' method='GET'>
             <input type='hidden' name='id' value='".$_SESSION[pic_id]."' />
             <input type='hidden' name='user' value='".$_SESSION[name]."' />

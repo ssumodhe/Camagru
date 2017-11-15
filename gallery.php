@@ -65,10 +65,10 @@ if(!isset($_SESSION[log]))
 //            $photo = str_replace("data:image/png;base64,", "", $donnees[data_picture]);
             echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img src='".$donnees[data_picture]."' />");
             echo("<br/>");
-            if ($donnees[user_mail] == $_SESSION[user_mail] && $donnees[user_id] == $_SESSION[login])
-                echo("Photo de vous.</a>");
+            if ($donnees[user_mail] == $_SESSION[user_mail] && $donnees[user_id] == $_SESSION[id_user])
+                echo("<div class='pres_pic'>Photo de vous. <pre>Vus : ".$donnees[nb_view]."</pre></div></a>");
             else
-                echo("Photo de ".$donnees[user_id].".</a>");
+                echo("<div class='pres_pic'>Photo de ".$donnees[user_id].". <pre>Vus : ".$donnees[nb_view]."<pre></div></a>");
             echo("<br/>");
             echo("<br/>");
             $n++;

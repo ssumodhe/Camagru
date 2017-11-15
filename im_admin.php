@@ -1,7 +1,4 @@
 <?php session_start();
-//$_SESSION[nb_pic_display] = 0;
-//$_SESSION[page] = 1;
-//$_SESSION[next_p] = 2;
 if(!isset($_SESSION[log]))
 {
     header("Location: index.php");
@@ -36,8 +33,8 @@ $nb_display = 10;
         {
             echo($_POST[requete]);
             echo("<br/>");
-            $req = $_POST[requete];
-             $bdd = include("database.php");
+            $req = trim($_POST[requete]);
+            $bdd = include("database.php");
 
         if(preg_match("/^SELECT/", $req))
         {
@@ -184,6 +181,7 @@ $nb_display = 10;
                 <th>login</th>
                 <th>e-mail</th>
                 <th>nb_like</th>
+                <th>nb_view</th>
                 <th>photo</th>
                 <th>created</th>
             </tr>
@@ -200,6 +198,7 @@ $nb_display = 10;
             echo("<td>".$donnees[user_id]."</td>");
             echo("<td>".$donnees[user_mail]."</td>");
             echo("<td>".$donnees[nb_like]."</td>");
+            echo("<td>".$donnees[nb_view]."</td>");
             echo("<td><input type='image' src='".$donnees[data_pic]."' value='no_pic'/></td>");
 //            echo("<td style='background-image:url('".$donnees[data_pic]."');></td>");
             echo("<td>".$donnees[created]."</td>");

@@ -67,13 +67,16 @@ session_start();
         if (isset($_SESSION[upload_file]))
         {
                 $_SESSION['nb_like'] = 0;
+                $_SESSION['nb_view'] = 0;
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 
                 $bdd = include("database.php");
-                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
+                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, nb_view, data_picture, created) VALUES (
                 '".$_SESSION['id_user']."',
-                '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
+                '".$_SESSION['user_mail']."', 
+                '".$_SESSION['nb_like']."',
+                '".$_SESSION['nb_view']."',
                 '".$_SESSION[filtre]."',
                 '".$_SESSION['created']."');";
                 //        MYSQL
@@ -84,6 +87,7 @@ session_start();
 //                unset($_SESSION[filtre]);
                 unset($_SESSION[created]);
                 unset($_SESSION[nb_like]);
+                unset($_SESSION[nb_view]);
                 unset($_POST['upload_img']);
                 unset($_POST[filtre]);
 //        unset($_SESSION[upload_file]);

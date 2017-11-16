@@ -56,6 +56,10 @@ $nb_display = 10;
                 $reponse->closeCursor();
                 unset($result);
                 unset($req);
+                if(preg_match("/^DROP/", $req)) //IF DROP, recrée les tables de la base de donnees pour ne pas foirer les pages.
+                {
+                    require("setup.php");
+                }
         }
         
             unset($_POST[requete]);

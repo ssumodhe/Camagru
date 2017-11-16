@@ -17,17 +17,6 @@
             </form>
         <?php }?>
         
-<!--        A VIRER -->
-        <?php
-        echo("<br/>SESSION<br/>");
-        print_r($_SESSION);
-       echo("<br/>POST<br/>");
-        print_r($_POST);
-       echo("<br/>GET<br/>");
-        print_r($_GET);
-        ?>
-<!--        ------  -->
-        
         
     </body>
 </html>

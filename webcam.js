@@ -27,6 +27,8 @@ var streaming = false,
     },
     function(err) {
       console.log("An error occured! " + err);
+        startbutton.parentNode.removeChild(startbutton);
+
     }
   );
 
@@ -48,7 +50,6 @@ var streaming = false,
     canvas.height = height;
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     var data = canvas.toDataURL('image/png');
-//    console.log(data); 
     document.getElementById('hidden_img').value = data;
 
   }

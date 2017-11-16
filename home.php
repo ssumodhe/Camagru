@@ -17,7 +17,8 @@ if(!isset($_SESSION[log]))
     <body>
         <?php include("Camagru_menu.php"); ?>
         
-
+        <pre id="directive">Clique sur un filtre pour pouvoir prendre/sauvegarder la photo.
+        Tu pourras ensuite bouger le filtre sur ta photo. :)<br/></pre>
         <?php include("upload_file.php"); ?>
        
         

@@ -28,6 +28,7 @@ session_start();
         
         if ($donnees[mail] != NULL)
         {
+            $reponse->closeCursor();
            $characts    = 'abcdefghijklmnopqrstuvwxyz';
            $characts   .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';	
 	       $characts   .= '1234567890';
@@ -43,7 +44,7 @@ session_start();
             $_SESSION[new_pass] = $mdp_2;
             unset($mdp_2);
             
-            $requete = ("UPDATE users SET password=".$_SESSION[new_pass]." WHERE mail=\"".$_SESSION['user_mail']."\";");
+            $requete = ("UPDATE users SET password='".$_SESSION[new_pass]."' WHERE mail=\"".$_SESSION['user_mail']."\";");
             $rep = $bdd->prepare($requete);
             $rep->execute();
             $rep->closeCursor();
@@ -53,14 +54,15 @@ session_start();
             $_SESSION[new_pass] = $new_pass;
             unset($new_pass);
             require("mailing_forgotten_pswd.php"); 
+            unset($_SESSION[user_mail]);
             echo ("<p>Un e-mail vient de vous etre envoyé avec un nouveau mot de passe. Notez le quelque part ^^</p><p>Tu vas etre rediriger dans un instant vers la page d'accueil.</p>");
             echo "<meta http-equiv='refresh' content='4,url=index.php'>";
         }
         else
         {    
             echo ("<p>Connais pas cet e-mail!\n</p>");
+            $reponse->closeCursor();
         }
-        $reponse->closeCursor();
     }
     
 ?>

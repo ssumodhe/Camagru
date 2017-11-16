@@ -189,7 +189,9 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
                 $reponse->closeCursor();
+                $_SESSION[comment] = $comment_encode;
                 unset($_POST['message']);
+                require("mailing_new_comment.php");
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
                 

@@ -66,9 +66,9 @@ if(!isset($_SESSION[log]))
             echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img src='".$donnees[data_picture]."' />");
             echo("<br/>");
             if ($donnees[user_mail] == $_SESSION[user_mail] && $donnees[user_id] == $_SESSION[id_user])
-                echo("<div class='pres_pic'>Photo de vous. <pre>Vus : ".$donnees[nb_view]."</pre></div></a>");
+                echo("Photo de vous. <pre>Vus : ".$donnees[nb_view]."</a></pre>");
             else
-                echo("<div class='pres_pic'>Photo de ".$donnees[user_id].". <pre>Vus : ".$donnees[nb_view]."<pre></div></a>");
+                echo("Photo de ".$donnees[user_id].". <pre>Vus : ".$donnees[nb_view]."</a></pre>");
             echo("<br/>");
             echo("<br/>");
             $n++;

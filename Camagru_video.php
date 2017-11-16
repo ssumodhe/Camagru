@@ -97,6 +97,8 @@ if(isset($_POST[filtre]))
                 unset($_SESSION[nb_like]);
                 unset($_SESSION[nb_view]);
                 unset($_SESSION[created]);
+                unset($_POST[img_to_save]);
+                unset($_POST[save_pic]);
             }
  
         ?>

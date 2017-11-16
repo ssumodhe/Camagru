@@ -235,9 +235,12 @@ table {
     border-color: gainsboro;
 }
 
-.pres_pic pre{
-/*    display: inline-block;*/
-    margin: 0;
+pre a{
+    width: 320px;
     font-size: smaller;
+}
+
+pre{
+    margin-top: 0;
 }
 

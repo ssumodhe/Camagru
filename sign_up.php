@@ -74,7 +74,7 @@
             $_SESSION[log] = "ON";
             unset($mdp);
             unset($mdp_2);
-            require("mailing.php");
+            require("mailing_inscription.php");
             header('Location: home.php');
             exit();
         }

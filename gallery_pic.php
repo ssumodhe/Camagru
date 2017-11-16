@@ -24,6 +24,8 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <?php include("Camagru_menu.php"); ?>
         
         <?php
+            if(!isset($_GET[likeup]))
+            {
             $bdd = include("database.php");
             $requete = $bdd->query("SELECT nb_view FROM pictures WHERE id=\"".$_GET['id']."\";");
             $donnees = $requete->fetch();
@@ -40,6 +42,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             unset($reponse);
             unset($result);
             unset($nb_view);
+            }
         ?>
         
         <?php  echo('<div id="prec_page">

@@ -26,6 +26,18 @@
             
         </form>
         
+        <?php
+            if(isset($_POST[message]) && $_POST[message] != NULL)
+            {
+                echo("Votre message a bien été envoyé!");
+                echo ("<meta http-equiv='refresh' content='3,url=home.php'>");
+                
+                unset($_POST[id_user]);
+                unset($_POST[user_mail]);
+                unset($_POST[message]);
+            }
+                
+        ?>
         
            <?php if(!isset($_SESSION[log]))
             {

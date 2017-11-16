@@ -19,7 +19,7 @@ session_start();
     if (isset($_POST['user_mail']))
     {
         // CHECK CE QUE POST RENVOI REGEX, faille XSS et injection SQL
-        $_SESSION[user_mail] = $_POST[user_mail];
+        $_SESSION[user_mail] = htmlspecialchars($_POST[user_mail]);
         unset($_POST[user_mail]);
         $bdd = include("database.php");
         
@@ -28,7 +28,31 @@ session_start();
         
         if ($donnees[mail] != NULL)
         {
-//          require("mailing_for_pswd.php"); 
+           $characts    = 'abcdefghijklmnopqrstuvwxyz';
+           $characts   .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';	
+	       $characts   .= '1234567890';
+            $new_pass = "";
+
+            for($i=0;$i < 5;$i++)
+	       { 
+            $new_pass .= substr($characts,rand()%(strlen($characts)),1); 
+	       }
+            $mdp = hash("sha512", $new_pass);
+            $mdp_2 = hash("md5", $mdp);
+            unset($mdp);
+            $_SESSION[new_pass] = $mdp_2;
+            unset($mdp_2);
+            
+            $requete = ("UPDATE users SET password=".$_SESSION[new_pass]." WHERE mail=\"".$_SESSION['user_mail']."\";");
+            $rep = $bdd->prepare($requete);
+            $rep->execute();
+            $rep->closeCursor();
+            unset($requete);
+            unset($rep);
+            
+            $_SESSION[new_pass] = $new_pass;
+            unset($new_pass);
+            require("mailing_forgotten_pswd.php"); 
             echo ("<p>Un e-mail vient de vous etre envoyé avec un nouveau mot de passe. Notez le quelque part ^^</p><p>Tu vas etre rediriger dans un instant vers la page d'accueil.</p>");
             echo "<meta http-equiv='refresh' content='4,url=index.php'>";
         }

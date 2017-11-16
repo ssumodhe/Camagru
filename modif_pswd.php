@@ -66,7 +66,7 @@ if(!isset($_SESSION[log]))
                         $reponse = $bdd->prepare($requete);
                         $result = $reponse->execute();
                         unset($mdp_2);
-                        
+                        require("mailing_reini_pswd.php");
                         echo ("<p>Un e-mail de réinitialisation vient de vous etre envoyé. </p>");
                         echo "<meta http-equiv='refresh' content='3,url=my_account.php'>";
                     }

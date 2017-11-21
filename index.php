@@ -12,6 +12,7 @@
     
     <body>
 
+        
         <!-- --------------- -->
         <!-- Messages Erreur -->
         <!-- --------------- -->
@@ -47,7 +48,7 @@
                unset($_SESSION['form_complete']);
             }
         ?>
-        
+        <div style="margin-bottom: 30px;">
         <!-- ------- -->
         <!-- Sign_up -->
         <!-- ------- -->
@@ -89,6 +90,12 @@
             <input type="submit" name="sign_in" value="Go !"/>
             
         </form>
+        </div>
+        </div>
+        
+<!--        <div class="menu">-->
+        <div>
+            <a href="galerie.php?p=1" title="Votre espace photos" style="background-color: white; border-width: 2px; border-color: gainsboro; border-style: solid; padding: 4px 5px 0 5px;">Galerie</a>
         </div>
         
     </body>

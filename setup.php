@@ -43,8 +43,8 @@
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     user_id VARCHAR(100),
     user_mail VARCHAR(100),
-    nb_like INTEGER,
-    nb_view INTEGER,
+    nb_like INTEGER DEFAULT '0' NOT NULL,
+    nb_view INTEGER DEFAULT '0' NOT NULL,
     data_picture LONGTEXT,
     created DATETIME NOT NULL
     );";
@@ -53,7 +53,6 @@
   $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
                     $reponse->closeCursor();
-
 
 
     $requete = "CREATE TABLE IF NOT EXISTS comments (

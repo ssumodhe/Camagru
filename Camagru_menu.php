@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <body>
-        <div id="menu">
+        <div class="menu">
             <ul>
                 <li><a href="home.php" title="Accueil">Accueil</a></li>
                 <li><a href="gallery.php?p=1" title="Votre espace photos">Galerie</a></li>

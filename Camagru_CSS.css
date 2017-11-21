@@ -29,7 +29,7 @@ td {
 /*    border-bottom: solid;*/
 }
 
-#menu{
+.menu{
     width: 100%;
     height: 3vh;
     margin: 1vh auto 3vh auto;

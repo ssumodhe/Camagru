@@ -24,13 +24,7 @@
             header('Location: index.php');
             exit();
         }
-        if (preg_match("(\[\<\>\\\/\;\:\'\"\[\]\{\}\(\)\$\#\^\@\&\*\_\|\!\?\.\,\+\=]+)", $_POST['id_user']))
-        {
-            $_SESSION['form_complete'] = "KO_id_incorrect";
-            header('Location: index.php');
-            exit();
-        }
-        if (preg_match("(\[\<\>\\\/\;\:\'\"\[\]\{\}\(\)\$\#\^\&\*\_\|\!\?\.\,\+\=]+)", $_POST['user_mail']))
+        if (preg_match("([\<\>\\\/\;\:\'\"\[\]\{\}\(\)\$\#\^\@\&\*\_\|\!\?\.\,\+\=]+)", $_POST['id_user']))
         {
             $_SESSION['form_complete'] = "KO_id_incorrect";
             header('Location: index.php');

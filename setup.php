@@ -54,6 +54,8 @@
                 $result = $reponse->execute();
                     $reponse->closeCursor();
 
+
+
     $requete = "CREATE TABLE IF NOT EXISTS comments (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     user_id VARCHAR(100),

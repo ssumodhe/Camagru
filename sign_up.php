@@ -18,19 +18,19 @@
             header('Location: index.php');
             exit();
         }
-        if (!preg_match("#(\d+)#", $_POST['password']))
+        if (!preg_match("(\d+)", $_POST['password']))
         {
             $_SESSION['form_complete'] = "KO_pswd_need_num";
             header('Location: index.php');
             exit();
         }
-        if (preg_match("#([<>\\\/;:'\"\[\]\{\}\(\)$#%^@&*_|!?.,+=]+)#", $_POST['id_user']))
+        if (preg_match("(\[\<\>\\\/\;\:\'\"\[\]\{\}\(\)\$\#\^\@\&\*\_\|\!\?\.\,\+\=]+)", $_POST['id_user']))
         {
             $_SESSION['form_complete'] = "KO_id_incorrect";
             header('Location: index.php');
             exit();
         }
-        if (preg_match("#([<>\\\/;:'\"\[\]\{\}\(\)$#%^&*|!?,+=]+)#", $_POST['user_mail']))
+        if (preg_match("(\[\<\>\\\/\;\:\'\"\[\]\{\}\(\)\$\#\^\&\*\_\|\!\?\.\,\+\=]+)", $_POST['user_mail']))
         {
             $_SESSION['form_complete'] = "KO_id_incorrect";
             header('Location: index.php');

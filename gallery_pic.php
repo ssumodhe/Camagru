@@ -53,25 +53,26 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         if(isset($_POST[del_pic]))
             {
                 $bdd = include("config/database.php");
-                $requete= "DELETE FROM pictures WHERE id=".$_SESSION[pic_id].";";
+                $requete= "DELETE FROM pictures WHERE id=".$_POST[id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
                 $reponse->closeCursor();
-                $requete= "DELETE FROM comments WHERE id_picture=".$_SESSION[pic_id].";";
+                $requete= "DELETE FROM comments WHERE id_picture=".$_POST[id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
                 $reponse->closeCursor();
-                $requete= "DELETE FROM likes WHERE id_picture=".$_SESSION[pic_id].";";
+                $requete= "DELETE FROM likes WHERE id_picture=".$_POST[id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
                 $reponse = $bdd->prepare($requete);
                 $result = $reponse->execute();
                 $reponse->closeCursor();
                 unset($_POST[del_pic]);
+                unset($_POST[id]);
             }
         ?>
         <!-- ------------------- -->
@@ -190,7 +191,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', 
                 '".$_SESSION['user_mail']."', 
-                '".$_SESSION['pic_id']."',
+                '".$_SESSION['pic_id_comment']."',
                 \"".$comment_encode."\",
                 '".$_SESSION['created']."');";
                 $reponse = $bdd->prepare($requete);
@@ -209,7 +210,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
                 
             }
             $bdd = include("config/database.php");
-            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id']."\"ORDER BY id DESC;");
+            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id_comment']."\"ORDER BY id DESC;");
             while ($donnees = $reponse->fetch())
             {
                 echo("<div id=\"comments\">");

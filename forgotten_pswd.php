@@ -16,12 +16,12 @@ session_start();
     
 <?php
 
-    if (isset($_POST['user_mail']))
+    if (isset($_POST['user_mail']) && $_POST['user_mail'] != NULL)
     {
         // CHECK CE QUE POST RENVOI REGEX, faille XSS et injection SQL
         $_SESSION[user_mail] = htmlspecialchars($_POST[user_mail]);
         unset($_POST[user_mail]);
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         
         $reponse = $bdd->query("SELECT mail FROM users WHERE mail=\"".$_SESSION['user_mail']."\";");
         $donnees = $reponse->fetch();
@@ -63,6 +63,10 @@ session_start();
             echo ("<p>Connais pas cet e-mail!\n</p>");
             $reponse->closeCursor();
         }
+    }
+    else
+    {
+         echo "<p id='error'>Erreur : vous devez remplir correctement tous les champs.\n</p>";
     }
     
 ?>

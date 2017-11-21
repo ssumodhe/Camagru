@@ -10,7 +10,7 @@
        
         
         
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
 //         $requete = "SELECT * FROM users WHERE 'mail'=\"".$_SESSION['user_mail']."\" AND 'password'=\"".$mdp_2."\";";
        
        $requete = "SELECT * FROM users WHERE `login`=\"".$_SESSION['id_user']."\" LIMIT 1;";

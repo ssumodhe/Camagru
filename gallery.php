@@ -56,14 +56,14 @@ if(!isset($_SESSION[log]))
         <!-- Partie Photos -->
         <!-- ------------- --> 
         <?php 
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id DESC LIMIT 5 OFFSET ".$_SESSION[nb_pic_display].";");
         
         $n = 0;
         while ($donnees = $reponse->fetch())
         {
 //            $photo = str_replace("data:image/png;base64,", "", $donnees[data_picture]);
-            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".$donnees[user_id]."'><img src='".$donnees[data_picture]."' />");
+            echo("<a href='gallery_pic.php?id=".$donnees[id]."&user=".htmlspecialchars($donnees[user_id])."'><img src='".$donnees[data_picture]."' />");
             echo("<br/>");
             if ($donnees[user_mail] == $_SESSION[user_mail] && $donnees[user_id] == $_SESSION[id_user])
                 echo("Photo de vous. <pre>Vus : ".$donnees[nb_view]."</a></pre>");

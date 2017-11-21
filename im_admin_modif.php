@@ -17,7 +17,7 @@ else if ($_SESSION[id_user] != "ze_admin")
     
     <body>
         <?php include("Camagru_menu.php"); ?>
-        <?php $bdd = require("database.php"); ?>
+        <?php $bdd = require("config/database.php"); ?>
         
         <?php 
         

@@ -46,7 +46,7 @@ session_start();
         <!-- Partie Photos -->
         <!-- ------------- --> 
         <?php 
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id DESC LIMIT 5 OFFSET ".$_SESSION[nb_pic_display].";");
         
         $n = 0;

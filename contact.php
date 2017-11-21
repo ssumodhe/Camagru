@@ -27,11 +27,20 @@
         </form>
         
         <?php
-            if(isset($_POST[message]) && $_POST[message] != NULL)
+            if(isset($_POST[message]) && $_POST[message] != NULL && 
+               isset($_POST[id_user]) && $_POST[id_user] != NULL && 
+               isset($_POST[user_mail]) && $_POST[user_mail] != NULL)
             {
                 echo("Votre message a bien été envoyé!");
                 echo ("<meta http-equiv='refresh' content='3,url=home.php'>");
                 
+                unset($_POST[id_user]);
+                unset($_POST[user_mail]);
+                unset($_POST[message]);
+            }
+            else
+            {
+               echo "<p id='error'>Erreur : vous devez remplir correctement tous les champs.\n</p>";
                 unset($_POST[id_user]);
                 unset($_POST[user_mail]);
                 unset($_POST[message]);

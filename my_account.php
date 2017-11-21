@@ -42,7 +42,7 @@ if(!isset($_SESSION[log]))
             <h2>Vos Photos</h2>
             <div class="prev_pic">
                 <?php
-                    $bdd = include("database.php");
+                    $bdd = include("config/database.php");
                     $reponse = $bdd->query("SELECT * FROM pictures WHERE user_id=\"".$_SESSION[id_user]."\"ORDER BY id DESC;");
                     
                     $i = 0;

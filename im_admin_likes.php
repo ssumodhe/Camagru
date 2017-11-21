@@ -24,7 +24,7 @@ else if ($_SESSION[id_user] != "ze_admin")
         <?php
         if(isset($_POST[lik_suppr_id]))
             {
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete= "DELETE FROM likes WHERE id=".$_POST[lik_suppr_id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
@@ -39,7 +39,7 @@ else if ($_SESSION[id_user] != "ze_admin")
         <!-- Tableau LIKES -->
         <!-- ------------- -->
         <?php
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
             $req = $bdd->query('SELECT COUNT (id) as Nbid FROM likes');
             $donnees = $req->fetch();
             $req->closeCursor();
@@ -55,7 +55,7 @@ else if ($_SESSION[id_user] != "ze_admin")
             </tr>
 
         <?php 
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM likes ORDER BY id;");
         
         while ($donnees = $reponse->fetch())

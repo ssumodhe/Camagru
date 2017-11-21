@@ -80,7 +80,7 @@ if(isset($_POST[filtre]))
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, nb_view, data_picture, created) VALUES (
                 '".$_SESSION['id_user']."',
                 '".$_SESSION['user_mail']."', 
@@ -171,7 +171,7 @@ if(isset($_POST[filtre]))
 //                date_default_timezone_set('Europe/Paris');
 //                $_SESSION['created'] = date('Y-m-d h:i:s');
 //                
-//                $bdd = include("database.php");
+//                $bdd = include("config/database.php");
 //                $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, data_picture, created) VALUES (
 //                '".$_SESSION['id_user']."',
 //                '".$_SESSION['user_mail']."', '".$_SESSION['nb_like']."',
@@ -227,7 +227,7 @@ if(isset($_POST[filtre]))
         <!-- ------------------------------ -->
     <div class="prev_pic">
         <?php
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM pictures WHERE user_id=\"".$_SESSION[id_user]."\"ORDER BY id DESC;");
         
         while ($donnees = $reponse->fetch())

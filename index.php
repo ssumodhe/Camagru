@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("setup.php");
+    include_once("config/setup.php");
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -50,6 +50,11 @@
             else if (isset($_SESSION['form_complete']) && $_SESSION['form_complete'] == "KO_pswd_need_num")
             {
                echo "<p id='error'>Erreur : votre mot de passe doit contenir des chiffres.\n</p>";
+               unset($_SESSION['form_complete']);
+            }
+            else if (isset($_SESSION['form_complete']) && $_SESSION['form_complete'] == "KO_id_incorrect")
+            {
+               echo "<p id='error'>Erreur : les informations renseignées semblent incorrectes.\n</p>";
                unset($_SESSION['form_complete']);
             }
         ?>

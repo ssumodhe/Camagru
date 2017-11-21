@@ -34,7 +34,7 @@ $nb_display = 10;
             echo($_POST[requete]);
             echo("<br/>");
             $req = trim($_POST[requete]);
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
 
         if(preg_match("/^SELECT/", $req))
         {
@@ -73,7 +73,7 @@ $nb_display = 10;
         <?php
         if(isset($_POST[usr_suppr_id]))
             {
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete= "DELETE FROM users WHERE id=".$_POST[usr_suppr_id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
@@ -88,7 +88,7 @@ $nb_display = 10;
         <!-- Tableau USERS -->
         <!-- ------------- -->
         <?php
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
             $req = $bdd->query('SELECT COUNT (id) as Nbid FROM users');
             $donnees = $req->fetch();
             $req->closeCursor();
@@ -106,7 +106,7 @@ $nb_display = 10;
             </tr>
 
         <?php 
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM users ORDER BY id DESC LIMIT ".$nb_display.";");
         $i = $nb_users;
         while ($donnees = $reponse->fetch())
@@ -143,7 +143,7 @@ $nb_display = 10;
         <?php
         if(isset($_POST[pic_suppr_id]))
             {
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete= "DELETE FROM pictures WHERE id=".$_POST[pic_suppr_id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
@@ -170,7 +170,7 @@ $nb_display = 10;
         <!-- Tableau PICTURES -->
         <!-- ---------------- -->
         <?php
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
             $req = $bdd->query('SELECT COUNT (id) as Nbid FROM pictures');
             $donnees = $req->fetch();
             $req->closeCursor();
@@ -191,7 +191,7 @@ $nb_display = 10;
             </tr>
 
         <?php 
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM pictures ORDER BY id DESC LIMIT ".$nb_display.";");
         $i = $nb_pictures;
         while ($donnees = $reponse->fetch())
@@ -234,7 +234,7 @@ $nb_display = 10;
         <?php
         if(isset($_POST[com_suppr_id]))
             {
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete= "DELETE FROM comments WHERE id=".$_POST[com_suppr_id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
@@ -249,7 +249,7 @@ $nb_display = 10;
         <!-- Tableau COMMENTS -->
         <!-- ---------------- -->
         <?php
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
             $req = $bdd->query('SELECT COUNT (id) as Nbid FROM comments');
             $donnees = $req->fetch();
             $req->closeCursor();
@@ -269,7 +269,7 @@ $nb_display = 10;
             </tr>
 
         <?php 
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM comments ORDER BY id DESC LIMIT ".$nb_display.";");
         
         $i = $nb_comments;
@@ -308,7 +308,7 @@ $nb_display = 10;
         <?php
         if(isset($_POST[lik_suppr_id]))
             {
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete= "DELETE FROM likes WHERE id=".$_POST[lik_suppr_id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
@@ -323,7 +323,7 @@ $nb_display = 10;
         <!-- Tableau LIKES -->
         <!-- ------------- -->
         <?php
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
             $req = $bdd->query('SELECT COUNT (id) as Nbid FROM likes');
             $donnees = $req->fetch();
             $req->closeCursor();
@@ -341,7 +341,7 @@ $nb_display = 10;
             </tr>
 
         <?php 
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         $reponse = $bdd->query("SELECT * FROM likes ORDER BY id DESC LIMIT ".$nb_display.";");
         $i = $nb_likes;
         while ($donnees = $reponse->fetch())

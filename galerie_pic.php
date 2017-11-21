@@ -17,7 +17,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <h4 style="color: blue;"><a href="index.php">Rejoignez notre communauté en vous inscrivant! :)<br/>Vous pourrez alors commenter et liker les photos!<br/>C'est par ici!</a></h4>
         
         <?php
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
             $requete = $bdd->query("SELECT nb_view FROM pictures WHERE id=\"".htmlspecialchars($_GET['id'])."\";");
             $donnees = $requete->fetch();
             $nb_view = $donnees[nb_view];
@@ -52,7 +52,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             unset($_GET[user]);
         
         
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         
         
         $requete = $bdd->query("SELECT * FROM pictures WHERE id=\"".$_SESSION['pic_id']."\";");
@@ -73,10 +73,10 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             echo("".$donnees[nb_like]."");
             echo("<br/>");
             echo("<br/></div>");
-//            unset($_SESSION[pic_id]);
-//            unset($_SESSION[name]);
+            $_SESSION[pic_id_comment] = $_SESSION[pic_id];
+            unset($_SESSION[pic_id]);
+            unset($_SESSION[name]);
         }
-            
         }
         else
         {
@@ -91,8 +91,10 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         
         <?php
             
-            $bdd = include("database.php");
-            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id']."\"ORDER BY id DESC;");
+            if(isset($_SESSION[pic_id_comment]))
+            {
+            $bdd = include("config/database.php");
+            $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id_comment']."\"ORDER BY id DESC;");
             while ($donnees = $reponse->fetch())
             {
                 echo("<div id=\"comments\">");
@@ -102,6 +104,8 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             }
             $reponse->closeCursor();
             unset($donnees);
+            unset($_SESSION[pic_id_comment]);
+            }
         ?>
         
     </body>

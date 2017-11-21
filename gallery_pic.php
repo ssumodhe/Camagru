@@ -26,7 +26,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <?php
             if(!isset($_GET[likeup]))
             {
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
             $requete = $bdd->query("SELECT nb_view FROM pictures WHERE id=\"".$_GET['id']."\";");
             $donnees = $requete->fetch();
             $nb_view = $donnees[nb_view];
@@ -52,7 +52,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <?php
         if(isset($_POST[del_pic]))
             {
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete= "DELETE FROM pictures WHERE id=".$_SESSION[pic_id].";";
                 //        MYSQL
                 //    $bdd->prepare($requete)->execute();
@@ -79,7 +79,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <!-- ------------------- -->
         <?php
         
-        if(isset($_GET[id]) && isset($_GET[user]))
+        if(isset($_GET[id]) && isset($_GET[user]) && $_GET[id] != NULL && $_GET[user]!= NULL)
         {
             $_SESSION[pic_id] = $_GET[id];
             $_SESSION[name] = $_GET[user];
@@ -87,7 +87,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             unset($_GET[user]);
         
         
-        $bdd = include("database.php");
+        $bdd = include("config/database.php");
         
         $get_if_like = $bdd->query("SELECT * FROM likes WHERE id_picture=\"".$_SESSION['pic_id']."\" AND user_mail=\"".$_SESSION[user_mail]."\";");
         $like = $get_if_like->fetch();
@@ -155,10 +155,15 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             echo("".$donnees[nb_like]."");
             echo("<br/>");
             echo("<br/></div>");
-//            unset($_SESSION[pic_id]);
-//            unset($_SESSION[name]);
+            $_SESSION[pic_id_comment] = $_SESSION[pic_id];
+            unset($_SESSION[pic_id]);
+            unset($_SESSION[name]);
+        }
         }
             
+        else
+        {
+            header("Location: gallery.php?p=1");
         }
      
         ?>
@@ -166,6 +171,8 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
         <!-- ------------------- -->
         <!-- Partie Commentaires -->
         <!-- ------------------- -->
+        <?php if(isset($_SESSION[pic_id_comment]))
+            {?>
         <form method="post" action="">
             <label>Ajouter un commentaire :</label><br/>
             <input type="hidden" name="id_user" value="<?php $_SESSION[id_user] ?>"/>
@@ -178,7 +185,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             if(isset($_POST['message']) && $_POST['message'] != NULL)
             {
                 $comment_encode = htmlspecialchars($_POST['message']);
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 $requete = "INSERT INTO comments (user_id, user_mail, id_picture, comment, created) VALUES ('".$_SESSION['id_user']."', 
@@ -201,7 +208,7 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
 
                 
             }
-            $bdd = include("database.php");
+            $bdd = include("config/database.php");
             $reponse = $bdd->query("SELECT * FROM comments WHERE id_picture=\"".$_SESSION['pic_id']."\"ORDER BY id DESC;");
             while ($donnees = $reponse->fetch())
             {
@@ -212,7 +219,10 @@ if(!isset($_GET[id]) || !isset($_GET[user]) || $_GET[id] == NULL || $_GET[user] 
             }
             $reponse->closeCursor();
             unset($donnees);
+            unset($_SESSION[pic_id_comment]);
+             
         ?>
+        <?php }?>
         
     </body>
     

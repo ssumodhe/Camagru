@@ -71,7 +71,7 @@ session_start();
                 date_default_timezone_set('Europe/Paris');
                 $_SESSION['created'] = date('Y-m-d h:i:s');
                 
-                $bdd = include("database.php");
+                $bdd = include("config/database.php");
                 $requete = "INSERT INTO pictures (user_id, user_mail, nb_like, nb_view, data_picture, created) VALUES (
                 '".$_SESSION['id_user']."',
                 '".$_SESSION['user_mail']."', 

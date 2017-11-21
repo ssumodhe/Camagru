@@ -1,16 +1,24 @@
 <?php
+//MYSQL
+//$DB_DSN = "mysql:host=localhost;dbname=camagru;charset=utf8";
+//$DB_USER = "root";
+//$DB_PASSWORD = "root";
 
-$DB_DSN = "mysql:host=localhost;dbname=camagru;charset=utf8";
-$DB_USER = "root";
-$DB_PASSWORD = "root";
+//SQLITE
+$DB_DSN = "sqlite:camagru";
+$DB_USER = "safsaf";
+$DB_PASSWORD = "mdpsupersecret";
 // Try essaie d'acceder a mysql, si cela echoue, 
 // et pour eviter que php n'affiche la ligne qui pose probleme, 
 // on lance catch qui recupere le message d'erreur envoyer
 // par PDO.
     try{
-//        $bdd = new PDO($DB_DSN,
-//              $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        $bdd = new PDO("sqlite:camagru", "safsaf", "mdpsupersecret");
+        //        MYSQL
+        //        $bdd = new PDO($DB_DSN,
+        //              $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        
+        // SQLITE
+        $bdd = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         //Etablie une connexion avec la base de donnees.

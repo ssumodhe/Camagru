@@ -37,7 +37,7 @@ if(!isset($_SESSION[log]))
                 $mdp_2 = hash("md5", $mdp);
                 unset($mdp);
                 
-                $bdd = include("database.php");   
+                $bdd = include("config/database.php");   
                 $reponse = $bdd->query("SELECT * FROM users WHERE login=\"".$_SESSION['id_user']."\" AND mail=\"".$_SESSION['user_mail']."\";");
                 $donnees = $reponse->fetch();
         
@@ -59,7 +59,7 @@ if(!isset($_SESSION[log]))
                         $mdp_2 = hash("md5", $mdp);
                         unset($mdp);
                         
-                        $bdd = include("database.php");   
+                        $bdd = include("config/database.php");   
                         $requete= "UPDATE users SET password=\"".$mdp_2."\" WHERE mail=\"".$_SESSION['user_mail']."\";";
                         //        MYSQL
                         //    $bdd->prepare($requete)->execute();

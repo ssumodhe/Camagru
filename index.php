@@ -47,6 +47,11 @@
                echo "<p id='error'>Erreur : veuillez saisir les mots de passe à l'identique.\n</p>";
                unset($_SESSION['form_complete']);
             }
+            else if (isset($_SESSION['form_complete']) && $_SESSION['form_complete'] == "KO_pswd_need_num")
+            {
+               echo "<p id='error'>Erreur : votre mot de passe doit contenir des chiffres.\n</p>";
+               unset($_SESSION['form_complete']);
+            }
         ?>
         <div style="margin-bottom: 30px;">
         <!-- ------- -->

@@ -18,10 +18,16 @@
             header('Location: index.php');
             exit();
         }
+        if (!preg_match("#(\d+)#", $_POST['password']))
+        {
+            $_SESSION['form_complete'] = "KO_pswd_need_num";
+            header('Location: index.php');
+            exit();
+        }
         else
         {
-            $_SESSION['id_user'] = strtolower($_POST['id_user']);
-            $_SESSION['user_mail'] = strtolower($_POST['user_mail']);
+            $_SESSION['id_user'] = htmlspecialchars(strtolower($_POST['id_user']));
+            $_SESSION['user_mail'] = htmlspecialchars(strtolower($_POST['user_mail']));
             $mdp = hash("sha512", $_POST['password']);
             unset($_POST['password']);
             $mdp_2 = hash("md5", $mdp);
